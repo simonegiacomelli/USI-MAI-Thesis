@@ -1,4 +1,4 @@
-\documentclass[12pt, mscthesis]{usiinfthesis}
+\documentclass[11pt, mscthesis]{usiinfthesis}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage{lipsum}
@@ -16,7 +16,7 @@ else,end},
 sensitive=false,
 morecomment=[l]{//s},
 }
-
+\DeclareUnicodeCharacter{0301}{*************************************}
 
 
 \usepackage{subfiles}
@@ -134,13 +134,13 @@ I'll explain the dataset used for the evaluation
 %4.2 
 \section{Data Collection and Analysis}
 How I compute the results
-\lipsum[1-1]
+
 
 %4.3
 \section{Replication Package}
 A link to a repo with all data and code
 
-\lipsum[1-1]
+
 
 
 %5
@@ -157,7 +157,6 @@ Report precision/recall for different confidence thresholds
 \section{Qualitative Results}
 Discuss interesting cases in which your approach succeeds/fails
 
-\lipsum[1-1]
 
 
 %6
@@ -191,11 +190,7 @@ Discuss interesting cases in which your approach succeeds/fails
 
 
 \printbibliography
-
-
 %\cleardoublepage
 %\theindex %optional, use only if you have an index, must use
-	  %\makeindex in the preamble
-
-
+%\makeindex in the preamble
 \end{document}

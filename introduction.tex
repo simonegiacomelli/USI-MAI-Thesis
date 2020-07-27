@@ -1,21 +1,48 @@
 \chapter{Introduction}
-Technical debt is a metaphor between the financial concept and software development.
-A TD is contracted when a workaround or shortcut is implemented during code implementation.
+Technical Debt (TD) is a metaphor between the financial concept and software development.
+A TD is contracted when a workaround or shortcut is taken during code implementation.
 Choosing an easy and quick solution over a slower and more correct one gives the benefit to save time and deliver the artifact faster. 
+\\
 The downsides of incurring in TD is that further work on the code or around the affected parts will be more expensive and more time consuming. It also may have indirect effects: the software could misbehave in the domain it is operating, causing costs and damages as an effect of the unexpected output and wrong behavior.
-TD do not only affects software projects but can also be found in many layers of a technology stack: for example, delaying an hardware upgrade or a maintenance can give an immediate benefit of less downtime or financial savings, but an increased cost for future unexpected downtime or failures.
-Developers or managers can choose to incur in TD because of strict deadline, limited resources available or just plain laziness.
-Cunningham, who coined the TD metaphor, writes in [x The WyCash portfolio management system] "A little debt speeds development so long as it is paid back promptly with a rewrite"; there is a cost paying the debt and there are interest costs when efforts are wasted coping with non optimal code.
+\\
+TD do not only appear in software projects but can also be found in many layers of a technology stack \cite{allman2012managing}: for example, delaying an hardware upgrade or a maintenance can give an immediate benefit of less downtime or financial savings, but an increased cost for future unexpected downtime or failures.
+\\
+Developers or managers can choose to incur in TD because of strict deadline, limited resources available or just plain laziness \cite{hinsen2015technical,allman2012managing}. Cunningham, who coined the technical debt metaphor, writes in "The WyCash portfolio management system" \cite{cunningham1992wycash}: "A little debt speeds development so long as it is paid back promptly with a rewrite". Cunningham implies that one could benefit from a small amount of TD but its should be paid back as soon as possible. 
+\\
+TD can arise from intentional and unintentional decision, an inexperienced person could contract it without being aware of it \cite{hinsen2015technical}; In both cases it's often done for saving the limited available resources and shortening time-to-market \cite{tom2012consolidated}. For example, startups are highly pressured to quickly test products and ideas in order to save capitals and be faster than competitors.
+Besker at al. \cite{besker2018embracing} studied how startups incur in TD, which are the factors, challenges and benefits of intentional acquisition of TD; two of the regulating factors found by the authors are the experience of the developers and the software knowledge of the founders. In contrast to the beneficial viewpoint of TD, Ron Jeffries argues that the metaphor could be "perhaps too gentle", because it highlights the wise aspect of the choice of contracting a debt; the problem is that people also takes debt unwisely.
+Technical debt benefits a software project as long as it is handled before the bigger long term cost is realized \cite{guo2016exploring}.
+\\
+In order to better analyze and create a tractable model of TD, Alves et al. identifies three variables \cite{martini2018technical}: 
 
 
-The meaning in SE is...
-The methaphor has limitation and critique (TD could look good as a monetary debt)
+Identified variables (3)
+Tracking and managing is important
+Few proposed tracking and managing examples
 
+there is a cost paying the debt and there are interest costs when efforts are wasted coping with non optimal code.
 
-where  to describe code that is "not-quite-right code" [Ward Cunningham 1992] 
 
 
 Why detecting it is important\\
+Tom et al. in their systematic literature review studied, among others, the benefits and drawbacks of incurring in TD \cite{tom2012consolidated}; the part we are now interested in is the drawbacks: 
+\\
+Increasing costs over time, such as the amount of effort required to deliver a certain amount of functionality 
+\\
+Work estimation becomes difficult
+\\
+Developer productivity is negatively impacted 
+\\
+Becomes increasingly difficult to repay as decisions are affected by existing debt 
+\\
+Increased risk involved in modifications to the system
+\\
+Change becomes prohibitively expensive to the point of bankruptcy, and a complete rewrite
+and new platform may become necessary
+\\
+Decreased quality in the end product
+\\
+\\
 Ci sono team che risolvo as-you-go, altri hanno strategie per rilevare, identificare e fixare.
 It has been studied that TD [Investigating the Impact of Design Debt on Software Quality]
 E' importante rilevare e monitorare i TD perche' questi aumentano il costo di un progetto software, costo dovuto dall'interesse che si deve pagare in relazione al TD.
@@ -32,7 +59,7 @@ The goal of the thesis is to exploit SATD to train a model that can acquire the 
 Using the comments in open source projects I will identify class methods noted as SATD. Through the vcs commit history I will identify when this comments disappear; the assumption here is that when the comment is removed from the code the SATD has been fixed. Many cases are excluded to minimize the probability of keeping a false positive, i.e. the SATD is not fixed but the comment is removed. For example, the simplest case excluded is when the code is exactly the same and the only change is the SATD comment removal. Another reason of exclusion is when the code is changed too much; in such case it would not be prudent to keep the sample in the dataset.
 
 The achieved results tell us that it is difficult to predict with high accuracy on methods with big bodies. As the train dataset is limited to shorter and shorter method size, the accuracy grows. 
-\lipsum[1-1]
+
 
 %1.2
 \section{Structure of the Thesis}
