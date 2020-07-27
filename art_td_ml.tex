@@ -1,0 +1,39 @@
+\section{TD and machine learning}
+
+--this section will reference the paper from CSABA (techdebt conference 2020 related paper)--
+\\
+(c\&p) Several detection techniques and tools have been proposed in the literature. Recently, the adoption of machine learning techniques to detect bad smells became a trend [20]
+\\
+\\
+%ML-1
+\textbf{Khom et al. [27] and [28]}
+Khomh et al. proposed a Bayesian approach which initially converts existing detection rules to a probabilistic model to perform the predictions [27].
+Khom et al. [28] extend [27] by the introduction of Bayesian Belief Networks, improving the accuracy of the detection.
+\\
+\\
+%ML-2
+\textbf{Maiga et al.}
+Maiga et al. proposed an SVM-based approach that uses the feedback information provided by practitioners [35, 36]
+\\
+\\
+%ML-3
+\textbf{Amorim et al. [3]}
+Amorim et al. [3] presented an experience report on the effectiveness of Decision Trees for detecting bad smells. They choose these classifiers due to their interpretability [3]. Thus, most of the proposed works focus on only one classifier. They were also trained in a dataset composed of few systems and, consequently, the results may be positive towards their aproach due to overfitting.
+\\
+\\
+%ML-4
+\textbf{Fontana et al. [21]}
+Fontana et al. evaluated different machine learning algorithms on a set of different systems [21]. Their work was later extended and refined, providing a larger comparison of classifiers [20]. The notorious impact of this work was the incredible performance re- ported. Even naive algorithms were able of achieving great results using a small training dataset. This draws attention to possible drawbacks and limitations of their work, which was later reported by Di Nucci et al. [15]
+\\
+\\
+%ML-5
+\textbf{Di Nucci et al. [15]}
+Di Nucci et al. [15]. They replicated the study and verified that the reported performance was highly biased by the dataset and the procedures adopted, such as unrealistic balanced dataset, in which one third of the instances were smelly.
+\\
+\\
+%ML-6
+\textbf{Daniel Cruz at al. --the paper itself-}
+Detecting Bad Smells with Machine Learning Algorithms: an Empirical Study.
+Bad smells are symptoms of bad design choices implemented on the source code. They are one of the key indicators of technical debts, specifically, design debt. To manage this kind of debt, it is important to be aware of bad smells and refactor them whenever possible. Therefore, several bad smell detection tools and techniques have been proposed over the years. These tools and techniques present different strategies to perform detections. More recently, machine learning algorithms have also been proposed to support bad smell detection. However, we lack empirical evidence on the accuracy and efficiency of these machine learning based techniques. In this paper, we present an evaluation of seven different machine learning algorithms on the task of detecting four types of bad smells. We also provide an analysis of the impact of software metrics for bad smell detection using a unified approach for interpreting the models’ decisions. We found that with the right optimization, machine learning algorithms can achieve good performance (F1 score) for two bad smells: God Class (0.86) and Refused Parent Bequest (0.67). We also uncovered which metrics play fundamental roles for detecting each bad smell.
+\\
+\\

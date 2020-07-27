@@ -1,0 +1,201 @@
+\documentclass[12pt, mscthesis]{usiinfthesis}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{lipsum}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{subfig}
+\graphicspath{{./images/}{../images/}}
+\DeclareGraphicsExtensions{.png,.pdf}
+
+\newcommand{\vect}[1]{\boldsymbol{#1}}
+
+\lstdefinelanguage{algebra}
+{morekeywords={import,sort,constructors,observers,transformers,axioms,if,
+else,end},
+sensitive=false,
+morecomment=[l]{//s},
+}
+
+
+
+\usepackage{subfiles}
+\usepackage{biblatex}
+\addbibresource{biblio.bib}
+
+\title{Using Deep Learning to Identify Technical Debt} %compulsory
+\specialization{Major in Artificial Intelligence}%optional
+\subtitle{Levereging Self Admitted Technical Debt} %optional 
+\author{Simone Giacomelli} %compulsory
+\begin{committee}
+\advisor{Prof. Dr.}{Gabriele Bavota}{Advisor} %compulsory
+\coadvisor{Dr.}{Csaba Nagy}{Co-Advisor}{} %optional
+\end{committee}
+\Day{1} %compulsory
+\Month{September} %compulsory
+\Year{2020} %compulsory, put only the year
+\place{Lugano} %compulsory
+
+\dedication{To my beloved} %optional
+\openepigraph{Someone said \dots}{Someone} %optional
+
+%\makeindex %optional, also comment out \theindex at the end
+
+\begin{document}
+
+\maketitle %generates the titlepage, this is FIXED
+
+\frontmatter %generates the frontmatter, this is FIXED
+
+\begin{abstract}
+Composed of four parts: \\
+a: context\\
+b: problem\\
+c: proposed solution\\
+d: results\\
+\\
+max 400 words.
+I will write it once the intro has been approved
+\\
+\\
+\\
+\lipsum[1-1]
+\end{abstract}
+
+% \begin{abstract}[Zusammenfassung]
+% optional, use only if your external advisor requires it in his/er
+% language 
+% \\
+
+% \lipsum
+% \end{abstract}
+
+\begin{acknowledgements}
+Ack 
+\end{acknowledgements}
+
+\tableofcontents 
+\listoffigures %optional
+\listoftables %optional
+
+\mainmatter
+
+%1
+\input{introduction}
+
+
+%2
+\chapter{State of the Art}
+The following chapters describe existing approaches to detect different types of technical debt
+
+%2.1
+\input{art_auto_bug}
+%2.2
+\input{art_code_smell}
+%2.3 INSERTED
+\input{art_td_ml}
+%2.4 -shift down, was 2.3
+\input{art_satd}
+
+
+%2.4
+\section{Summing Up (WAS 2.4)}
+Here I explain why what I did is different
+\input{art_summing_up}
+
+%3
+\chapter{Using Deep Learning to Detect Technical Debt}
+
+Here I describe the approach. 
+
+I'm going to start from a short overview, then I go into details
+
+%3.1
+\section{Mining SATD Instances and their Fixes}
+\lipsum[1-1]
+
+%3.2 
+\section{The Deep Learning Model}
+
+%3.3
+\section{Hyperparameter Tuning}
+\lipsum[1-1]
+
+%4
+\chapter{Empirical Study Design}
+
+I'm going to start with a short description  about the goal/research questions
+
+%4.1
+\section{Context Selection}
+I'll explain the dataset used for the evaluation
+\lipsum[1-1]
+
+%4.2 
+\section{Data Collection and Analysis}
+How I compute the results
+\lipsum[1-1]
+
+%4.3
+\section{Replication Package}
+A link to a repo with all data and code
+
+\lipsum[1-1]
+
+
+%5
+\chapter{Results Discussion}
+
+\dots results discussion \dots 
+
+%5.1
+\section{Quantitative Results}
+Report precision/recall for different confidence thresholds
+\lipsum[1-1]
+
+%5.2 
+\section{Qualitative Results}
+Discuss interesting cases in which your approach succeeds/fails
+
+\lipsum[1-1]
+
+
+%6
+\chapter{Threats to Validity}
+
+\dots Discussion on the limitations of my study \dots 
+
+
+%7
+\chapter{Conclusion}
+
+\dots conclusion \dots 
+
+%%%%%%% commented appendix
+% \appendix %optional, use only if you have an appendix
+% \chapter{Some retarded material}
+% \section{It's over\dots}
+% \lipsum 
+
+\nocite{*}
+\backmatter
+
+%%%%%%% commented glossary
+%\chapter{Glossary} %optional
+
+%\bibliographystyle{alpha}
+%\bibliographystyle{dcu}
+%\bibliographystyle{plainnat}
+%\bibliography{biblio}
+
+
+
+\printbibliography
+
+
+%\cleardoublepage
+%\theindex %optional, use only if you have an index, must use
+	  %\makeindex in the preamble
+
+
+\end{document}

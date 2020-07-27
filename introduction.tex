@@ -1,0 +1,50 @@
+\chapter{Introduction}
+(What is technical debt) Technical debt is a metaphor between the monetary concept and software development.
+A TD is contracted when a shortcut or a workaround is implemented during software development.
+Choosing an easy and quick solution over a slower and more correct solution gives the benefit to save time and deliver the artifact faster. 
+The downsides of incurring in TD is that further work on the code or around the affected parts will be more expensive and more difficult. It also may have indirect effects because the software could misbehave in the domain it is running causing costs and damages as effect of the unexpected and potentially wrong generated output.
+TD do not stop only to software projects but can be found in many layers of a technology stack: for example, delaying an hardware upgrade or maintenance can give an immediate benefit of less downtime or financial savings, but an increased cost for future unexpected downtime or failures.
+Developers or managers can choose to incur in TD because of strict deadline, limited resources available or just plain laziness.
+Cunningham, who coined the TD metaphor, writes in [x The WyCash portfolio management system] "A little debt speeds development so long as it is paid back promptly with a rewrite"; there is a cost paying the debt and there are interest costs when efforts are wasted coping with non optimal code.
+
+
+The meaning in SE is...
+The methaphor has limitation and critique (TD could look good as a monetary debt)
+
+
+where  to describe code that is "not-quite-right code" [Ward Cunningham 1992] 
+
+
+Why detecting it is important\\
+Ci sono team che risolvo as-you-go, altri hanno strategie per rilevare, identificare e fixare.
+It has been studied that TD [Investigating the Impact of Design Debt on Software Quality]
+E' importante rilevare e monitorare i TD perche' questi aumentano il costo di un progetto software, costo dovuto dall'interesse che si deve pagare in relazione al TD.
+
+\newpage
+
+
+
+%1.1
+
+\section{Objectives and Results}
+Once the context is clear, I will explain the goal of the thesis and summarize the achieved results
+The goal of the thesis is to exploit SATD to train a model that can acquire the capacity to distinguish between TD-free code and code affected by TD.
+Using the comments in open source projects I will identify class methods noted as SATD. Through the vcs commit history I will identify when this comments disappear; the assumption here is that when the comment is removed from the code the SATD has been fixed. Many cases are excluded to minimize the probability of keeping a false positive, i.e. the SATD is not fixed but the comment is removed. For example, the simplest case excluded is when the code is exactly the same and the only change is the SATD comment removal. Another reason of exclusion is when the code is changed too much; in such case it would not be prudent to keep the sample in the dataset.
+
+The achieved results tell us that it is difficult to predict with high accuracy on methods with big bodies. As the train dataset is limited to shorter and shorter method size, the accuracy grows. 
+\lipsum[1-1]
+
+%1.2
+\section{Structure of the Thesis}
+A simple bullet list saying "Chapter 2 presents the state of the art, bla... Chapter 3 ..."
+\\
+\\
+
+\begin{itemize}
+  \item Chapter 2 presents the state of the art
+  \item Chapter 3 explains how to leverage SATD to train a Deep Learning model to detect TD
+  \item Chapter 4 Empirical Study design
+  \item Chapter 5 Results discussion
+  \item Chapter 6 Threats to validity
+  \item Chapter 7 Conclusion
+\end{itemize}
