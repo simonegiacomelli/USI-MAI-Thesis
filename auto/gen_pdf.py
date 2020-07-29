@@ -13,11 +13,15 @@ def run(cmd):
     return res
 
 
-while True:
-    if run('git pull -q') != 0:
+def fetch():
+    if run('git fetch --all -q && git pull -q') != 0:
         # changes incoming
         print('ok')
     time.sleep(5)
+
+
+# while True:
+fetch()
 
 res = os.system('pdflatex -interaction nonstopmode --output-directory=auto --aux-directory=auto main.tex')
 if res == 0:
