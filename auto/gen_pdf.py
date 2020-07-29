@@ -25,7 +25,7 @@ def watch():
         if res != 0:
             # notify error
             pass
-        os.system("git commit -a -m 'pdflatex auto run' && git push")
+        os.system("git add auto/main.pdf && git commit -m 'pdflatex auto run' && git push")
 
 
 
