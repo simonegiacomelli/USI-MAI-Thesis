@@ -20,6 +20,7 @@ def watch():
     other_id = subprocess.getoutput('git log --format="%H" -n 1')
     if pdf_id != other_id:
         # need render pdf
+        print('Need render pdf. Pdf commit id=%s other commit id=%s' % (pdf_id, other_id))
         res = os.system('pdflatex -interaction nonstopmode --output-directory=auto --aux-directory=auto main.tex')
         if res != 0:
             # notify error
@@ -27,6 +28,7 @@ def watch():
         os.system("git commit -a -m 'pdflatex auto run' && git push")
 
 
+
 while True:
     watch()
-    time.sleep(5)
+    time.sleep(1)
