@@ -23,9 +23,9 @@ def watch():
         print('Need render pdf. Pdf commit id=%s other commit id=%s' % (pdf_id, other_id))
         res = os.system('pdflatex -interaction nonstopmode --output-directory=auto --aux-directory=auto main.tex')
         if res != 0:
-            # notify error
+            # compile error
             pass
-        os.system("git add auto/main.pdf && git commit -m 'pdflatex auto run' && git push")
+        os.system("git commit -a -m 'pdflatex auto run' && git push")
 
 
 
