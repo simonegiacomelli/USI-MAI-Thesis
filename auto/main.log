@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.7.29)  29 JUL 2020 17:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.7.29)  29 JUL 2020 17:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1651,36 +1651,30 @@ Underfull \hbox (badness 10000) in paragraph at lines 53--64
 
 ] [7] [8
 
-]
+] (auto/main.toc
+LaTeX Font Info:    Font shape `T1/mdbch/b/n' will be
+(Font)              scaled to size 10.51207pt on input line 4.
+ [9
 
-Package hyperref Warning: old toc file detected, not used; run LaTeX again.
-
+])
 \tf@toc=\write7
 \openout7 = `main.toc'.
 
-[9
-
-] [10
-
-]
-
-Package hyperref Warning: old lof file detected, not used; run LaTeX again.
-
+ [10] (auto/main.lof)
 \tf@lof=\write8
 \openout8 = `main.lof'.
 
-[11
+ [11
+
 
 ] [12
 
 ]
-
-Package hyperref Warning: old lot file detected, not used; run LaTeX again.
-
+(auto/main.lot)
 \tf@lot=\write9
 \openout9 = `main.lot'.
 
-[13
+ [13
 
 ] [14
 
@@ -1694,8 +1688,6 @@ LaTeX Font Info:    Font shape `T1/mdbch/b/n' will be
 LaTeX Warning: Citation 'allman2012managing' on page 1 undefined on input line 
 8.
 
-LaTeX Font Info:    Font shape `T1/mdbch/b/n' will be
-(Font)              scaled to size 10.51207pt on input line 8.
 
 LaTeX Warning: Citation 'hinsen2015technical' on page 1 undefined on input line
  10.
@@ -1771,7 +1763,7 @@ LaTeX Font Info:    Font shape `TS1/mdbch/m/n' will be
 ]
 Chapter 2.
 (./art_auto_bug.tex
-<classification-of-bug-detection-tools.png, id=228, 470.75874pt x 155.58125pt>
+<classification-of-bug-detection-tools.png, id=258, 470.75874pt x 155.58125pt>
 File: classification-of-bug-detection-tools.png Graphic file (type png)
 <use classification-of-bug-detection-tools.png>
 Package pdftex.def Info: classification-of-bug-detection-tools.png  used on inp
@@ -2191,15 +2183,15 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 23782 strings out of 494923
- 363594 string characters out of 6180742
+ 23788 strings out of 494923
+ 363672 string characters out of 6180742
  926180 words of memory out of 5000000
  26643 multiletter control sequences out of 15000+600000
  51973 words of font info for 68 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 60i,11n,94p,2065b,1732s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/ly1/texnansi.enc} </home/demo/
-.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm2074.600pk> </home/demo/
+ 60i,11n,94p,2065b,1915s stack positions out of 5000i,500n,10000p,200000b,80000s
+ </home/demo/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm2074.600p
+k>{/usr/share/texlive/texmf-dist/fonts/enc/dvips/ly1/texnansi.enc} </home/demo/
 .texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm2488.600pk> </home/demo/
 .texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </home/demo/
 .texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1440.600pk> </home/demo/
@@ -2210,10 +2202,10 @@ exmf-dist/fonts/type1/bitstrea/charter/bchr8a.pfb></usr/share/texlive/texmf-dis
 t/fonts/type1/bitstrea/charter/bchri8a.pfb></usr/share/texlive/texmf-dist/fonts
 /type1/public/mathdesign/mdbch/md-chb8t.pfb></usr/share/texlive/texmf-dist/font
 s/type1/public/mathdesign/mdbch/md-chr8t.pfb>
-Output written on auto/main.pdf (44 pages, 232856 bytes).
+Output written on auto/main.pdf (44 pages, 235128 bytes).
 PDF statistics:
- 617 PDF objects out of 1000 (max. 8388607)
- 336 compressed objects within 4 object streams
+ 647 PDF objects out of 1000 (max. 8388607)
+ 366 compressed objects within 4 object streams
  84 named destinations out of 1000 (max. 500000)
  246 words of extra memory for PDF output out of 10000 (max. 10000000)
 
