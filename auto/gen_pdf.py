@@ -1,3 +1,4 @@
+# this script runs on ringhio
 import os
 from pathlib import Path
 import time
