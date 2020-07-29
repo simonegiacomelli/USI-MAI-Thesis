@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.7.29)  29 JUL 2020 17:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.7.29)  29 JUL 2020 17:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2185,7 +2185,7 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 Here is how much of TeX's memory you used:
  23788 strings out of 494923
  363672 string characters out of 6180742
- 926180 words of memory out of 5000000
+ 926172 words of memory out of 5000000
  26643 multiletter control sequences out of 15000+600000
  51973 words of font info for 68 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
@@ -2202,9 +2202,9 @@ exmf-dist/fonts/type1/bitstrea/charter/bchr8a.pfb></usr/share/texlive/texmf-dis
 t/fonts/type1/bitstrea/charter/bchri8a.pfb></usr/share/texlive/texmf-dist/fonts
 /type1/public/mathdesign/mdbch/md-chb8t.pfb></usr/share/texlive/texmf-dist/font
 s/type1/public/mathdesign/mdbch/md-chr8t.pfb>
-Output written on auto/main.pdf (44 pages, 235128 bytes).
+Output written on auto/main.pdf (44 pages, 233184 bytes).
 PDF statistics:
- 647 PDF objects out of 1000 (max. 8388607)
+ 641 PDF objects out of 1000 (max. 8388607)
  366 compressed objects within 4 object streams
  84 named destinations out of 1000 (max. 500000)
  246 words of extra memory for PDF output out of 10000 (max. 10000000)
