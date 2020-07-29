@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 import time
+import subprocess
 
 dir = (Path(__file__) / '../..').resolve().absolute()
 os.chdir(dir)
@@ -13,16 +14,19 @@ def run(cmd):
     return res
 
 
-def fetch():
-    if run('git fetch --all -q && git pull -q') != 0:
-        # changes incoming
-        print('ok')
+def watch():
+    run('git fetch --all -q && git pull -q')
+    pdf_id = subprocess.getoutput('git log --format="%H" -n 1 auto/main.pdf')
+    other_id = subprocess.getoutput('git log --format="%H" -n 1')
+    if pdf_id != other_id:
+        # need render pdf
+        res = os.system('pdflatex -interaction nonstopmode --output-directory=auto --aux-directory=auto main.tex')
+        if res != 0:
+            # notify error
+            pass
+        os.system("git commit -a -m 'pdflatex auto run' && git push")
+
+
+while True:
+    watch()
     time.sleep(5)
-
-
-# while True:
-fetch()
-
-res = os.system('pdflatex -interaction nonstopmode --output-directory=auto --aux-directory=auto main.tex')
-if res == 0:
-    os.system("git commit -a -m 'pdflatex auto run'")
