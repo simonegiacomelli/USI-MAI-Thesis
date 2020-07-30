@@ -3,14 +3,16 @@ Technical Debt (TD) is a metaphor between the financial concept and software dev
 A TD is contracted when a workaround or shortcut is taken during code implementation.
 Choosing an easy and quick solution over a slower and more correct one gives the benefit to save time and deliver the artifact faster. 
 \\
-The downsides of incurring in TD is that further work on the code or around the affected parts will be more expensive and more time consuming. It also may have indirect effects: the software could misbehave in the domain it is operating, causing costs and damages as an effect of the unexpected output and wrong behavior.
+The downsides of incurring in TD are many, one of the most intuitive is that further work on the affected parts will be more expensive and time consuming than on clean and healthy code. There are also indirect effects to contemplate: the software could misbehave in the domain it is operating, causing costs and damages as the effect of unexpected output or wrong behavior.
 \\
-TD do not only appear in software projects but can also be found in many layers of a technology stack \cite{allman2012managing}: for example, delaying an hardware upgrade or a maintenance can give an immediate benefit of less downtime or financial savings, but an increased cost for future unexpected downtime or failures.
+TD do not only appear in software projects but can also be found in many layers of a technology stack: for example, delaying an hardware upgrade or a maintenance can give an immediate benefit of less downtime or financial savings, but an increased cost for future unexpected downtime or failures \cite{allman2012managing}.
 \\
 Developers or managers can choose to incur in TD because of strict deadline, limited resources available or just plain laziness \cite{hinsen2015technical,allman2012managing}. Cunningham, who coined the technical debt metaphor, writes in "The WyCash portfolio management system" \cite{cunningham1992wycash}: "A little debt speeds development so long as it is paid back promptly with a rewrite". Cunningham implies that one could benefit from a small amount of TD but its should be paid back as soon as possible. 
 \\
 TD can arise from intentional and unintentional decision, an inexperienced person could contract it without being aware of it \cite{hinsen2015technical}; In both cases it's often done for saving the limited available resources and shortening time-to-market \cite{tom2012consolidated}. For example, startups are highly pressured to quickly test products and ideas in order to save capitals and be faster than competitors.
-Besker at al. \cite{besker2018embracing} studied how startups incur in TD, which are the factors, challenges and benefits of intentional acquisition of TD; two of the regulating factors found by the authors are the experience of the developers and the software knowledge of the founders. In contrast to the beneficial viewpoint of TD, Ron Jeffries argues that the metaphor could be "perhaps too gentle", because it highlights the wise aspect of the choice of contracting a debt; the problem is that people also takes debt unwisely.
+Besker at al. studied how startups incur in TD, which are the factors, challenges and benefits of intentional acquisition of TD; two of the regulating factors found by the authors are the experience of the developers and the software knowledge of the founders \cite{besker2018embracing}.
+\\
+In contrast to the beneficial viewpoint of TD, Ron Jeffries argues that the metaphor could be "perhaps too gentle", because it highlights the wise aspect of the choice of contracting a debt; the problem is that people also takes debt unwisely.
 Technical debt benefits a software project as long as it is handled before the bigger long term cost is realized \cite{guo2016exploring}.
 \\
 In order to better analyze and create a tractable model of TD, Alves et al. identifies three variables \cite{martini2018technical}: 
