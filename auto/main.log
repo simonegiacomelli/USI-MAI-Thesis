@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.7.29)  30 JUL 2020 12:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.7.29)  3 AUG 2020 09:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1685,6 +1685,10 @@ LaTeX Font Info:    Font shape `T1/mdbch/m/n' will be
 LaTeX Font Info:    Font shape `T1/mdbch/b/n' will be
 (Font)              scaled to size 19.91054pt on input line 1.
 
+LaTeX Warning: Citation 'tom2013exploration' on page 1 undefined on input line 
+6.
+
+
 LaTeX Warning: Citation 'allman2012managing' on page 1 undefined on input line 
 8.
 
@@ -1718,10 +1722,10 @@ LaTeX Warning: Citation 'guo2016exploring' on page 1 undefined on input line 16
 
 
 LaTeX Warning: Citation 'martini2018technical' on page 1 undefined on input lin
-e 18.
+e 20.
 
 
-Overfull \hbox (0.86848pt too wide) in paragraph at lines 2--19
+Overfull \hbox (0.86848pt too wide) in paragraph at lines 2--21
 \T1/mdbch/m/n/10.95 sources avail-able or just plain lazi-ness [[], []].
  []
 
@@ -1733,30 +1737,30 @@ Underfull \vbox (badness 8000) has occurred while \output is active []
 ]
 
 LaTeX Warning: Citation 'tom2012consolidated' on page 2 undefined on input line
- 30.
+ 32.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 29--51
+Underfull \hbox (badness 10000) in paragraph at lines 31--53
 
  []
 
 [2]
-Underfull \hbox (badness 10000) in paragraph at lines 68--71
+Underfull \hbox (badness 10000) in paragraph at lines 70--73
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 68--71
+Underfull \hbox (badness 10000) in paragraph at lines 70--73
 
  []
 
-LaTeX Font Info:    Try loading font information for TS1+mdbch on input line 73
+LaTeX Font Info:    Try loading font information for TS1+mdbch on input line 75
 .
 (/usr/share/texlive/texmf-dist/tex/latex/mathdesign/mdbch/ts1mdbch.fd
 File: ts1mdbch.fd 2013/08/29 Fontinst v1.933 font definitions for TS1/mdbch.
 )
 LaTeX Font Info:    Font shape `TS1/mdbch/m/n' will be
-(Font)              scaled to size 10.51207pt on input line 73.
+(Font)              scaled to size 10.51207pt on input line 75.
 )
 [3] [4
 
@@ -2202,7 +2206,7 @@ exmf-dist/fonts/type1/bitstrea/charter/bchr8a.pfb></usr/share/texlive/texmf-dis
 t/fonts/type1/bitstrea/charter/bchri8a.pfb></usr/share/texlive/texmf-dist/fonts
 /type1/public/mathdesign/mdbch/md-chb8t.pfb></usr/share/texlive/texmf-dist/font
 s/type1/public/mathdesign/mdbch/md-chr8t.pfb>
-Output written on auto/main.pdf (44 pages, 233227 bytes).
+Output written on auto/main.pdf (44 pages, 233429 bytes).
 PDF statistics:
  641 PDF objects out of 1000 (max. 8388607)
  366 compressed objects within 4 object streams
