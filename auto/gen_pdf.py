@@ -1,4 +1,4 @@
-# this script runs on ringhio
+# this script runs on pi
 import os
 from pathlib import Path
 import time
