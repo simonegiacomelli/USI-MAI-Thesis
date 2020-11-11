@@ -1,4 +1,5 @@
 # this script runs on pi
+# os dependencies: sudo apt-get install -y texlive-latex-base texlive-latex-recommended texlive-fonts-recommended
 import os
 from pathlib import Path
 import time
