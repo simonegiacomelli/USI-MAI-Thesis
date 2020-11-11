@@ -5,6 +5,7 @@ import time
 import subprocess
 
 dir = (Path(__file__) / '../..').resolve().absolute()
+print('chdir',dir)
 os.chdir(dir)
 
 
