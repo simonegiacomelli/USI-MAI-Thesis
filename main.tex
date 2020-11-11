@@ -11,7 +11,23 @@
 \DeclareGraphicsExtensions{.png,.pdf}
 
 \newcommand{\vect}[1]{\boldsymbol{#1}}
+%%%%%
+\makeatletter
+\newcommand{\labeltextbf}[3][]{%
+    \@bsphack%
+    \csname phantomsection\endcsname% in case hyperref is used
+    \def\tst{#1}%
+    \def\labelmarkup{\textbf}% How to markup the label itself
+    %\def\refmarkup{\labelmarkup}% How to markup the reference
+    \def\refmarkup{}%
+    \ifx\tst\empty\def\@currentlabel{\refmarkup{#2}}{\label{#3}}%
+    \else\def\@currentlabel{\refmarkup{#1}}{\label{#3}}\fi%
+    \@esphack%
+    \labelmarkup{#2}% visible printed text.
+}
+\makeatother
 
+%%%%%
 \lstdefinelanguage{algebra}
 {morekeywords={import,sort,constructors,observers,transformers,axioms,if,
 else,end},
@@ -88,16 +104,16 @@ Ack
 
 %2
 \chapter{State of the Art}
-The following chapters describe existing approaches to detect different types of technical debt
+The following sections describe existing approaches to detect different types of technical debt.
 
 %2.1
 \input{art_auto_bug}
 %2.2
 \input{art_code_smell}
-%2.3 INSERTED
-\input{art_td_ml}
-%2.4 -shift down, was 2.3
+%2.3
 \input{art_satd}
+%2.4 INSERTED
+\input{art_td_ml}
 
 
 %2.4
