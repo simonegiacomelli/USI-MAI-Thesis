@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2020.11.11)  11 NOV 2020 11:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2020.11.11)  11 NOV 2020 11:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -986,27 +986,1216 @@ Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
 \verbatim@line=\toks49
 \verbatim@in@stream=\read3
 ))
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.sty
+Package: biblatex 2018/11/02 v3.12 programmable bibliographies (PK/MW)
 
-! LaTeX Error: File `biblatex.sty' not found.
+(/usr/share/texlive/texmf-dist/tex/latex/logreq/logreq.sty
+Package: logreq 2010/08/04 v1.0 xml request logger
+\lrq@indent=\count334
 
-Type X to quit or <RETURN> to proceed,
-or enter new name. (Default extension: sty)
+(/usr/share/texlive/texmf-dist/tex/latex/logreq/logreq.def
+File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
+))
+\c@tabx@nest=\count335
+\c@listtotal=\count336
+\c@listcount=\count337
+\c@liststart=\count338
+\c@liststop=\count339
+\c@citecount=\count340
+\c@citetotal=\count341
+\c@multicitecount=\count342
+\c@multicitetotal=\count343
+\c@instcount=\count344
+\c@maxnames=\count345
+\c@minnames=\count346
+\c@maxitems=\count347
+\c@minitems=\count348
+\c@citecounter=\count349
+\c@maxcitecounter=\count350
+\c@savedcitecounter=\count351
+\c@uniquelist=\count352
+\c@uniquename=\count353
+\c@refsection=\count354
+\c@refsegment=\count355
+\c@maxextratitle=\count356
+\c@maxextratitleyear=\count357
+\c@maxextraname=\count358
+\c@maxextradate=\count359
+\c@maxextraalpha=\count360
+\c@abbrvpenalty=\count361
+\c@highnamepenalty=\count362
+\c@lownamepenalty=\count363
+\c@maxparens=\count364
+\c@parenlevel=\count365
+\blx@tempcnta=\count366
+\blx@tempcntb=\count367
+\blx@tempcntc=\count368
+\blx@maxsection=\count369
+\blx@maxsegment@0=\count370
+\blx@notetype=\count371
+\blx@parenlevel@text=\count372
+\blx@parenlevel@foot=\count373
+\blx@sectionciteorder@0=\count374
+\blx@entrysetcounter=\count375
+\labelnumberwidth=\skip76
+\labelalphawidth=\skip77
+\biblabelsep=\skip78
+\bibitemsep=\skip79
+\bibnamesep=\skip80
+\bibinitsep=\skip81
+\bibparsep=\skip82
+\bibhang=\skip83
+\blx@bcfin=\read4
+\blx@bcfout=\write4
+\c@mincomprange=\count376
+\c@maxcomprange=\count377
+\c@mincompwidth=\count378
+Package biblatex Info: Trying to load biblatex default data model...
+Package biblatex Info: ... file 'blx-dm.def' found.
 
-Enter file name: 
-! Emergency stop.
-<read *> 
-         
-l.42 \addbibresource
-                    {biblio.bib}^^M
-*** (cannot \read from terminal in nonstop modes)
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/blx-dm.def
+File: blx-dm.def 2018/11/02 v3.12 biblatex localization (PK/MW)
+)
+Package biblatex Info: Trying to load biblatex custom data model...
+Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
+\c@afterword=\count379
+\c@savedafterword=\count380
+\c@annotator=\count381
+\c@savedannotator=\count382
+\c@author=\count383
+\c@savedauthor=\count384
+\c@bookauthor=\count385
+\c@savedbookauthor=\count386
+\c@commentator=\count387
+\c@savedcommentator=\count388
+\c@editor=\count389
+\c@savededitor=\count390
+\c@editora=\count391
+\c@savededitora=\count392
+\c@editorb=\count393
+\c@savededitorb=\count394
+\c@editorc=\count395
+\c@savededitorc=\count396
+\c@foreword=\count397
+\c@savedforeword=\count398
+\c@holder=\count399
+\c@savedholder=\count400
+\c@introduction=\count401
+\c@savedintroduction=\count402
+\c@namea=\count403
+\c@savednamea=\count404
+\c@nameb=\count405
+\c@savednameb=\count406
+\c@namec=\count407
+\c@savednamec=\count408
+\c@translator=\count409
+\c@savedtranslator=\count410
+\c@shortauthor=\count411
+\c@savedshortauthor=\count412
+\c@shorteditor=\count413
+\c@savedshorteditor=\count414
+\c@labelname=\count415
+\c@savedlabelname=\count416
+\c@institution=\count417
+\c@savedinstitution=\count418
+\c@lista=\count419
+\c@savedlista=\count420
+\c@listb=\count421
+\c@savedlistb=\count422
+\c@listc=\count423
+\c@savedlistc=\count424
+\c@listd=\count425
+\c@savedlistd=\count426
+\c@liste=\count427
+\c@savedliste=\count428
+\c@listf=\count429
+\c@savedlistf=\count430
+\c@location=\count431
+\c@savedlocation=\count432
+\c@organization=\count433
+\c@savedorganization=\count434
+\c@origlocation=\count435
+\c@savedoriglocation=\count436
+\c@origpublisher=\count437
+\c@savedorigpublisher=\count438
+\c@publisher=\count439
+\c@savedpublisher=\count440
+\c@language=\count441
+\c@savedlanguage=\count442
+\c@origlanguage=\count443
+\c@savedoriglanguage=\count444
+\c@pageref=\count445
+\c@savedpageref=\count446
+\shorthandwidth=\skip84
+\shortjournalwidth=\skip85
+\shortserieswidth=\skip86
+\shorttitlewidth=\skip87
+\shortauthorwidth=\skip88
+\shorteditorwidth=\skip89
+\locallabelnumberwidth=\skip90
+\locallabelalphawidth=\skip91
+\localshorthandwidth=\skip92
+\localshortjournalwidth=\skip93
+\localshortserieswidth=\skip94
+\localshorttitlewidth=\skip95
+\localshortauthorwidth=\skip96
+\localshorteditorwidth=\skip97
+Package biblatex Info: Trying to load compatibility code...
+Package biblatex Info: ... file 'blx-compat.def' found.
 
- 
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/blx-compat.def
+File: blx-compat.def 2018/11/02 v3.12 biblatex compatibility (PK/MW)
+)
+Package biblatex Info: Trying to load generic definitions...
+Package biblatex Info: ... file 'biblatex.def' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.def
+File: biblatex.def 2018/11/02 v3.12 biblatex compatibility (PK/MW)
+\c@textcitecount=\count447
+\c@textcitetotal=\count448
+\c@textcitemaxnames=\count449
+\c@biburlnumpenalty=\count450
+\c@biburlucpenalty=\count451
+\c@biburllcpenalty=\count452
+\c@smartand=\count453
+)
+Package biblatex Info: Trying to load bibliography style 'numeric'...
+Package biblatex Info: ... file 'numeric.bbx' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/bbx/numeric.bbx
+File: numeric.bbx 2018/11/02 v3.12 biblatex bibliography style (PK/MW)
+Package biblatex Info: Trying to load bibliography style 'standard'...
+Package biblatex Info: ... file 'standard.bbx' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
+File: standard.bbx 2018/11/02 v3.12 biblatex bibliography style (PK/MW)
+\c@bbx:relatedcount=\count454
+\c@bbx:relatedtotal=\count455
+))
+Package biblatex Info: Trying to load citation style 'numeric'...
+Package biblatex Info: ... file 'numeric.cbx' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/cbx/numeric.cbx
+File: numeric.cbx 2018/11/02 v3.12 biblatex citation style (PK/MW)
+Package biblatex Info: Redefining '\cite'.
+Package biblatex Info: Redefining '\parencite'.
+Package biblatex Info: Redefining '\footcite'.
+Package biblatex Info: Redefining '\footcitetext'.
+Package biblatex Info: Redefining '\smartcite'.
+Package biblatex Info: Redefining '\supercite'.
+Package biblatex Info: Redefining '\textcite'.
+Package biblatex Info: Redefining '\textcites'.
+Package biblatex Info: Redefining '\cites'.
+Package biblatex Info: Redefining '\parencites'.
+Package biblatex Info: Redefining '\smartcites'.
+)
+Package biblatex Info: Trying to load configuration file...
+Package biblatex Info: ... file 'biblatex.cfg' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.cfg
+File: biblatex.cfg 
+))
+\dtldb@committee=\toks50
+\dtlkeys@committee=\toks51
+\dtlrows@committee=\count456
+\dtlcols@committee=\count457
+Package biblatex Info: Trying to load language 'english'...
+Package biblatex Info: ... file 'english.lbx' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/lbx/english.lbx
+File: english.lbx 2018/11/02 v3.12 biblatex localization (PK/MW)
+)
+
+Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
+(biblatex)                Loading 'csquotes' recommended.
+
+\@quotelevel=\count458
+\@quotereset=\count459
+(auto/main.aux)
+\openout1 = `main.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for MDA/cmr/m/n on input line 62.
+LaTeX Font Info:    Try loading font information for MDA+cmr on input line 62.
+ (/usr/share/texlive/texmf-dist/tex/latex/mathdesign/mdacmr.fd
+File: mdacmr.fd 
+)
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for MDB/cmr/m/n on input line 62.
+LaTeX Font Info:    Try loading font information for MDB+cmr on input line 62.
+
+(/usr/share/texlive/texmf-dist/tex/latex/mathdesign/mdbcmr.fd
+File: mdbcmr.fd 
+)
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 62.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 62.
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
+File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* hratio: 1:1
+* modes: twoside asymmetric 
+* h-part:(L,W,R)=(101.57524pt, 394.35738pt, 101.57526pt)
+* v-part:(T,H,B)=(101.40665pt, 591.5302pt, 152.11pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=394.35738pt
+* \textheight=591.5302pt
+* \oddsidemargin=29.30525pt
+* \evensidemargin=29.30525pt
+* \topmargin=-2.73714pt
+* \headheight=15.0pt
+* \headsep=19.8738pt
+* \topskip=11.0pt
+* \footskip=27.46295pt
+* \marginparwidth=106.0pt
+* \marginparsep=7.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidetrue
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: subfig package v1.3 is loaded.
+Package caption Info: hyperref package is loaded.
+Package caption Info: hypcap package is loaded.
+Package caption Info: listings package is loaded.
+Package caption Info: End \AtBeginDocument code.
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count460
+\scratchdimen=\dimen186
+\scratchbox=\box49
+\nofMPsegments=\count461
+\nofMParguments=\count462
+\everyMPshowfont=\toks52
+\MPscratchCnt=\count463
+\MPscratchDim=\dimen187
+\MPnumerator=\count464
+\makeMPintoPDFobject=\count465
+\everyMPtoPDFconversion=\toks53
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
+
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
+)
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+38.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 456.
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+\AtBeginShipoutBox=\box50
+Package hyperref Info: Link coloring OFF on input line 62.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
+Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
+)
+\c@section@level=\count466
+)
+LaTeX Info: Redefining \ref on input line 62.
+LaTeX Info: Redefining \pageref on input line 62.
+LaTeX Info: Redefining \nameref on input line 62.
+
+(auto/main.out) (auto/main.out)
+\@outlinefile=\write5
+\openout5 = `main.out'.
+
+\c@lstlisting=\count467
+Package biblatex Info: Input encoding 'utf8' detected.
+Package biblatex Info: Automatic encoding selection.
+(biblatex)             Assuming data encoding 'utf8'.
+\openout4 = `main.bcf'.
+
+Package biblatex Info: Trying to load bibliographic data...
+Package biblatex Info: ... file 'main.bbl' not found.
+
+No file main.bbl.
+Package biblatex Info: Reference section=0 on input line 62.
+Package biblatex Info: Reference segment=0 on input line 62.
+LaTeX Font Info:    Font shape `T1/mdbch/m/n' will be
+(Font)              scaled to size 16.58891pt on input line 65.
+LaTeX Font Info:    Font shape `T1/mdbch/b/n' will be
+(Font)              scaled to size 16.58891pt on input line 65.
+LaTeX Font Info:    Try loading font information for T1+uop on input line 65.
+LaTeX Font Info:    No file T1uop.fd. on input line 65.
+
+LaTeX Font Warning: Font shape `T1/uop/b/n' undefined
+(Font)              using `T1/cmr/m/n' instead on input line 65.
+
+LaTeX Font Info:    Font shape `T1/mdbch/m/n' will be
+(Font)              scaled to size 11.52008pt on input line 65.
+LaTeX Font Info:    Font shape `T1/mdbch/b/n' will be
+(Font)              scaled to size 11.52008pt on input line 65.
+LaTeX Font Info:    Font shape `T1/mdbch/m/it' will be
+(Font)              scaled to size 10.51207pt on input line 65.
+LaTeX Font Info:    Font shape `T1/mdbch/m/n' will be
+(Font)              scaled to size 13.82408pt on input line 65.
+LaTeX Font Info:    Font shape `T1/mdbch/b/n' will be
+(Font)              scaled to size 13.82408pt on input line 65.
+[0
+
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [1
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 66--66
+
+ []
+
+LaTeX Font Info:    Try loading font information for OT1+mdbch on input line 66
+.
+(/usr/share/texlive/texmf-dist/tex/latex/mathdesign/mdbch/ot1mdbch.fd
+File: ot1mdbch.fd 2013/08/29 Fontinst v1.933 font definitions for OT1/mdbch.
+)
+LaTeX Font Info:    Font shape `OT1/mdbch/m/n' will be
+(Font)              scaled to size 10.51207pt on input line 66.
+LaTeX Font Info:    Font shape `OT1/mdbch/m/n' will be
+(Font)              scaled to size 7.68005pt on input line 66.
+LaTeX Font Info:    Font shape `OT1/mdbch/m/n' will be
+(Font)              scaled to size 5.76004pt on input line 66.
+LaTeX Font Info:    Try loading font information for OML+mdbch on input line 66
+.
+
+(/usr/share/texlive/texmf-dist/tex/latex/mathdesign/mdbch/omlmdbch.fd
+File: omlmdbch.fd 2013/08/29 Fontinst v1.933 font definitions for OML/mdbch.
+)
+LaTeX Font Info:    Font shape `OML/mdbch/m/it' will be
+(Font)              scaled to size 10.51207pt on input line 66.
+LaTeX Font Info:    Font shape `OML/mdbch/m/it' will be
+(Font)              scaled to size 7.68005pt on input line 66.
+LaTeX Font Info:    Font shape `OML/mdbch/m/it' will be
+(Font)              scaled to size 5.76004pt on input line 66.
+LaTeX Font Info:    Try loading font information for OMS+mdbch on input line 66
+.
+
+(/usr/share/texlive/texmf-dist/tex/latex/mathdesign/mdbch/omsmdbch.fd
+File: omsmdbch.fd 2013/08/29 Fontinst v1.933 font definitions for OMS/mdbch.
+)
+LaTeX Font Info:    Font shape `OMS/mdbch/m/n' will be
+(Font)              scaled to size 10.51207pt on input line 66.
+LaTeX Font Info:    Font shape `OMS/mdbch/m/n' will be
+(Font)              scaled to size 7.68005pt on input line 66.
+LaTeX Font Info:    Font shape `OMS/mdbch/m/n' will be
+(Font)              scaled to size 5.76004pt on input line 66.
+LaTeX Font Info:    Try loading font information for OMX+mdbch on input line 66
+.
+
+(/usr/share/texlive/texmf-dist/tex/latex/mathdesign/mdbch/omxmdbch.fd
+File: omxmdbch.fd 2013/08/29 Fontinst v1.933 font definitions for OMX/mdbch.
+)
+LaTeX Font Info:    Font shape `OMX/mdbch/m/n' will be
+(Font)              scaled to size 10.51207pt on input line 66.
+LaTeX Font Info:    Font shape `OMX/mdbch/m/n' will be
+(Font)              scaled to size 7.68005pt on input line 66.
+LaTeX Font Info:    Font shape `OMX/mdbch/m/n' will be
+(Font)              scaled to size 5.76004pt on input line 66.
+LaTeX Font Info:    Font shape `OML/mdbch/m/n' will be
+(Font)              scaled to size 10.51207pt on input line 66.
+LaTeX Font Info:    Font shape `OML/mdbch/m/n' will be
+(Font)              scaled to size 7.68005pt on input line 66.
+LaTeX Font Info:    Font shape `OML/mdbch/m/n' will be
+(Font)              scaled to size 5.76004pt on input line 66.
+LaTeX Font Info:    Try loading font information for MDA+mdbch on input line 66
+.
+
+(/usr/share/texlive/texmf-dist/tex/latex/mathdesign/mdbch/mdamdbch.fd
+File: mdamdbch.fd 2013/08/29 Fontinst v1.933 font definitions for MDA/mdbch.
+)
+LaTeX Font Info:    Font shape `MDA/mdbch/m/n' will be
+(Font)              scaled to size 10.51207pt on input line 66.
+LaTeX Font Info:    Font shape `MDA/mdbch/m/n' will be
+(Font)              scaled to size 7.68005pt on input line 66.
+LaTeX Font Info:    Font shape `MDA/mdbch/m/n' will be
+(Font)              scaled to size 5.76004pt on input line 66.
+LaTeX Font Info:    Try loading font information for MDB+mdbch on input line 66
+.
+
+(/usr/share/texlive/texmf-dist/tex/latex/mathdesign/mdbch/mdbmdbch.fd
+File: mdbmdbch.fd 2013/08/29 Fontinst v1.933 font definitions for MDB/mdbch.
+)
+LaTeX Font Info:    Font shape `MDB/mdbch/m/n' will be
+(Font)              scaled to size 10.51207pt on input line 66.
+LaTeX Font Info:    Font shape `MDB/mdbch/m/n' will be
+(Font)              scaled to size 7.68005pt on input line 66.
+LaTeX Font Info:    Font shape `MDB/mdbch/m/n' will be
+(Font)              scaled to size 5.76004pt on input line 66.
+
+
+LaTeX Font Warning: Font shape `T1/uop/m/n' undefined
+(Font)              using `T1/cmr/m/n' instead on input line 66.
+
+[1
+
+] [2
+
+
+]
+LaTeX Font Info:    Font shape `T1/mdbch/m/it' will be
+(Font)              scaled to size 13.82408pt on input line 66.
+ [3] [4
+
+]
+\c@oldpage=\count468
+LaTeX Font Info:    Font shape `T1/mdbch/m/n' will be
+(Font)              scaled to size 23.88496pt on input line 69.
+LaTeX Font Info:    Font shape `T1/mdbch/b/n' will be
+(Font)              scaled to size 23.88496pt on input line 69.
+
+Underfull \hbox (badness 10000) in paragraph at lines 69--80
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 69--80
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 69--80
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 69--80
+
+ []
+
+[5
+
+] [6
+
+] [7] [8
+
+] (auto/main.toc
+LaTeX Font Info:    Font shape `T1/mdbch/b/n' will be
+(Font)              scaled to size 10.51207pt on input line 4.
+ [9
+
+])
+\tf@toc=\write6
+\openout6 = `main.toc'.
+
+ [10] (auto/main.lof)
+\tf@lof=\write7
+\openout7 = `main.lof'.
+
+ [11
+
+
+] [12
+
+]
+(auto/main.lot)
+\tf@lot=\write8
+\openout8 = `main.lot'.
+
+ [13
+
+] [14
+
+] (./introduction.tex
+Chapter 1.
+LaTeX Font Info:    Font shape `T1/mdbch/m/n' will be
+(Font)              scaled to size 19.91054pt on input line 1.
+LaTeX Font Info:    Font shape `T1/mdbch/b/n' will be
+(Font)              scaled to size 19.91054pt on input line 1.
+
+LaTeX Warning: Citation 'tom2013exploration' on page 1 undefined on input line 
+6.
+
+
+LaTeX Warning: Citation 'allman2012managing' on page 1 undefined on input line 
+8.
+
+
+LaTeX Warning: Citation 'hinsen2015technical' on page 1 undefined on input line
+ 10.
+
+
+LaTeX Warning: Citation 'allman2012managing' on page 1 undefined on input line 
+10.
+
+
+LaTeX Warning: Citation 'cunningham1992wycash' on page 1 undefined on input lin
+e 10.
+
+
+LaTeX Warning: Citation 'hinsen2015technical' on page 1 undefined on input line
+ 12.
+
+
+LaTeX Warning: Citation 'tom2012consolidated' on page 1 undefined on input line
+ 12.
+
+
+LaTeX Warning: Citation 'besker2018embracing' on page 1 undefined on input line
+ 13.
+
+
+LaTeX Warning: Citation 'guo2016exploring' on page 1 undefined on input line 16
+.
+
+
+Overfull \hbox (0.86848pt too wide) in paragraph at lines 2--20
+\T1/mdbch/m/n/10.95 sources avail-able or just plain lazi-ness [[], []].
+ []
+
+
+Underfull \vbox (badness 8000) has occurred while \output is active []
+
+ [1
+
+]
+
+LaTeX Warning: Citation 'martini2018technical' on page 2 undefined on input lin
+e 21.
+
+
+LaTeX Warning: Citation 'tom2012consolidated' on page 2 undefined on input line
+ 41.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 32--62
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 32--62
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 32--62
+
+ []
+
+[2]
+Underfull \hbox (badness 10000) in paragraph at lines 79--82
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 79--82
+
+ []
+
+LaTeX Font Info:    Try loading font information for TS1+mdbch on input line 84
+.
+(/usr/share/texlive/texmf-dist/tex/latex/mathdesign/mdbch/ts1mdbch.fd
+File: ts1mdbch.fd 2013/08/29 Fontinst v1.933 font definitions for TS1/mdbch.
+)
+LaTeX Font Info:    Font shape `TS1/mdbch/m/n' will be
+(Font)              scaled to size 10.51207pt on input line 84.
+)
+[3] [4
+
+]
+Chapter 2.
+(./art_auto_bug.tex
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.11 D
+      ifferent tools use different methods to detect bugs; the first big dis...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 15--19
+
+ []
+
+[5]
+Underfull \hbox (badness 10000) in paragraph at lines 22--26
+
+ []
+
+
+LaTeX Warning: Citation 'bush2000static' on page 6 undefined on input line 33.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 27--34
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 27--34
+
+ []
+
+
+LaTeX Warning: Citation 'engler2003racerx' on page 6 undefined on input line 42
+.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 38--43
+
+ []
+
+[6]
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.53 T
+      he tool has been found capable of finding severe problems in huge proj...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+LaTeX Warning: Citation 'hastings1992fast' on page 7 undefined on input line 56
+.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 53--57
+
+ []
+
+
+LaTeX Warning: Citation 'nethercote2007valgrind' on page 7 undefined on input l
+ine 64.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 58--65
+
+ []
+
+
+LaTeX Warning: Citation 'li2006cp' on page 7 undefined on input line 79.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 66--80
+
+ []
+
+[7]
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.92 \\
+       
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.93 \textbf
+            {D. Engler's} \cite{engler2001bugs} Bugs as Deviant Behaviour: A...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+LaTeX Warning: Citation 'engler2001bugs' on page 8 undefined on input line 93.
+
+[8]
+
+LaTeX Warning: Citation 'engler2000checking' on page 9 undefined on input line 
+97.
+
+
+LaTeX Warning: Citation 'hangal2002tracking' on page 9 undefined on input line 
+103.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 95--104
+
+ []
+
+
+Overfull \hbox (9.93526pt too wide) in paragraph at lines 95--104
+\T1/mdbch/b/n/10.95 DIDUCE \T1/mdbch/m/n/10.95 [[]] Track-ing Down Soft-ware Bu
+gs Us-ing Au-to-matic Anomaly
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [9]
+
+LaTeX Warning: Citation 'zhou2004accmon' on page 10 undefined on input line 114
+.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 109--115
+
+ []
+
+
+Underfull \vbox (badness 1264) has occurred while \output is active []
+
+ [10]
+
+LaTeX Warning: Citation 'liblit2003bug' on page 11 undefined on input line 136.
+
+
+[11]
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.163 \\
+        
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.164 \textbf
+             {ESC/Java} \cite{flanagan2002extended} Extended Static Checking...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+LaTeX Warning: Citation 'flanagan2002extended' on page 12 undefined on input li
+ne 164.
+
+[12]
+
+LaTeX Warning: Citation 'godefroid1998model' on page 13 undefined on input line
+ 189.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 182--190
+
+ []
+
+[13]
+
+LaTeX Warning: Citation 'havelund1999applying' on page 14 undefined on input li
+ne 210.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 205--211
+
+ []
+
+
+LaTeX Warning: Citation 'musuvathi2002cmc' on page 14 undefined on input line 2
+24.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 220--225
+
+ []
+
+[14]
+Underfull \hbox (badness 10000) in paragraph at lines 236--247
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 236--247
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 248--253
+
+ []
+
+) (./art_code_smell.tex [15]
+
+LaTeX Warning: Citation 'webster1995pitfalls' on page 16 undefined on input lin
+e 10.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 6--28
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 6--28
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 6--28
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 6--28
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 6--28
+
+ []
+
+
+LaTeX Warning: Citation 'travassos1999detecting' on page 16 undefined on input 
+line 33.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 29--77
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 29--77
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 29--77
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 29--77
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 29--77
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 29--77
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 29--77
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 29--77
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 29--77
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 29--77
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 29--77
+
+ []
+
+[16]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [17]
+Underfull \hbox (badness 10000) in paragraph at lines 79--99
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 79--99
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 79--99
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 79--99
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 79--99
+
+ []
+
+[18]
+Underfull \hbox (badness 10000) in paragraph at lines 100--114
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 100--114
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 100--114
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 100--114
+
+ []
+
+) (./art_satd.tex
+Underfull \hbox (badness 10000) in paragraph at lines 116--1
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 116--1
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 116--1
+
+ []
+
+) (./art_td_ml.tex
+Underfull \hbox (badness 10000) in paragraph at lines 4--1
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4--1
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4--1
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4--1
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4--1
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4--1
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4--1
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4--1
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4--1
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4--1
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4--1
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4--1
+
+ []
+
+[19]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [20])
+Underfull \hbox (badness 10000) in paragraph at lines 3--117
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--117
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--117
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--117
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--117
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--117
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--117
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--117
+
+ []
+
+[21] (./art_summing_up.tex) [22]
+Chapter 3.
+[23
+
+] [24
+
+]
+Chapter 4.
+[25] [26
+
+]
+Chapter 5.
+[27] [28
+
+]
+Chapter 6.
+[29] [30
+
+]
+Chapter 7.
+[31] [32
+
+]
+
+LaTeX Warning: Empty bibliography on input line 210.
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 214.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 214.
+(auto/main.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 214.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 214.
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: <no file>.
+
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+
+LaTeX Warning: There were undefined references.
+
+
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                main
+(biblatex)                and rerun LaTeX afterwards.
+
+Package logreq Info: Writing requests to 'main.run.xml'.
+\openout1 = `main.run.xml'.
+
+ ) 
 Here is how much of TeX's memory you used:
- 25619 strings out of 494561
- 417079 string characters out of 6177453
- 657771 words of memory out of 5000000
- 29057 multiletter control sequences out of 15000+600000
- 535473 words of font info for 27 fonts, out of 8000000 for 9000
+ 33000 strings out of 494561
+ 553965 string characters out of 6177453
+ 1085539 words of memory out of 5000000
+ 36190 multiletter control sequences out of 15000+600000
+ 580970 words of font info for 79 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 60i,0n,94p,851b,317s stack positions out of 5000i,500n,10000p,200000b,80000s
-!  ==> Fatal error occurred, no output PDF file produced!
+ 60i,11n,94p,1257b,1949s stack positions out of 5000i,500n,10000p,200000b,80000s
+ </home/simone/.texlive2018/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm2074.60
+0pk>{/usr/share/texlive/texmf-dist/fonts/enc/dvips/ly1/texnansi.enc} </home/sim
+one/.texlive2018/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm2488.600pk> </home/s
+imone/.texlive2018/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </home
+/simone/.texlive2018/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1440.600pk> </ho
+me/simone/.texlive2018/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </
+home/simone/.texlive2018/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk><
+/usr/share/texlive/texmf-dist/fonts/type1/bitstrea/charter/bchb8a.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/bitstrea/charter/bchr8a.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/bitstrea/charter/bchri8a.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/mathdesign/mdbch/md-chb8t.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/mathdesign/mdbch/md-chr7y.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/mathdesign/mdbch/md-chr8t.pfb>
+Output written on auto/main.pdf (48 pages, 194688 bytes).
+PDF statistics:
+ 663 PDF objects out of 1000 (max. 8388607)
+ 385 compressed objects within 4 object streams
+ 91 named destinations out of 1000 (max. 500000)
+ 241 words of extra memory for PDF output out of 10000 (max. 10000000)
+
