@@ -1,64 +1,144 @@
-\section{Self-Admitted Technical Debt}
+\section{Self-Admitted Technical Debt} % proposal for a new title "Technical Debt and Self-Admitted Technical Debt
 
+Throghout all this section Technical debt will (could) be shortened to TD and foo bar satd
+\\
+\\
 %satd-9
-\textbf{Potdar and Shihab [30]}
-Potdar and Shihab [30] pioneered the study of SATD by mining five software systems to investigate (i) the amount of SATD they contain, (ii) the factors promoting the intro- duction of the SATD, and (iii) how likely is the SATD to be removed after its introduction.
+\textbf{Potdar and Shihab} \cite{potdar2014exploratory} An exploratory study on self-admitted technical debt
+
+The authors conducted an empirical study on four open source projects, focusing on three main research questions; they aimed to:
+\begin{itemize}
+    \item RQ1 finding the concentration of SATD in the projects
+    \item RQ2 discovering the reasons for introducing the SATD
+    \item RQ3 calculating the per of SATD removal after its introduction
+\end{itemize}
+
+They found that 2.4\% to 31\% of the files contained SATD. An interesting finding is that the experienced practitioners are the most likely to introduce SATD. On the other hand, a counter-intuitive discovery is that the amount of SATD has correlation with neither complexity nor time pressure. The removal ratio was found to be roughly between 0.26 and 0.63.
+%add more, e.g. 62 satd recognized
 \\
 \\
 %satd-1
-\textbf{Storey et al. [35]}
-Storey et al. [35] explored the use of task annotations (e.g., TODO, FIXME) in code comments as a mechanism to manage developers tasks. Their findings highlight several
-activities that are supported by such annotations (e.g., TODOs are sometimes used to communicate by asking questions to other developers).
+\textbf{Storey et al.} \cite{storey2008todo} TODO or to bug: Exploring How Task Annotations Play a Role in the Work Practices of Software Developers
+
+This empirical study has the goal to shed light on how the developers behave on personal and team tasks, in respect to source code annotations (i.e. comments).
+The authors analyze the relations that annotations have with common used tools like, e.g. wikis, issue and bug trackers. In order to do so, they gathered and combined data coming from a mix of methods, divided in phases:
+\begin{itemize}
+    \item Phase 1. It was conducted a survey targeting users of Eclipse IDE. The topic was about annotations: if they did write them, which types and the use of them.
+    \item Phase 2. The authors did contextual interviews with developers on three open source projects. Then augmented the answer from the interview with direct analysis on many versions of the source code related to the annotation in question.
+\end{itemize}
+
+In the conclusion is reported how these finding could be useful to improve tooling and software process.
 \\
 \\
 %satd-2
-\textbf{Guo et al. [18]}
-Guo et al. [18] tracked the lifecycle of a single delayed maintenance task (i.e., a technical debt instance) to study the effect of this decision on the project outcomes. Their data confirm the harmfulness of technical debt, showing that the decision to delay the task resulted in tripled costs for its implementation.
+\textbf{Guo et al.} \cite{guo2011tracking} Tracking technical debt - An exploratory case study
+
+This paper aims to highlight and make evident the effects of technical debt on the cost and management of a software project. Through the tracking of a single delayed task in a real project, the authors analyze the effect of such technical debt. They created a framework for the explicit management of TD and then applied it, with a simulation, to the real scenario under scrutiny.
+The objective of this study is:
+\begin{itemize}
+    \item determine technical debt effects on the project and evaluate their impact
+    \item after the application of the simulation, determine if the framework provided real gain and uncover benefits.
+\end{itemize}
+The results of this simulation made clear that careful planning and analysis of TD is of high importance: in retrospect the cost of the delayed task almost tripled the cost for the project.
 \\
 \\
 %satd-3
-\textbf{Klinger et al. [21]}
-Klinger et al. [21] interviewed four technical architects at IBM to understand how decisions to acquire technical debt are made within an enterprise. They found that technical debt is often acquired due to non-technical stakeholders
-(e.g., due to imposed requirement to meet a specific deadline sacrificing quality). Also, they highlight the lack of effec- tive communication between technical and non-technical stakeholders involved in the technical debt management
+\textbf{Klinger et al.} \cite{klinger2011enterprise} An enterprise perspective on technical debt
+
+This short but meaningful study see the design of an interview to four IBM technical architect. One of the idea was to broad the view about TD from the perspective of the single developer to the perspective of an enterprise.
+Starting from the premise that TD can be leveraged as a financial asset (i.e. incur in TD today to gain competitive advantage and repay tomorrow) the study and the interviews are structured to assess how an enterprise handle TD from these standpoints:
+\begin{itemize}
+    \item how decisions to acquire TD are conducted
+    \item what is the leverage earned contracting TD
+\end{itemize}
+The following are some of the findings:
+\begin{itemize}
+    \item two different sources of unintentional contraction of TD: from non-technical stakeholders (e.g. fixing a stringent release date at the expense of software quality) and from external forces (e.g. changes in the market and acquisitions).
+    \item the process of acquiring TD was informal. The decision had no written records or written analysis on the impact, effects and expectations of such choice
+    \item scarcity of knowledge and awareness on the consequences of taking on TD, insufficient channels of communication and lack of a common vocabulary to express contracted costs 
+\end{itemize}
+\\
+
 \\
 \\
 %satd-4
-\textbf{Kruchten et al. [23]}
-Kruchten et al. [23] built on top of the technical debt definition provided by Cunningham [14] to clearly define what constitute technical debt and provide some theoretical foundations. They presented the “technical debt landscape”, classifying the technical debt as visible (e.g., new features to add) or invisible (e.g., high code complexity) and highlighting the debt types mainly causing issues to the evolvability of software (e.g., new features to add) or to its maintain- ability (e.g., defects).
+\textbf{Kruchten et al.} \cite{kruchten2012technical} Technical debt: From metaphor to theory and practice
+
+This article expands the original metaphor of technical debt by Cunningham in search of a better definition that enables reasoning on a variety of technical debt.
+The authors want to lay a theoretical foundation to help the challenge of dealing with TD. These are the main points covered by this work:
+\begin{itemize}
+    \item TD Landscape. It's a possible organization of the many aspects of software improvement. It divides between visible elements (e.g. new features and defects) and mostly invisible (e.g. architecture and code). The idea is that TD is limited to the invisible part
+    \item Tackling of TD. The authors reason about the root causes of TD (e.g. carelessness, lack of education and poor processes) and describe which steps can effectively handle TD (e.g. awareness, explicit management, understand what tools can and cannot do, nurture architecture, documentation)
+    \item Unified theory. It is observed that the challenge is making the right sequence of changes to improve the software; in respect to this, perhaps the financial and economic models could be the underling layer to the TD landscape (i.e. express all the changes tied to their cost and value over time).
+\end{itemize}
 \\
 \\
 %satd-5
-\textbf{Lim et al. [25]}
-Lim et al. [25] interviewed 35 practitioners to investigate their perspective on technical debt. They found that most of participants were familiar with the notion of technical debt—“We live with it every day” [25]—and they do not look at technical debt as a poor programming practice, but more as an intentional decision to trade off competing concerns during development [25]. Also, practitioners acknowledged the difficulty in measuring the impact of technical debt on software projects. Similarly, Kruchten et al. [24] reported their understanding of the technical debt in industry as the result of a four year interaction with practitioners.
-\\
-%satd-6
-\textbf{Kruchten et al. [24]}
-Kruchten et al. [24] reported their understanding of the technical debt in industry as the result of a four year interaction with practitioners.
-\\
-\\
+\textbf{Lim et al.} \cite{lim2012balancing} Technical debt: towards a crisper definition report on the 4th international workshop on managing technical debt
+ 
+Lim et al. conducted an interview study on 35 practitioners aimed to define the perceived characteristics of technical debt and in what context TD was encountered. What emerged is most of the teams know well TD and it is an unavoidable necessity in the business reality. Because its certainty one key factor is active management of it: recognition, tracking, analysis, cogent decisions and prevention of worst consequences.
+ 
+The participants were queried with both specific and open questions. Aside of general demographic questions, they were asked to describe an example of TD with its properties, causes, effects and benefits. 
+The answer pointed to a different root cause than sloppy programming, poor discipline. Most of the testimony acknowledged that TD was acquired through an intentional decision; some of those decisions were the results of short-term thinking, yielding to the pressure of the moment.
+The negative effects of TD were perceived as long term (e.g. the fear to change code expecting to break other parts of the system). 
+In some cases it was clear that the benefits were far repaid, in others it was not clear if the balance was positive.
+The respondents provided many examples of situations that provided the crucible for TD (e.g. contracts with string deadline, exploiting market opportunity windows). 
+
+The interviewees reported some of their strategies to handle TD:
+\begin{itemize}
+    \item do nothing. In those parts where low maintenance is required, it's safer to leave things as they are
+    \item establish a policy to use development resource to fix TD (5 to 10 percent on total resources)
+    \item communication and open dialog about TD between all parties involved (technical and non-technical stakeholders and customers)
+    \item make TD explicit and visible to all the developers (e.g. through audits) and keep track of the discoveries.
+\end{itemize}
+%satd-6 - SKIP it's a workshop 
+% \textbf{Kruchten et al. [24]}
+% Kruchten et al. [24] reported their understanding of the technical debt in industry as the result of a four year interaction with practitioners.
+% \\
+% \\
 %satd-7
-\textbf{Zazworka et al. [41]}
-Zazworka et al. [41] compared how technical debt is detected manually by developers and automatically by de- tection tools. The achieved results show very little overlap between the technical debt instances manually and auto- matically detected.
+\textbf{Zazworka et al.} \cite{zazworka2013case} A case study on effectively identifying technical debt
+% high valuable information left over that can potentially be added
+This paper conducted a study to compare manual and automatic technical debt detection. The manual detection was implemented through a questionnaire undertaken by five developers in the same team. The automatic detection was performed using three stable and established tools. 
+All participants reported different debt (except in on case) so there is almost no consensus in the human component, on the other hand, the results show a good overlap between manual and automatic detection regarding defect debt. Human intervention is still needed for the other types of debt: documentation, design, testing and usability debt; they were, for the most part, unrecognized by automatic tool.
 \\
 \\
 %satd-8
-\textbf{Spinola et al. [34]}
-Spinola et al. [34] collected a set of 14 statements about technical debt from the literature (e.g., “The root cause of most technical debt is pressure from the customer” [32]) and asked 37 practitioners to express their level of agreement for each statement. The statement achieving the highest agreement was “If technical debt is not managed effectively, maintenance costs will increase at a rate that will eventually outrun the value it delivers to customers”.
+\textbf{Spinola et al.} \cite{spinola2013investigating} Investigating technical debt folklore: Shedding some light on technical debt opinion
+
+The goal of this paper is to provide some guidance on new research questions about TD. Exploiting the folklore extracted from grey literature, the authors gather 14 statements; then they proceeded to survey to 37 practitioner asking their level of agreement/disagreement. The most agreed upon statement was "If technical debt is not managed effectively, maintenance costs will increase at a rate that will eventually outrun the value it delivers to customers".
+
+The underling observation of this paper is that common belief, traditional stories and customs (i.e. folklore) can help the discovery of interesting topics; then, the agreement of knowledgeable people on those concepts could give a measure of value and worthiness and guide possible future research.
 \\
 \\
+
 %satd-10
-\textbf{Alves et al. [2]}
-Alves et al. [2] proposed an ontology of terms on technical debt. Part of this ontology is the classification of technical debt types derived by studying the definitions existing in the literature. 
+\textbf{Alves et al.} \cite{alves2014towards} Towards an ontology of terms on technical debt
+
+Alves et al. proposed an ontology of terms on technical debt. They developed a \emph{lightweight domain ontology}, designed the quality criteria, conducted a systematic literature mapping and finally submitted the result to a specialist for an evaluation.
+
+The main contribution of this work is to gather information that was spread out and organize a common vocabulary for the field of TD. This common ground wants to help researchers and practitioners evolving the Technical Debt Landscape \cite{izurieta2012organizing}.
+The first contribution is the organization of 13 types of TD: architecture, build, code, defect, design, documentation, infrastructure, people, process, requirement, service, test automation and test debt.
+The second contribution consists in the organization of indicators themselves; these indicators were used to support identification of the TD.
 \\
 \\
 %satd-11
-\textbf{Maldonado and Shihab [15]}
-Maldonado and Shihab [15] also used the classification by Alves et al. to investigate the types of SATD more diffused in open source projects. They identified 33K comments in five software systems reporting SATD. These comments have been manually read by one of the authors who found as the vast majority of them (\textasciitilde60\%) reported design debt. 
+\textbf{Maldonado and Shihab} \cite{maldonado2015detecting} Detecting and quantifying different types of self-admitted technical debt
+
+The contribution of this paper is the classification of SATD types in four open source projects. The authors manually classified 33093 comments; these are the findings with the range of presence across projects: design debt (42\% - 84\%), requirement debt (5\% - 45\%), defect debt (4\% - 9\%), test debt (0\% - 7\%) and finally documentation debt (0\% - 5\%).
+
+The projects were chosen in the Java realm in different domains with well commented sources: Apache Ant, Apache JMeter, ArgoUml, Columba and JFreeChart. 
+Using JDeodorant as comments extractor, the authors gathered more than 166K comments. This number decreased to roughly 33K thanks to processing and filtering of those comment with low likelihood of being SATD. Such operation was conducted through four simple heuristics that targeted the following cases: license comments (removal), commented source code (removal), javadoc (removal), multi line comments instead of block comments (joining). 
+The classification process made evident that one SATD can belong to multiple categories (e.g. a design debt can also be a defect debt at the same time). For the sake of clarity this paper will associate only one class to the SATD; in case of ambiguity between multiple types, the more meaningful one was chosen. 
+The set of possible SATD classes is taken from Alves et al. \cite{alves2014towards} paper. It is observed that not all 13 original TD classes are found in the selected open source projects; Maldonado and Shihab argues that some of the technical debt are not likely to be reported in written comments (e.g. people and infrastructure debt).
+The authors reports that the personal bias and subjectivity can be threats to internal validity (the manual classification was executed by the first author). Other factors on internal validity: quantity and quality of comments could be affected by biased filtering.
+About external validity, the authors consider the domain of the projects: it is diverse but all of them are open source Java projects; thus,  the results may not generalize to other languages or market segments.
 % This work is closely related to our RQ1, where we man- ually classified the type of technical debt reported in a statistically significant sample of 366 comments. The main differences between our study and the work by Maldonado and Shihab are the scale of the study and the procedure adopted to classify the technical debt instances. Maldon- ado and Shihab analysed a much larger set of comments reporting SATD (33K against 366); However, only one of the authors classified the debt types on the basis of his personal opinion. In our study, we adopted an open coding procedure performed by the two authors to classify the analysed instances and reduce the subjectivity bias. Also, we further refined the technical debt categories defined by Alves et al. [2] as a result of the open coding procedure.
 \\
 \\
 %satd-12
-\textbf{Wehaibi et al. [37]}
-Wehaibi et al. [37] analysed the relation between SATD and software quality in five open source systems. Their main findings show that: (i) the defect-proneness of files containing SATD instances increases after their introduction; and (ii) developers experience difficulties in performing SATD-related changes
+\textbf{Wehaibi et al.} \cite{wehaibi2016examining} Examining the impact of self-admitted technical debt on software quality
+
+This empirical study on fie open source projects wants to explore the relation between self-admitted technical debt and defects in source code. The results reported is that there is an increase of defects after the introduction of SATD. It's also clear that introducing a SATD makes much harder the changes to the related code.
 \\
 \\

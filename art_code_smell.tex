@@ -2,7 +2,7 @@
 This section explains briefly what code smells and anti-patterns are. The following sections contain the most interesting contribution from the literature on the subject.
 \\
 \\
-An Anti-pattern is a common poor solution to a design problem. It presents itself in object-oriented based systems where a developer apply a solution that is usually ineffective or worse, harmful.
+An Anti-pattern is a common poor solution to a design problem. It presents itself in object-oriented based systems where a developer applies a solution that is usually ineffective or worse, harmful.
 The term stems from its correct and desirable counter part: design pattern.
 Design pattern is defined as a reusable solution to a commonly occurring problem within a given context in software design.
 
@@ -12,7 +12,7 @@ A code smell is any aspect of the source code that hint to a deeper problem; in 
 
 It must be said that neither anti-patterns nor code smells are strictly bugs: in fact, they do not imply incorrect results and they do not stop the program from functioning. Nevertheless, for the risks specified above, automatic detection of code smells and anti-patterns received a lot of attention. 
 
-In the following sections, we will report several contribution from the literature that start to be available in earnest from roughly 1995.
+In the following sections, we will report several contributions from the literature that start to be available in earnest from roughly 1995.
 
 % \textbf{copy\&paste}
 % Several techniques have been proposed in the literature to detect code smell instances affecting code components, and all of these take their cue from the suggestions provided by four well-known books: [29], [16], [86], [66].
@@ -26,20 +26,20 @@ The following paragraphs describe them briefly.
 %smell-book-a
 \textbf{Webster} \cite{webster1995pitfalls} Pitfalls of object-oriented development
 
-This book analyzes the cycle of object oriented programming shedding light on its weaknesses and shortcomings. It compare and explain OOP and previous programming techniques. It provides insight and counsel on how to avoid OOP risks.
+This book analyzes the cycle of object oriented programming shedding light on its weaknesses and shortcomings. It compares and explains OOP and previous programming techniques. It provides insight and counsel on how to avoid OOP risks.
 \\
 \\
 %smell-book-b
 \textbf{Riel} \cite{riel1996object} Object-oriented Design Heuristics
 
-The author provide the reader with metrics to help him understand the quality of the object oriented software. The book explains guideline to help make better decisions on the design of the OO system. 
-The sixty recommendation present in this book are language-independent and helps the reader to evaluate the quality of a software design.
+The author provide the reader with metrics to understand the quality of the object-oriented software. The book explains guidelines to help make better decisions on the design of the OO system. 
+The sixty recommendations in this book are language-independent and help the reader to evaluate the quality of a software design.
 \\
 \\
 %smell-book-c
 \textbf{Fowler} \cite{fowler2018refactoring} Refactoring: improving the design of existing code
 
-The objective of this book is give practical refactoring strategies to apply on projects so to improve the design of existing systems. It describes many code smells and for each it explains the appropriate actions to take to fix the problem. The first edition dates back to 1999.
+The objective of this book is to give practical refactoring strategies to apply on projects so to improve the design of existing systems. It describes many code smells and for each it explains the appropriate actions to take to fix the problem. The first edition dates back to 1999.
 \\
 \\
 %smell-book-d
@@ -56,7 +56,7 @@ Many proposal for design flaws identification have been done in the last decade;
 %smell-1
 \textbf{Travassos et al.} \cite{travassos1999detecting} Detecting defects in object-oriented designs: using reading techniques to increase software quality
 
-Travassos et al. created a set of techniques for manually identifying defects in order to improve software quality. These practices help individuals to read object oriented code and assess, through a predefined taxonomy, if some problem is present. The authors conducted an empirical study on these techniques and reported their feasibility.
+Travassos et al. created a set of techniques to identify manually defects in order to improve software quality. These practices help individuals to read object oriented code and assess, through a predefined taxonomy. The authors conducted an empirical study on these techniques and reported their feasibility.
 \\
 \\
 %smell-2
@@ -70,7 +70,7 @@ The users of jCOSMO can benefit of automatic detection and graphical visualizati
 %smell-3
 \textbf{Simon et al.} \cite{simon2001metrics} Metrics based refactoring
 
-The authors agree that the developer is the last authority with the power to decide where apply refactoring techniques. One of their contribution is providing them with metrics to support subjective perception regarding code smells. They believe that a key issue is helping developers with tools that support human intuition. 
+The authors agree that the developer is the last authority with the power to decide where to apply refactoring techniques. One of their contributions is providing them with metrics to support subjective perception regarding code smells. They believe that a key issue is helping developers with tools that support human intuition. 
 The authors demonstrate that metrics are effective in finding and pointing to places where code anomalies are detected. These are the presented refactorings: move method, move attribute, extract class and inline class.
 \\
 \\
@@ -78,16 +78,16 @@ The authors demonstrate that metrics are effective in finding and pointing to pl
 \textbf{Marinescu} \cite{marinescu2004detection} Detection strategies: Metrics-based rules for detecting design flaws
 
 Marinescu observed that there are multiple problems using quality metrics to improve software quality. Often the definition of the metrics are imprecise, confusing or incomplete. Another issue is the interpretation of the metrics; they seldom provide a model that help to correctly understand and apply them to a concrete situation. 
-Using the metrics in isolation leads to excessive detail and it becomes difficult to use this information to investigate design flaws. In other words, an isolate measure can be helpful to identify the presence of an anomaly but it does not point to the cause; this leaves the developer without a meaningful insight on how to handle the refactoring. The author calls this 'bottom-up' approach.
-Marinescu propose a novel method called \emph{detection strategy} to overcome this problem; it's a 'top-down' approach that starts from an abstract high level goal and drives the investigation of design trait that conforms to the strategy.
+Using the metrics in isolation leads to excessive detail and it becomes difficult to use this information to investigate design flaws. In other words, an isolate measure can be helpful to identify the presence of an anomaly but it does not point to the cause; this leaves the developer without a meaningful insight on how to handle the refactoring. The author calls this `bottom-up' approach.
+Marinescu proposes a novel method called \emph{detection strategy} to overcome this problem; it's a `top-down' approach that starts from an abstract high level goal and drives the investigation of design trait that conforms to the strategy.
 This technique was applied to ten detection strategies and used on industrial case studies; the result of the experiment proved that the method is applicable and usable in practice.
 \\
 \\
 %smell-5
 \textbf{Lanza and Marinescu} \cite{lanza2007object} Object-oriented metrics in practice: using software metrics to characterize, evaluate, and improve the design of object-oriented systems
 
-The ideal reader of this book, as defined by the book itself, is a fluent programmer that concretely deals with the maintenance and evolution of a complex large application.
-This text use metrics in a practical way to improve software. It uses them in three phases
+The ideal reader of this book, as defined by the book itself, is a fluent programmer who concretely deals with the maintenance and evolution of a complex large application.
+This text uses metrics in a practical way to improve software. It uses them in three phase
 \begin{itemize}
     \item Characterizing the design. The goal is to picture a panorama of the design of the software system. It shows how to use tho metrics-based visualization techniques, \emph{Overview Pyramid} and \emph{Polymetric Views}: Overview Pyramid gives in one shot an overview of the complexity, coupling and inheritance; Polymetric Views shows entities and their relationships supplied with metrics.
     \item Evaluating the design. This phase serves to better understand and assess the design of the application. \emph{Detection strategies} \cite{marinescu2004detection} supply a tool to detect flawed design. \emph{Class Blueprint} is a powerful tool to visualize information about classes, i.e. control-flow and access structure; the goal of this tool is to closely inspect the design flaws detected.
@@ -98,7 +98,7 @@ The authors, after the identification of disharmonies, propose also insight on h
 \\
 \\
 %smell-6
-\textbf{Munro} \cite{munro2005product} Product metrics for automatic identification of "bad smell" design problems in java source-code
+\textbf{Munro} \cite{munro2005product} Product metrics for automatic identification of ``bad smell'' design problems in java source-code
 
 Munro's focus is on automation of bad smell detection in Java source code. The underling motivation of the paper is to enhanced the process for finding places where to apply refactoring. He begins with a precise definition of code smell, building up on the informal definition from Fowler and Beck. The core idea is to analyze the description of the code smell and translate it in measurable attributes that are quantifiable. This process is divided in three phases: informal definition analysis, extract possible quantifiable measures and establishment of rules that are used on the metrics to identify the smells. 
 The author applies this process to two specific smells: Lazy Class and Temporary Field. For example, he extracts quality measures as NOM (number of methods), WMC (weighted methods per class), LOC (line of code) and CBO (coupling between objects).
@@ -109,7 +109,7 @@ The author applies this process to two specific smells: Lazy Class and Temporary
 \\
 The authors split their contributions in three parts. 
 
-The first is DECOR (DEtection and CORrection), it's a method that systematically and formally describe the process to detect code and design smells. It is based on previous work in the field and it leverages the experience and fill the gap of missing features, for example: explicitness on how to specify the detection algorithms, opacity of the technique used, completeness of the analysis on smells description and others. 
+The first is DECOR (DEtection and CORrection), it's a method that systematically and formally describes the process to detect code and design smells. It is based on previous work in the field and it leverages the experience and fill the gap of missing features, for example: explicitness on how to specify the detection algorithms, opacity of the technique used, completeness of the analysis on smells description and others. 
 
 The process is defined through five well defined steps: description analysis, specification, processing, detection and validation. The correction part of DECOR, as stated by the authors, is for future work and it is not present in the paper.
 
@@ -128,12 +128,12 @@ The authors observe that high coupling and low cohesion are well known indicator
 \\
 We can split the proposed process in two parts: identification and ranking.
 
-The identification phase serves to locate methods candidate that could benefit from a move method refactor. For each method it is evaluated which class could be the destination; this part is driven with distance measures between entities (class, methods and attributes).
+The identification phase serves to locate candidate methods that could benefit from a move method refactoring. For each method it is evaluated which class could be the destination; this part is driven with distance measures between entities (class, methods and attributes).
 
 The ranking phase serves to avoid overloading the developer with suggestions. This part uses cohesion and coupling as measures to drive the sorting; the metric employed (called Entity Placement) works evaluating the effect of the refactoring without actually modifying the source code.
 It is well specified that this is not a fully automated approach because the designer is ultimate responsible on which refactoring should be applied. As one could expect, there are cases where a move method is not a good choice (e.g. moving unit test methods into the target class).
 
-The researches evaluates their proposed approach with quantitative analysis through the application on two open source projects. They also track the evolution of the metrics between multiple iteration of refactoring.
+The researchers evaluate their approach with quantitative analysis through the application on two open source-projects. They also track the evolution of the metrics between multiple iteration of refactoring.
 They then ask a third party to assess the conceptual validity of the proposed refactoring.
 Lastly they also report on the computational cost of their approach.
 \\
@@ -141,10 +141,10 @@ Lastly they also report on the computational cost of their approach.
 %smell-9
 \textbf{Ligu et al.} \cite{ligu2013identification} Identification of refused bequest code smells
 
-The authors propose a method to identify the anti-pattern Refused Bequest. In synthesis such design smell happens when polymorphism is badly used, for example when a subclass overrides all the superclass methods.
-The detection of the smell is achieved with both static and dynamic analysis.
+The authors propose a method to identify the Refused Bequest anti-pattern. In synthesis such design smell happens when polymorphism is badly used, for example when a subclass overrides all the superclass methods.
+The detection of the smell is achieved with both static and dynamic analyses.
 \begin{itemize}
-    \item Static analysis is used to identify those class hierarchies that are candidate to potential anomalies.
+    \item Static analysis is used to identify those class hierarchies that are candidates to potential anomalies.
     \item Dynamic analysis is employed through the exercise of unit testing. The methods of the descendant classes are injected with instructions that intentionally raise an exception; the execution of tests will verify which methods are called or not called, and the result will determine a score towards or away good design. The merge of tests result, from the dynamic analysis, with other structural data generates an output that represents the smell strength.
 \end{itemize}
 \\
@@ -155,10 +155,10 @@ The authors developed an Eclipse plug-in to incorporate the process described ab
 %smell-10
 \textbf{Kessentini et al.} \cite{kessentini2010deviance} Deviance from perfection is a better criterion than closeness to evil when identifying risky code
 
-This paper propose a novel method in detecting bad smells. The idea that fueled this work is inspired by artificial immune systems; such systems behave in the following way: the more something is detected as different the more it is considered extraneous.
+This paper proposes a novel method in detecting bad smells. The idea that fueled this work is inspired by artificial immune systems; such systems behave in the following way: the more something is detected as different the more it is considered extraneous.
 Based on this assumptions, the authors generate a set of detectors that are able to measure various manifestations of anomalies (smells). Thanks to this measurements, they can evaluate how far the system under inspection is from normalcy. 
 
-In order to be able to create the detectors they need to elect some model to be representative of what normality is; this elected model was taken from the project JHotDraw (by Erich Gamma) that represents, ideally, good design and good programming practices.
+To be able to create the detectors they need to elect some model to be representative of what normality is; this elected model was taken from the project JHotDraw (by Erich Gamma) that represents, ideally, good design and good programming practices.
 
 The authors report that the results outperform the state of the art and their developed tool is able to detect a good mix of bad smells.
 \\
@@ -169,20 +169,20 @@ The authors report that the results outperform the state of the art and their de
 The authors' proposed approach use P-EA (Parallel Evolutionary Algorithms) where multiple algorithms cooperate to find a consensus on the common goal of finding the bad smells. Those algorithms use different adaptations: fitness functions, change operator and solution representations. The cooperation between algorithms happens during the parallel execution in multiple iterations and it is not just a result of one final consensus.
 
 To test the effectiveness of the implementation of the approach, the authors make an empiric comparative evaluation with: random search and two other methods not based on meta heuristics.
-The experiment is based on a benchmark of nine large open source systems; the reported results shows that the approach is better of the state of the art.
+The experiment is based on a benchmark of nine large open-source systems; the reported results shows that the approach is better of the state of the art.
 \\
 \\
 %smell-12
 \textbf{Boussaa et al.} \cite{boussaa2013competitive} Competitive coevolutionary code-smells detection
 
-The authors propose a novel approach to finding bad smells: they use two population with their CCEA (Competitive Co-evolutionary Algorithm) search and they employ the use of a code base sample that contains bad smells. 
+The authors propose a novel approach to finding bad smells: they use two populations with their CCEA (Competitive Co-evolutionary Algorithm) search and they employ the use of a code-base sample that contains bad smells. 
 
 The first population goal is to maximize the detection of bad smells thanks to the generation of rules based on quality metrics. 
 
 The second population goal is to maximize the number of synthetic bad smells that the first populations is missing.
 \\
 \\
-The two population behaves similarly to a machine learning GAN framework (Generative Adversarial Network).
+The two populations behave similarly to a machine learning GAN framework (Generative Adversarial Network).
 
 The evaluation of the ideas is conducted on four systems through an existing benchmark. The authors reports the statistical analysis: CCEA shows great promise in its performance compared to random and single population approaches.
 \\
@@ -197,12 +197,12 @@ The upper-level optimization goal is to maximize the detection of bad smells in 
 The lower-level maximizes the generation of new artificial bad smell samples that are not detected by the counter part.
 \\
 \\
-The evaluation of the system was performed with 31 runs on nine open source projects; seven bad smells were detected with an average of more than 86\% in terms of precision and recall.
+The evaluation of the system was performed with 31 runs on nine open source-projects; seven bad smells were detected with an average of more than 86\% in terms of precision and recall.
 \\
 \\
 %different category
 \subsection{Non binary classification}
-The previous section identified code flaws in a binary class classification (smell/clean), while the following paragraphs will focus on those analysis that take care of borderline classes.
+The previous section identified code flaws in a binary class classification (smell/clean), while the following paragraphs focuses on those analyses that take care of borderline classes.
 \\
 \\
 %smell-14
@@ -212,23 +212,23 @@ The nature of bad smells contains a measure of uncertainty due to its natural la
 
 Through a systematic process of their own making, the authors convert classic detection rules to a BBNs probabilistic model, using the Blob anti-pattern as their test bench.
 
-They use two open source projects as target for the evaluation of the model: GanttProject and Xerces. The authors make a comparison between their model and DECOR and shows that it returns the same defective classes plus ordering them by importance.
+They use two open-source projects as targets for the evaluation of the model: GanttProject and Xerces. The authors make a comparison between their model and DECOR and show that it returns the same defective classes plus ordering them by importance.
 
-The last contribution is about exploiting bad smells historical information (in the sense of alternative pre-made dataset) in order to train a machine learning model using Weka; the authors show that this calibration increase the quality of the detection.
+The last contribution is about exploiting bad smells historical information (in the sense of alternative pre-made dataset) in order to train a machine learning model using Weka; the authors show that this calibration increases the quality of the detection.
 \\
 \\
 %smell-15
 \textbf{Oliveto et al.} \cite{oliveto2010numerical} Numerical signatures of antipatterns: An approach based on B-Splines
 
-This paper propose to overcome two limitations of previous detection technique: the first limitation is the binary classification, there is no in-between or continuous classification of bad smells (e.g. DECOR by Moha et al. \cite{moha2009decor}).
+This paper proposes to overcome two limitations of previous detection technique: the first limitation is the binary classification, there is no in-between or continuous classification of bad smells (e.g. DECOR by Moha et al. \cite{moha2009decor}).
 The second limitation is the need of expert knowledge to fuel the detection model (e.g. BBNs by Khom el al. \cite{khomh2009bayesian}).
-To overcome these limitations, the authors propose ABS (Antipattern identification using B-Splines). It creates signature of anti-patterns using quality metrics; then it uses the B-spline to create an abstraction of such metrics. This process is applied both to known codes containing bad smells and to unseen unclassified sources code; the distance with the B-splines of known anti-patterns measure the similarity to known anti-patterns.
+To overcome these limitations, the authors propose ABS (Antipattern identification using B-Splines). It creates signature of anti-patterns using quality metrics; then it uses the B-spline to create an abstraction of such metrics. This process is applied both to known codes containing bad smells and to unseen unclassified source code; the distance with the B-splines of known anti-patterns measure the similarity to known anti-patterns.
 In reference to the second limitation, the authors observe that their technique needs only a dataset but no human intervention and tuning.
 \\
 \\
 %different category
 \subsection{Usage of historical data for code smells } 
-These two last paper of the section exploits the use of source version control as the basis for their contribution.
+These two last papers of the section exploit the use of source version control as the basis for their contribution.
 \\
 \\
 %smell-16
@@ -236,10 +236,10 @@ These two last paper of the section exploits the use of source version control a
 
 The authors propose an idea to make use of historical data on source code to increment performance on the detection of bad smells.
 The underling concept is that the evolution of a system can give useful feedback to better determine and analyze the last state of the system.
-This paper use the foundation of \emph{design strategies} (Marinescu \cite{marinescu2004detection} ) adding the concept of a system that evolves through time.
+This paper uses the foundation of \emph{design strategies} (Marinescu \cite{marinescu2004detection}) adding the concept of a system that evolves through time.
 The \emph{history} is defined as a sequence of states of the same entity (e.g. system, class and method). The history is used to calculate and evaluate the entity measures \emph{persistence} and \emph{stability}.
 
-The contribution of this paper are: (1) definition of a measure to show how persistent a smell is and how much maintenance effort it absorbed (2) show the improvement in accuracy detecting two class smells (3) describe the valuable information extracted from the history of the anomalies.
+The contributions of this paper are: (1) definition of a measure to show how persistent a smell is and how much maintenance effort it absorbed (2) show the improvement in accuracy detecting two class smells (3) describe the valuable information extracted from the history of the anomalies.
 \\
 \\
 %smell-17
@@ -250,9 +250,9 @@ This paper shows how to exploit changes on source code to achieve bad smell iden
 A novel approach is proposed, called HIST (Historical Information for Smell deTection); it detects five classes of code smells: Divergent Change, Shotgun Surgery, Parallel Inheritance, Feature Envy and Blob.
 
 
-Using the source history of a project is the only way to detect some bad smell; for example, the Parallel Inheritance smell definition cannot be decoupled from tracking the changes in the code. In other words, the very nature of such smell needs to be able to analyze the changes through time of the system.
+Using the source history of a project is the only way to detect some bad smells; for example, the Parallel Inheritance smell definition cannot be decoupled from tracking the changes in the code. In other words, the very nature of such smell needs to be able to analyze the changes through time of the system.
 
-There are other kind of smells that do not strictly need historical data but can benefit from using it; for example, Divergent Change smell and Shotgun Surgery have literature that shows detection approach using last-snapshot information only.
+There are other kinds of smells that do not strictly need historical data but can benefit from using it; for example, Divergent Change smell and Shotgun Surgery have literature that shows detection approach using last-snapshot information only.
 
 The authors compared the accuracy and recall of HIST with alternative approach and their approach tend to perform better. It is reported that HIST is able to detect smells missed by others (the recall is in range 58\% and 100\%). The previous evaluation was achieved with an empirical study on twenty Java projects; it comprised accuracy and recall calculated against a manually-produced oracle.
 
