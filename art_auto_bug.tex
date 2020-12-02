@@ -12,7 +12,7 @@ Different tools use different methods to detect bugs; the first big distinction 
 
 \emph{Static analysis} is performed with no execution of the program and relies only on the source code or on some object code. 
 
-\emph{Dynamic analysis} executes the program and inspect its behaviour at run-time. It can be implemented in many flavours, for example: with instrumentation of the executable, with a virtual processor or taking the form of a scheduler. Two are the main factors that are often taken under observation, one is the performance loss in the execution and the second is the extension of the run-time monitor (both in quality and quantity).
+\emph{Dynamic analysis} executes the program and inspects its behaviour at run-time. It can be implemented in many flavours, for example: with instrumentation of the executable, with a virtual processor or taking the form of a scheduler. Two are the main factors that are often taken under observation, one is the performance loss in the execution and the second is the extension of the run-time monitor (both in quality and quantity).
 \\
 \\
 We can define another distinction on how bugs are identified; many tools use rules to detect if some violation has occurred. The rules themselves are of two types: programming and statistical rules.
@@ -22,7 +22,7 @@ We can define another distinction on how bugs are identified; many tools use rul
 \emph{Statistical rules} are defined through a statistical analysis on multiple samples. Usually there is a training phase where observations are collected and correct rules (invariants) are refined.
 \\
 \\
-Another means of detecting bugs is \emph{model checking} where the tool verify correctness in a usually finite state system. This verification is performed using formal methods on typically formally specified system. 
+Another means of detecting bugs is \emph{model checking} where the tool verifies correctness in a usually finite state system. This verification is performed using formal methods on typically formally specified system. 
 
 The last category for bugs finding techniques is the \emph{annotation-based} tools. Those requires the annotation of programs to extract semantics and verify consistency and correctness.
 \\
@@ -47,7 +47,7 @@ It can infer from the source code the object lock that is assigned to a particul
 RaceX uses annotations only to mark the code that deals with lock acquisition; this requirement keeps the burden on the user to the minimum to increase ease of adoption. The authors of RaceX report their experiences on the biggest problem about race detection: in large codebase there are massive amounts of unprotected variable access; the key point is to report only those that can actually cause problems. There is emphasis on two aspects:
 \begin{itemize}
     \item The first is to minimize the impact of reporting false positive in order to avoid the users to discard the use of the tool; to achieve this, RaceX employs specific techniques to lower the impact of analysis mistakes.
-    \item The second is the speed of the tool: the authors keep the time of execution for the analysis under deep scrutiny; they claim that for a codebase of 1.8 LOC the time required is between 2-14 minutes.  
+    \item The second is the speed of the tool: the authors keep the time of execution for the analysis under deep scrutiny; they claim that for a codebase of 1.8 million LOC the time required is between 2-14 minutes.  
 \end{itemize}
 \\
 The tool has been found capable of finding severe problems in huge projects like Linux, FreeBSD and also in a large closed source commercial software.
@@ -78,7 +78,7 @@ The slowdown of the execution depends on the specific instrumentation of the sel
 \\
 \labeltextbf[]{CP-Miner}{bug:CP-Miner} \cite{li2006cp} CP-Miner: Finding Copy-Paste and Related Bugs in Large-Scale Software Code
 
-CP-Miner stands for Copy and Pasted code Miner. Zhenmin et al. found that a significant portion of source code in many widely used open source projects are duplication made with copy and paste. This practice introduces bugs, the main reason being that programmers leave identifier untouched instead of renaming them consistently to match the new code context. When the label do not exists in the new place it will be detected with a compilation error; on the other hand, if the identifier exists in the new context it will not be detected by the compiler and it will introduce a hidden bug very hard to detect.\\
+CP-Miner stands for Copy and Pasted code Miner. Zhenmin et al. found that a significant portion of source code in many widely used open source projects are duplications made with copy and paste. This practice introduces bugs, the main reason being that programmers leave identifier untouched instead of renaming them consistently to match the new code context. When the label do not exists in the new place it will be detected with a compilation error; on the other hand, if the identifier exists in the new context it will not be detected by the compiler and it will introduce a hidden bug very hard to detect.\\
 CP-Miner tolerates modification to the pasted code. In order to be detected, the segments do not need to be identical; they can also contain insertions or modifications. The tool is capable of detecting duplicated code but not all detection are true positive; nonetheless it is able to report many significant duplicates with hidden issues. The authors detected 28 copy-paste related bugs in the Linux kernel code base and 23 in FreeBSD; these bugs were reported and most of them where previously unknown to the project team.
 The analysis is done infra-project and targeted the following large projects: Linux, FreeBSD, PostgreSQL and Apache HTTP server.
 \\
@@ -92,7 +92,7 @@ The main contributions of the paper are: scalability, bugs detection and statist
 \\
 \textbf{D. Engler's} \cite{engler2001bugs} Bugs as Deviant Behaviour: A General Approach to Inferring Errors in Systems Code
 
-The approach taken by Engler et al is to extract from source code beliefs and properties that must or could hold. Through static analysis it is automatically detected two different types of beliefs: MUST beliefs and MAY beliefs. The first one is something that must certainly hold, for example the dereference of a pointer holds the credence that the reference is not null and must be valid. The second one is statistical by nature; the code is observed and searched for patterns that suggests beliefs, for example a call to function "x" followed by a call to function "y". The probabilistic nature of the MAY belief comes when validating it: at first it is treated as a MUST belief then a search yields all uses in the source code of such belief (i.e. the use of "x" and "y"). If it turns out that such pattern is respected most of the times then the belief is probably valid, otherwise it is treated as a coincidence and, as such, discarded.
+The approach taken by Engler et al is to extract from source code beliefs and properties that must or could hold. Static analysis automatically detects two types of beliefs: MUST belief and MAY belief. The first one is something that must certainly hold, for example the dereference of a pointer holds the credence that the reference is not null and must be valid. The second one is statistical by nature; the code is observed and searched for patterns that suggests beliefs, for example a call to function "x" followed by a call to function "y". The probabilistic nature of the MAY belief comes when validating it: at first it is treated as a MUST belief then a search yields all uses in the source code of such belief (i.e. the use of "x" and "y"). If it turns out that such pattern is respected most of the times then the belief is probably valid, otherwise it is treated as a coincidence and, as such, discarded.
 MUST beliefs bear no doubt about their validity and represent internal consistency. All contradictions from both MUST beliefs and valid MAY beliefs are reported as errors (i.e. bugs).
 The authors leverage their prior work \cite{engler2000checking} where they used static analysis to fix manual defined rules for specific system; for example a call to spin\_lock(l) must be paired with a following spin\_unlock(l). Such patterns were previously specified by hand; with the current work they enable a system to infer the same (and more) rules automatically. They reported that the automatic system is able to detect all the manual rules plus a considerable additional amount that goes from ten to one hundred patterns more.
 The general idea underling this paper, is that the source code contains intrinsic information about what is correct; finding errors in real system means exploiting what is intended as "correct". Sadly, most of the times these rules are not documented, not formalized or if they are available, they are present in informal and unusable format.
@@ -115,7 +115,7 @@ The authors' experience suggests that discovering bugs using their proposed meth
 
 The contributions of this paper are two innovative ideas: the first is a novel statistical approach to detect bugs in memory related issues, the second is a novel architectural extension to decrease the overhead of the monitoring process.
 
-The first is called PC-based invariant detection (PC stands for program counter); it leverages the observation that most programs access memory location mostly from the same instructions. Being probabilistic in nature, it can detect memory access anomalies that deviate from the baseline; they usually are the causes for bugs, stack overflows and many other memory-related issues. We can see that there are tho phases: one where the statistical data are gathered and the baseline rules (e.g. invariants) are formed; the other phase put to use the collected rules and check for violations that will be reported.
+The first is called PC-based invariant detection (PC stands for program counter); it leverages the observation that most programs access memory location mostly from the same instructions. Being probabilistic in nature, it can detect memory access anomalies that deviate from the baseline; they usually are the causes for bugs, stack overflows and many other memory-related issues. We can see that there are two phases: one where the statistical data are gathered and the baseline rules (e.g. invariants) are formed; the other phase put to use the collected rules and check for violations that will be reported.
 These two phases are intended to be used in multiple runs but also in the same single long-running execution.
 
 
@@ -150,9 +150,9 @@ Designing an infrastructure that was able to scale was a non-trivial process; th
 
 One is to make the lowest impact on the performance on the program execution. It is very important to be respectful of the resources used in gathering debug information. To achieve this goal, the authors employ sampling; they also address a technique to conduct fair sampling.
 
-The other one is a craftiness in gathering and periodically sending data to the central system: even collecting a small amount of information have an huge impact on scalability.
+The other one is a craftiness in gathering and periodically sending data to the central system: even collecting a small amount of information has an huge impact on scalability.
 
-The authors then focus on the data analysis phase. They propose three different application with increasing level of sophistication:
+The authors then focus on the data analysis phase. They propose three different applications with increasing level of sophistication:
 
 \begin{itemize}
     \item They show how to share the burden of assertion across the use base so to inflict upon each user only a small fraction of the checks.
@@ -177,7 +177,7 @@ Infact, they enumerates two important features needed by an ideal static checker
     \item soundness - if the program has errors, it will find some
     \item completeness - every error reported is a true positive
 \end{itemize}
-ESC do not seek to honor these two features for the very belief quoted above. The authors observe that the alternative processes used to achieve software quality (testing and code reviews) do not possess any of the features of the ideal static checker.
+ESC does not seek to honor these two features for the very belief quoted above. The authors observe that the alternative processes used to achieve software quality (testing and code reviews) do not possess any of the features of the ideal static checker.
 
 At paper time of writing, ESC was used for two years on multiple kind of programs and was proven effective in finding meaningful bugs. The performance was adequate for interactive use on most methods. 
 Even if it was proven of real usefulness, the users' feedback suggest that the cost of annotating was high and the number of warnings was excessive.
@@ -213,7 +213,7 @@ Java PathFinder (Jpf) is a prototype translator from the Java language to Promel
 SPIN is a general tool to find concurrency problems and verify the correctness of a system.
 
 It is reported that Jpf is not the first attempt of Java-to-Promela translator; in addition to this other work, Jpf can handle a significant number of features of the Java language. At the same time, many other are missing.
-The paper describe the issues due the impedance between Java and Promela; they come in two flavors: performance issues and missing feature issues.
+The paper describes the issues due the impedance between Java and Promela; they come in two flavors: performance issues and missing feature issues.
 
 Jps provides the programmer with Java static methods to annotate the source code with assertions; those assertions will be checked with the SPIN model checker.
 
@@ -248,7 +248,7 @@ During the experimentation the authors, through CMC, were able to find 34 errors
 Network code is of core importance for the stability of a system; it is prone to many issues that undermine correctness, e.g. packet loss, hardware errors, security attacks. 
 \\
 \\
-CMC proved to work well, given the results on three different implementation of a routing protocol.
+CMC proved to work well, given the results on three different implementations of a routing protocol.
 For a wider acquisition of CMC it essential for the authors, to lessen the burden of the code adaptation and automate it as much as possible.
 
 
