@@ -1,0 +1,25 @@
+
+
+\chapter{Using Deep Learning to Detect Technical Debt}
+
+Here I describe the approach.  I'm going to start from a short overview, then I go into details
+
+
+
+Using SATD in order to detect technical debt.
+There is knowledge inside comments. We want to use this knowledge to train a deep neural network so it can learn to detect technical debt. 
+In order to do so, we mine repositories/commits/comments, we find SATD, we detect when they disappear (the assumption is that when they disappear they are fixed) so we have a pre-image and a post-image. pre image is code with satd, post image is fixed.
+This construction yields a balanced dataset. We have 50\% of the sample classified as good code, the other 50\% is code affected with technical debt.
+
+SATD are source comments where a programmer confesses that there is something `not-quite-right' 
+
+
+%3.1
+\section{Mining SATD Instances and their Fixes}
+
+
+%3.2 
+\section{The Deep Learning Model}
+
+%3.3
+\section{Hyperparameter Tuning}
