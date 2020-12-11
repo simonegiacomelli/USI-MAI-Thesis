@@ -147,7 +147,6 @@ The detection of the smell is achieved with both static and dynamic analyses.
     \item Static analysis is used to identify those class hierarchies that are candidates to potential anomalies.
     \item Dynamic analysis is employed through the exercise of unit testing. The methods of the descendant classes are injected with instructions that intentionally raise an exception; the execution of tests will verify which methods are called or not called, and the result will determine a score towards or away good design. The merge of tests result, from the dynamic analysis, with other structural data generates an output that represents the smell strength.
 \end{itemize}
-\\
 The authors developed an Eclipse plug-in to incorporate the process described above.
 \\
 \\

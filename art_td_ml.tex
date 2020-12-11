@@ -1,6 +1,6 @@
 \section{TD and machine learning}
 
-This section will reference the literature meaningful to this thesis on machine learning and technical debt.
+This section reviews the literature on machine learning and technical debt.
 % \\
 % (c\&p) Several detection techniques and tools have been proposed in the literature. Recently, the adoption of machine learning techniques to detect bad smells became a trend [20]
 \\
@@ -13,14 +13,9 @@ This section will reference the literature meaningful to this thesis on machine 
 \textbf{Khomh et al.} \cite{khomh2011bdtex} BDTEX: A GQM-based Bayesian approach for the detection of antipatterns
 
 An anti-pattern is defined using natural language; thus, to judge if one is present or not, a human is needed for the decision process.
-This work presents an approach to automatically detect anti-pattern while handling the uncertainty inherent to the human-centric process. 
+This work presents an approach to automatically detect anti-patterns while handling the uncertainty inherent to the human-centric process. 
 
-The authors propose BDTEX (Bayesian Detection Expert), an approach to build BBNs (Bayesian Belief Networks) from the definitions of anti-pattern.
-
-First, the authors apply BDTEX on the Blob anti-pattern and describe the advantages of this approach in respect to rule-based techniques.
-
-Second, the method is validated with three anti-patterns: Blob, Functional Decomposition and Spaghetti code. Then the results are compared with those of DECOR \cite{moha2009decor}.
-%TODO: FINISH THIS
+The authors propose BDTEX (Bayesian Detection Expert), an approach to build BBNs (Bayesian Belief Networks) from the definitions of an anti-pattern capable of ranking what it detects. First, the authors apply BDTEX on the Blob anti-pattern and describe the advantages of this approach with respect to rule-based techniques. Second, the method is validated with three anti-patterns: Blob, Functional Decomposition and Spaghetti code. Then the results are compared with those of DECOR \cite{moha2009decor}; this tool, differently from BDTEX, employs a rule-based approach and do not provide a ranking. The comparison was made on the  satisfaction measured on the behavior of quality analysts; they where asked to judge the detection reported by the tools. In all cases except one, the utility perceived by the analysts was higher for BDTEX than for DECOR.
 \\
 \\
 %ML-fontana-20
@@ -29,26 +24,26 @@ Second, the method is validated with three anti-patterns: Blob, Functional Decom
 \\
 \textbf{Fontana et al. 2016} \cite{fontana2016comparing} Comparing and experimenting machine learning techniques for code smell detection
 
-These two papers employ multiple machine learning algorithms for finding code smells. They both use datasets created from the Qualitas Corpus repository \cite{tempero2010qualitas} and manual labelling for creating the ground truth..
-The results show an accuracy roughly between 90\% and 95\%. 
+These two papers employ multiple machine learning algorithms for finding code smells. They both use datasets created from the Qualitas Corpus repository \cite{tempero2010qualitas} and manual labelling for creating the ground truth.
+The results show an accuracy between 90\% and 95\%. 
 
 Di Nucci et al. \cite{di2018detecting} conducted a study to investigate possible limitations of the two studies above; they found two potential issues that might compromise the effectiveness of the high performance reported. 
-First, a single dataset contained smelly samples of only one type. Second, the dataset was unbalanced in respect to the proportion between positive class (smelly) and negative class (non-smelly). 
+First, a single dataset contained smelly samples of only one type. Second, the dataset was unbalanced with respect to the proportion between positive class (smelly) and negative (non-smelly) classes.
 \\
 \\
 %ML-Amorim-3
 \textbf{Amorim et al.} \cite{amorim2015experience} Experience report: Evaluating the effectiveness of decision trees for detecting code smells
 
-The goal of the authors' is the evaluation of decision tree algorithm on finding code smells. For this study, they use labeled data and code metrics on four Java projects.
-They compare their approach with the manual oracle and with the results from three automated finding techniques. 
+The goal of the authors' is the evaluation of a decision tree algorithm on finding code smells. For this study, they use labeled data and code metrics on four Java projects.
+They compare their approach with the manual oracle and with the results from three automated techniques. 
 The comparison shows that the decision tree approach has better performance in most of the cases.
 
-Amorim et al. used the C5.0 algorithm with a 10-fold cross validation and a dataset composed of 7,952 samples. Each sample, which represents an OOP class, has 62 features and 12 binary labels. The features are real numbers depicting source code metrics, for example: line of code, number of parameter and depth of inheritance. The labels represent which code smell affects the class, for example: antisingleton, blob and long parameter list.
+Amorim et al. used the C5.0 algorithm with a 10-fold cross validation and a dataset composed of 7,952 samples. Each sample, which represents an OOP class, has 62 features and 12 binary labels. The features are real numbers depicting source code metrics, for example: line of code, number of parameters and depth of inheritance. The labels represent which code smell affects the class, for example: antisingleton, blob and long parameter list.
 
-The labels related to code smells originated from a work of Khomh et al., \cite{khomh2012exploratory} on the other hand the 62 code metrics are a concatenation between the results obtained by two automated tools (CKJM and POM).
+The labels related to code smells originated from a work of Khomh et al. \cite{khomh2012exploratory}, on the other hand the 62 code metrics are a concatenation between the results obtained by two automated tools (CKJM and POM).
 
-The authors compares the performance of their approach with a rule based technique (using the combined output of four tools) and two machine learning algorithms (SVM and Bayesian Belief Network).
-The last experiment reported in the paper, involving the addition of genetic programming, gives an improvement on the performance of the basic approach.
+The authors compare the performance of their approach with a rule-based technique (using the combined output of four tools) and two machine learning algorithms (SVM and Bayesian Belief Network).
+The last experiment reported in the paper, involving the addition of genetic programming, gives an improvement in the performance of the basic approach.
 \\
 \\
 %ML-addon
@@ -60,42 +55,42 @@ The experiments use ten Java open-source projects as test bench; the results dis
 The study exposes the words that best correlates to the studied SATD (design and requirement self-admitted technical debt). 
 It is reported that the model behaves very well even using only a fraction (5-23\%) of the training dataset.
 
-The first author of this paper manually classified 29,473 comments extracted from six open-source Java projects. This number was much greater before an automatic filtering using five heuristics: the manual cleaning process is similar to the work from the same authors  \cite{maldonado2015detecting} with an additional filter (removal of comments created by IDEs).
-The joining of the newly create dataset with the one from previous work, yields a total number of 62,566 manually classified comments, spanning ten open-source Java systems. These are the SATD classes found: design, defect, documentation, requirement and test debt. 
+They manually classified 29,473 comments extracted from six open-source Java projects. This number was much greater before an automatic filtering using five heuristics: the manual cleaning process is similar to another work from the same authors \cite{maldonado2015detecting} with an additional filter (removal of comments created by IDEs).
+The joining of the newly created dataset with the one from previous work, yields a total number of 62,566 manually classified comments, spanning ten open-source Java systems. These are the SATD classes found: design, defect, documentation, requirement and test debt. 
 
-The classification model employed is the Stanford Classifier which is provided by the The Stanford Natural Language Processing Group \cite{manning2003optimization}; it is a Java software that implements a maximum entropy classifier. It is roughly equivalent to a multi-class logistic regression model.
+The classification model employed is the Stanford Classifier which is provided by The Stanford Natural Language Processing Group \cite{manning2003optimization}. It is a Java software that implements a maximum entropy classifier, it is roughly equivalent to a multi-class logistic regression model.
 
 The training was conducted only on the ordinary comments (i.e. the non-SATD), design and requirement SATD, thus on 61,664 samples.
-The results were compared with two baseline with related performance improvement: 
+The results were compared with two baselines with related performance improvement: 
 \begin{itemize}
-    \item 7.6 and 19.1 times better for design and requirement SATD, respectively compared to a random baseline
-    \item 2.3 and 6 times better for design and requirement SATD, respectively compared to comment pattern matching baseline
+    \item 7.6 and 19.1 times better for design and requirement SATD, respectively compared to a random baseline;
+    \item 2.3 and 6 times better for design and requirement SATD, respectively compared to comment pattern matching baseline.
 \end{itemize}
 
-The authors mention which are the characteristics of the vocabulary used by the programmers that strongly indicates SATD (i.e. `hack', `workaround', `yuck!' for design SATD and `todo', `needed', `implementation' for requirement SATD).
+The authors discuss the characteristics of the vocabulary used by the programmers that strongly indicates SATD (i.e. `hack', `workaround', `yuck!' for design SATD and `todo', `needed', `implementation' for requirement SATD).
 \\
 \\
 \textbf{Ren et al.} \cite{ren2019neural} Neural network-based detection of self-admitted technical debt: from performance to explainability
 
-This study propose a CNN-based approach applied to the identification of SATD. The authors provide the model that includes a method to explain its predictions; the result shows that humans largely agree with the key phrases extracted by the model to explain itself.
+This study proposes a CNN-based approach applied to the identification of SATD. The authors provide the model that includes a method to explain its predictions; the result shows that humans mostly agree with the key phrases extracted by the model to explain itself.
 
-It is observed that classic text-mining approaches have limitations in respect to the following measures: performance, generalizability and adaptability. The method described in the paper want to address these issues.
+It is observed that classic text-mining approaches have limitations with respect to the following measures: performance, generalizability and adaptability. The method described in the paper addresses these issues.
 
-This work documents which are the SATD aspects that influence the above mentioned measures: variant term frequency, project uniqueness, variable length, semantic variation and imbalanced data.
+This work documents the SATD aspects that influence the measures mentioned above: variant term frequency, project uniqueness, variable length, semantic variation and imbalanced data.
 
-The experiment is conducted on 10 open-source projects with 62,566 code comments.
+The experiment is conducted on ten open-source projects with 62,566 code comments.
 
 It is known that the average of SATD over the total number of comments is very low (e.g. between 0.2-2.6\% with average 0.3\%, Bavota and Russo \cite{bavota2016large}; between 3.2-16.8\% with average 7.42\%, Maldonado and Shihab \cite{maldonado2015detecting}; at class level between 0.4-3.33\%, Potdar and Shihab \cite{potdar2014exploratory}). 
-Ren et al. reports their SATD concentration to be between 0.41-5.57\% with average 1.86\%; to deal with this unbalanced dataset, they employ a weighted cross-entropy loss and compare the results with the normal loss: the benefit yields an average improvement of 6.22\% on F1-score.
-The experiments on tuning reveal which hyper-parameter are the most influential: size of word embedding, number of filter and combination of window size.
-The authors conclude that their method improve on explainability and deployability. The first is proven with the high agreement between the SATD summary by the model and humans. The second is explained with a cross-project experiment: the model can be fine-tuned (i.e. transfer learning) with little data and the result proves that it is a highly effective approach.
+Ren et al. report their SATD concentration to be between 0.41-5.57\% with average 1.86\%; to deal with this unbalanced dataset, they designed and employed a weighted version of the cross-entropy loss and compared the results with the basic loss function: the benefit yields an average improvement of 6.22\% on F1-score.
+The experiments on tuning reveal which hyper-parameters are the most influential: size of word embedding, number of filter and combination of window size.
+The authors conclude that their method improves on explainability and deployability. The first is proven with the high agreement between the SATD summary by the model and humans. The second is explained with a cross-project experiment: the model can be fine-tuned (i.e. transfer learning) with a small amount of data and the result proves that it is a highly effective approach.
 \\
 \\
 \textbf{Maipradit et al.} \cite{maipradit2020automated} Automated Identification of On-hold Self-admitted Technical Debt
 
-On-hold SATD are those SATD that can be removed only after a condition is met; in other words, there is an external factor that needs to be waited for before proceeding to remove the TD (e.g. a bug in an issue tracker). 
+An on-hold SATD is a SATD that can be removed only after a condition is met; in other words, there is an external factor that needs to be waited for before proceeding to remove the TD (e.g. a bug in an issue tracker). 
 
-The authors propose a system to detect on-hold SATD based on regular expression and machine learning; the empirical experiment shows that 8\% of the comments referring to issues are on-hold SATD. The dataset was created from ten open-source projects yielding 133 on-hold satd on a total of 1,530 comments containing issue references.
+The authors propose a system to detect on-hold SATD based on regular expression and machine learning; the empirical experiment shows that 8\% of the comments referring to issues are on-hold SATD. The dataset was created from ten open-source projects yielding 133 on-hold SATD on a total of 1,530 comments containing issue references.
 The classifier developed has an average F1-score of 0.73\% and an average AUC of 0.97\%. 
 
 To evaluate the results, Maipradit et al. collected feedback from the projects' developer about the detected on-hold SATD: there was agreement that they should be fixed or removed.
@@ -106,12 +101,12 @@ To evaluate the results, Maipradit et al. collected feedback from the projects' 
 
 This paper adds empirical evidence on machine learning behavior performing automatic detection of bad smells.
 
-The authors use the Qualitas Corpus \cite{tempero2010qualitas} and extract 20 projects as test bench for this work; they focus the research on four bad smells using seven ML techniques.
+The authors use the Qualitas Corpus \cite{tempero2010qualitas} and extract 20 projects as a test bench for this work; they focus the research on four bad smells using seven ML techniques.
 It is observed that Gradient Boosting Machine and Random Forest achieved good performance with two bad smells out of four; God Class with F1-score of 0.86 and Refused Parent Bequest of 0.67.
 
-Another contribution is the application of SHAP (SHapley Additive exPlanations, a approach to explain the output of any machine learning) \cite{NIPS2017_7062}. The authors provide an insight on which are the features that are most meaningful for the prediction. 
+Another contribution is the application of SHAP (SHapley Additive exPlanations, a approach to explain the output of any machine learning) \cite{NIPS2017_7062}. The authors provide an insight on the most meaningful features for the prediction. 
 
-Cruz et al. created a new datasets to assure quality and perform comparison on an unbalanced dataset (CSV are available for download).
+Cruz et al. created a new dataset to assure quality and perform a comparison on an unbalanced dataset (CSV are available for download).
 There are four datasets, one for every bad smell, two at class level (God Class, Refused Parent Bequest) and two at method level (Long Method and Feature Envy). Every class has 17 metrics (e.g. Coupling Between Objects and Depth of Inheritance Tree) and every method has 12 metrics (e.g. Lines of Code and Quantity of Loops).
 These features are calculated with two tools, VizzMaintenance for the class metrics and CKMetrics for the method metrics.
 
@@ -121,44 +116,38 @@ The seven algorithms used are: Naive Bayes, Logistic Regression, Multilayer Perc
 \\
 \textbf{Wang et al.} \cite{wang2020detecting} Detecting and Explaining Self-Admitted Technical Debts with Attention-based Neural Networks
 
-This paper propose HATD, an attention-based deep learning model, capable of detecting and explaining SATDs. The authors detail which are the important aspects of SATD that need to be analyzed and taken care to successfully implement their proposal. HATD outperforms the state-of-the-art SATD detectors, provides insightful feedback to achieve explainability and is effective when used in real-world projects.
+This paper proposes HATD, an attention-based deep learning model, capable of detecting and explaining SATDs. The authors describe the important aspects of SATD that need to be analyzed and taken care of to successfully implement their proposal. HATD outperforms the state-of-the-art SATD detectors, provides insightful feedback to achieve explainability and is effective when used in real-world projects.
 
-The proposed model is composed by the following parts:
+The proposed model is composed of the following parts:
 \begin{itemize}
     \item ELMo algorithm for word embedding. In opposition to static word embedding techniques ELMo can deal with polysemy.
     \item Single-head Attention Encoder (SAE). This is used for the explainability of the model.
-    \item Multi-head Attention Encoder (MAE). This serves to better encode the current word considering the positional information of the other words in the comment.
+    \item Multi-head Attention Encoder (MAE). This serves to encode better the current word considering the positional information of the other words in the comment.
     \item A fully connected layer with a weighted cross-entropy loss. This part is feeded with both SAE and MAE output. 
 \end{itemize}
 
 The training dataset employed is provided by Maldonado et al. \cite{maldonado2017using}; it was created on ten open-source Java projects and it is known to be imbalanced; to counter this issue, the authors of this paper, introduce a weighted cross entropy loss. 
 
-The initial evaluation of the model is done within- and cross-project.
+The initial evaluation of the model is done within- and cross-project. The within-project evaluation is performed with a 10-fold cross-validation using all ten project. The cross-project evaluation is implemented using nine projects to train the model and using the remaining project as a test set.
 
-The within-project evaluation is performed with a 10-fold cross-validation using all ten project.
+The authors assess the capability of HATD to adapt to real-world projects; they select ten additional popular projects from Github. These are written not only in Java but also in Python and Javascript. 
 
-The cross-project evaluation is implemented using nine projects to train the model and using the remaining project as test set.
-
-
-The authors asses the capability of HATD to adapt to real-world projects; they select ten additional popular projects from Github. These are written not only in Java but also in Python and Javascript. 
-
-The total number of comments, for these ten projects, are 38,280; HATD detects 543 SATDs, which is 1.33\% of the total. The average concentration of the ten Java projects by Maldonato et al. is, on average 6.57\%.
+The total number of comments, for these ten projects, are 38,280; HATD detects 543 SATDs, which is 1.33\% of the total. The average concentration of the ten Java projects by Maldonato et al. is 6.57\% on average.
 To check the quality of the predictions, the authors randomly select 100 comments (50 SATD and 50 non-SATD); then they engage five programmers and ask them to classify those comments. The result shows an accuracy of 83\% against the human oracles.
 \\
 \\
 \textbf{Rantala et al.} \cite{rantala2020prevalence} Prevalence, Contents and Automatic Detection of KL-SATD
 
-This paper defines KL-SATD to be Keyword-Labeled self-admitted technical debt. It is a subset of SATDs, i.e. those SATDs that contain specific words that indicates the presence of technical debt admission. The authors focus on four specific keywords: TODO, FIXME, HACK and XXX. The goal is to exploit the information assets contained in KL-SATDs and detect those SATDs that are not KL-SATDs.
-\\
-\\
+This paper defines KL-SATD to be Keyword-Labeled self-admitted technical debt. It is a subset of SATDs, i.e. those SATDs that contain specific words that indicate the presence of technical debt admission. The authors focus on four specific keywords: TODO, FIXME, HACK and XXX. The goal is to exploit the information assets contained in KL-SATDs and detect those SATDs that are not KL-SATDs.
+
 The dataset used is provided by Lenarduzzi et al. and includes 33 Java projects \cite{lenarduzzi2019technical}. After pre-processing, the experiment has access to 507,254 comments. One of the first reported finding is the average and median KL-SATD concentration per repository: 2.29\% and 1.52\%, respectively.
 
-The paper highlight the difference in vocabulary used by KL-SATDs and non KL-SATDs; through a word cloud the authors show which are the most common words used (after keywords removal for the KL-SATDs).
+The paper highlights the difference in the vocabulary used by KL-SATDs and non KL-SATDs. Through a word cloud the authors show which are the most common words used (after keywords removal for the KL-SATDs).
 
-A logistic regression classifier is trained to recognize the two above mentioned classes. The 10-fold cross validation has an AUC of 0.88. 
+A logistic regression classifier is trained to recognize the two above-mentioned classes. The 10-fold cross validation has an AUC of 0.88. 
 
 
-A new dataset is created, formed only by the non KL-SATD comments. Then, the  classifier is executed to make a prediction using this filtered dataset. The authors are interested in those instances labeled as KL-SATD with a confidence over 70\%: these do not contains keywords but could be SATD. To verify this assumption and check if the classifier has learned to spot SATD, two of the authors randomly selected 100 comments and labeled them manually. Using the results, it is estimated that 2/3 of the instances may contain technical debt.
+A new dataset is created, formed only by the non KL-SATD comments. Then, the  classifier is executed to make a prediction using this filtered dataset. The authors are interested in those instances labeled as KL-SATD with a confidence over 70\%: these do not contain keywords but could be SATD. To verify this assumption and check if the classifier has learned to spot SATD, two of the authors randomly selected 100 comments and labeled them manually. Using the results, it is estimated that 2/3 of the instances may contain technical debt.
 
 
 

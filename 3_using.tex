@@ -2,24 +2,160 @@
 
 \chapter{Using Deep Learning to Detect Technical Debt}
 
-Here I describe the approach.  I'm going to start from a short overview, then I go into details
-
-
-
-Using SATD in order to detect technical debt.
-There is knowledge inside comments. We want to use this knowledge to train a deep neural network so it can learn to detect technical debt. 
-In order to do so, we mine repositories/commits/comments, we find SATD, we detect when they disappear (the assumption is that when they disappear they are fixed) so we have a pre-image and a post-image. pre image is code with satd, post image is fixed.
-This construction yields a balanced dataset. We have 50\% of the sample classified as good code, the other 50\% is code affected with technical debt.
-
-SATD are source comments where a programmer confesses that there is something `not-quite-right' 
-
+We aim to create a system that automatically detects technical debt in a class method. To achieve this goal, we took the following three steps: dataset creation, classification and hyperparameter tuning.
+The dataset was automatically created by mining and processing open-source project histories. It's a balanced dataset by construction and the two classes are referred as: SATD and fixed.
+We initially identify technical debt through the presence of SATD in the comments of the source code, using keyword labels pattern matching \cite{potdar2014exploratory} \cite{rantala2020prevalence}.
+The identification of a SATD/fixed method pair method is based on a strong assumption: when the SATD comment disappears, due to a commit, we suppose that the technical debt is fixed; so, we regard the new code as TD-free, i.e. belonging to fixed class.
+% detail: describe the circumstances where we reject this hypotheses
+The classifier is a neural network capable of representing snippets of code with an fixed length vector, conceptually similar on how word2vec works. The learned vector representation (code embedding) is associated with a semantic label (i.e. SATD or fixed).
+Lastly, to increase the performance of the system we select a set of hyperparameters and perform a distributed grid search for tuning their values. The rest of this chapter explains each part in greater detail.
 
 %3.1
 \section{Mining SATD Instances and their Fixes}
 
+These are the fundamental activities involved in the creation of the dataset:
+\begin{itemize}
+    \item Github repository url mining: using Github api, we extracted 248,872 projects' url matching our search profile.
+    \item Repository cloning and filtering: some projects can be discarded only after the commit history is available for a precursory analysis to determine if a project qualifies for the next activity.
+    \item Commit history processing: the directed acyclic graph of the commits is traversed and the source code is parsed in search of acceptable SATD/fixed pair.
+\end{itemize}
 
+The following sections describe these activities in detail.
+
+\subsection{Github repository url mining}
+% javaparser & pre-selection of repositories by api.
+
+
+% Building a list of github repositories - github api tool -reject android repositories
+% %mention the initial idea of specialization
+% %remember --##string##--
+
+% The process of cloning and caching repos.
+% The source code processing. SATD search, exclusions, metrics (lines, tokens)
+% Caching of code vectors.
+% Parsing, comment cleaning, excluded patterns.
+% SATD/fixed tracking. 
+% Saving to h2 and then postgresql.
+
+\subsection{Repository cloning and filtering}
+\subsection{Commit history processing}
+% the commit is like a function that transform the SATD in fixed
 %3.2 
 \section{The Deep Learning Model}
+The model described in this section is called code2vec \cite{alon2019code2vec}.
+The following three sequential processes can be considered a chain that progressively transform the source code into the desired target (i.e. the two classes SATD/fixed):
+\begin{itemize}
+    \item Decompose
+    \item Aggregate
+    \item Predict
+\end{itemize}
+
+\noindent Each of these steps can be viewed as a process that takes an input, creates an intermediate representation and generates an output for the next process.
+In the rest of this section we give some details about each one of them and introduce some technical terms. 
+\\
+\\
+\noindent \textbf{Decompose.} The input of this process is the source code. The output generated is a bag of path-context. The following list gives more detail on the process and the intermediate representations:
+
+\begin{itemize}
+    \item Parsing and creation of the abstract syntax tree of the method source code. 
+    \item Extraction of all AST-paths (up to a fixed limit).
+    \item Encoding of the AST-paths into a bag of context-vector.
+    \item Transform each context vector into a path-context (so to obtain a bag of path-context).
+\end{itemize}
+
+\noindent \textbf{Aggregate.} This process aggregates the bag of path-context (the output from the previous process) using an attention vector. The final result is a code-vector that represents the snippet of code as continuous distributed vector, i.e. a `code embedding'.
+\\
+\\
+\noindent \textbf{Predict.} The code-vector is feeded to a fully connected neural network that performs the classification using the desired classes (i.e. SATD/fixed).
+\\
+\\
+\noindent In the following sections we expand and dig deeper in these concepts.
+
+% Here I want to explain briefly what are the fundamental pieces and how they interact (without pretending that the reader really understands, but to give the general idea)
+
+\subsection{Representing code using AST paths}
+
+% here I go into details on the first decomposition/representation of the code snippets into fixed length vectors
+
+\subsection{Bag of path-contexts}
+
+\subsection{Context-vector $c_i$}
+%how many OOV? 
+%https://github.com/tech-srl/code2vec/blob/c98e8f786b7262e56c93e520d039fb7aa5d0f7ef/vocabularies.py#L123
+
+\subsection{Combined context-vector $\widetilde{c}_i$}
+
+\subsection{Attention mechanism and the code-vector}
+
+\subsection{Training and prediction}
+% detailed explanations in step:
+% - representation idea (ast, path learning)
+
+% - semantic labeling
+
+% - SATD/fixed
+
+% The model used is called code2vec. The idea is to represents source code snippets using a fixed length vector i.e. code embedding. 
+% The abstract syntax tree (AST) is used, there is an attention mechanism and it was successful in predicting semantic labeling.
+
+% Simple and fast
+
 
 %3.3
 \section{Hyperparameter Tuning}
+
+This section describe the process of tuning the hyperparameters of the model.
+
+It is clear that using shorter code snippets increases the performance but decreases the number of samples in the dataset; thus decreasing the usefulness of the trained model because of less capability in generalization.
+For the tuning of the hyperparameters, we empirically defined to keep those snippets with less than 200 tokens; an example of a method composed by 199 tokens is shown in listing \ref{lst:snippet199}.
+
+\begin{lstlisting}[caption={Code snippet with 199 tokens}, label={lst:snippet199},language=Java]
+private CompoundWorkflow finishCompoundWorkflow(
+  WorkflowEventQueue queue,
+  CompoundWorkflow compoundWorkflow, 
+  String taskOutcomeLabelId, 
+  String userTaskComment, 
+  boolean finishOnRegisterDocument, 
+  List<NodeRef> excludedNodeRefs) {
+    if ((finishOnRegisterDocument &&
+      compoundWorkflow.isStatus(Status.FINISHED)) ||
+      (!finishOnRegisterDocument &&
+      checkCompoundWorkflow(compoundWorkflow,
+      Status.IN_PROGRESS, 
+      Status.FINISHED) == Status.FINISHED)) {
+        if (log.isDebugEnabled()) {
+            log.debug("--##string##--" + compoundWorkflow);
+        }
+    } else {
+        setWorkflowsAndTasksFinished(queue, compoundWorkflow, 
+            taskOutcomeLabelId, userTaskComment,
+            finishOnRegisterDocument, excludedNodeRefs);
+        if (finishOnRegisterDocument || excludedNodeRefs != null) {
+            stepAndCheck(queue, compoundWorkflow);
+        } else {
+            stepAndCheck(queue, compoundWorkflow, Status.FINISHED);
+        }
+        boolean changed = saveCompoundWorkflow(queue,
+            compoundWorkflow, null);
+        if (log.isDebugEnabled()) {
+            log.debug("--##string##--" + compoundWorkflow);
+        }
+    }
+    CompoundWorkflow freshCompoundWorkflow =
+        getCompoundWorkflow(compoundWorkflow.getNodeRef());
+        
+    if (!finishOnRegisterDocument && excludedNodeRefs == null) {
+        checkCompoundWorkflow(freshCompoundWorkflow, Status.FINISHED);
+    }
+    checkActiveResponsibleAssignmentTasks(
+        freshCompoundWorkflow.getParent());
+    return freshCompoundWorkflow;
+}
+\end{lstlisting}
+
+\noindent \emph{-- Expand the following paragraph with more detail and graphs) --}
+
+We inspected all the hyperparameters and set up a grid search using a tools called Optuna.
+The hyperparameters subject of the distributed experiment are: embedding size, dropout keep rate and context length.
+We run it with multiple GPU colab PROfessional and standards sessions. Both cpu and GPU. 
+

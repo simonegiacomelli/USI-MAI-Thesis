@@ -7,7 +7,6 @@ This section deals with tools that are capable of detecting bugs automatically. 
     \item Concurrency related bugs, e.g. critical race conditions, deadlock and unsafe concurrent data access.
     \item Semantic related bugs, when the fault arise from a contradiction to the intention of the programmer or the original design.
 \end{itemize}
-\\
 Different tools use different methods to detect bugs; the first big distinction to be made is between dynamic and static analysis.
 
 \emph{Static analysis} is performed with no execution of the program and relies only on the source code or on some object code. 
@@ -49,7 +48,6 @@ RaceX uses annotations only to mark the code that deals with lock acquisition; t
     \item The first is to minimize the impact of reporting false positive in order to avoid the users to discard the use of the tool; to achieve this, RaceX employs specific techniques to lower the impact of analysis mistakes.
     \item The second is the speed of the tool: the authors keep the time of execution for the analysis under deep scrutiny; they claim that for a codebase of 1.8 million LOC the time required is between 2-14 minutes.  
 \end{itemize}
-\\
 The tool has been found capable of finding severe problems in huge projects like Linux, FreeBSD and also in a large closed source commercial software.
 \\
 \\
@@ -88,8 +86,6 @@ The main contributions of the paper are: scalability, bugs detection and statist
     \item \emph{Bugs detection} was found to be very effective because of the positive response from the open source project maintainers; most of the reported bugs were not found by static or dynamic analysis detection tools. 
     \item The authors conducted a \emph{statistical study} of the copy-pasted code to give an overview of the phenomenon; the majority of the copied code is between 5 and 16 statements. Around 50 percent of the code has only two copies but around 7 percent has more than eight duplicates. Roughly 12 percent of the copy-pasted code segments are whole functions. Kernel modules are affected with different concentration, depending on the module under analysis: drivers, arch and crypt modules have high copy and paste segments than other parts of the project.
 \end{itemize}
-\\
-\\
 \textbf{D. Engler's} \cite{engler2001bugs} Bugs as Deviant Behaviour: A General Approach to Inferring Errors in Systems Code
 
 The approach taken by Engler et al is to extract from source code beliefs and properties that must or could hold. Static analysis automatically detects two types of beliefs: MUST belief and MAY belief. The first one is something that must certainly hold, for example the dereference of a pointer holds the credence that the reference is not null and must be valid. The second one is statistical by nature; the code is observed and searched for patterns that suggests beliefs, for example a call to function "x" followed by a call to function "y". The probabilistic nature of the MAY belief comes when validating it: at first it is treated as a MUST belief then a search yields all uses in the source code of such belief (i.e. the use of "x" and "y"). If it turns out that such pattern is respected most of the times then the belief is probably valid, otherwise it is treated as a coincidence and, as such, discarded.
@@ -159,8 +155,6 @@ The authors then focus on the data analysis phase. They propose three different 
     \item They show how to start from a large set of predicates (predicate guessing) and shrinking it down over time to reveal the smallest set that can deterministically predict a bug.
     \item They show how to use linear regression to isolate non-deterministc bugs; in other words they shrink the set of predicates that has the highest correlation with the failure.
 \end{itemize}
-\\
-\\
 \textbf{ESC/Java} \cite{flanagan2002extended} Extended Static Checking for Java
 
 This tool perform static analysis on Java source code looking for errors and warnings to report. It provides specific Java annotation to formally express design decisions. 
