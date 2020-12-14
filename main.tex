@@ -2,13 +2,19 @@
 
 \documentclass[11pt, mscthesis]{usiinfthesis}
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} % Output font encoding for international characters
+\usepackage{svg}
 \usepackage[english]{babel}
 \usepackage{lipsum}
 \usepackage{listings}
 \usepackage{graphicx}
 \usepackage{subfig}
+\lstset{columns=fixed, basicstyle=\ttfamily, basewidth=0.5em}
+
+% \RequirePackage{scrhack} % Loads fixes for various packages
+
 \graphicspath{{./images/}{./images2/}}
-\DeclareGraphicsExtensions{.png,.pdf}
+\DeclareGraphicsExtensions{*.svg,.png,.pdf}
 
 \newcommand{\vect}[1]{\boldsymbol{#1}}
 %%%%%

@@ -76,41 +76,68 @@ In the rest of this section we give some details about each one of them and intr
 
 \subsection{Representing code using AST paths}
 This section describes how to capture semantic information from a snippet of code and create a representation that can be used to predict properties of the snippet, for example a label (e.g. SATD/fixed).
-To better illustrate these concepts, we use a simple code snippet in listing\ref{lst:snippet_ast_code} to show all the decomposition stages.  
+To better illustrate how the decomposition is done we use as an example the simple code snippet in listing \ref{lst:snippet_ast_code}.
 
+%AST of code snippet
+\begin{lstlisting}[caption={Example code to show decomposition}, label={lst:snippet_ast_code},language=Java]
 
-\begin{lstlisting}[caption={Code snippet with 199 tokens}, label={lst:snippet_ast_code},language=Java]
-String METHOD_NAME() {
-  if(somePreCondition())
-    while(!completed())
-       doWork();
-  return "ok";
-}
+                            String METHOD_NAME() {
+                              if(somePreCondition())
+                                while(!completed())
+                                   doWork();
+                              return "ok";
+                            }
+                            
 \end{lstlisting}
 
-The abstract syntax tree (AST) is extracted from the source code using JavaParser \footnote{https://javaparser.org/}; Figure 
+\noindent The abstract syntax tree (AST) is extracted from the source code using JavaParser \footnote{https://javaparser.org/}; see an example in figure  \ref{fig:AST_graphviz}.
 
-\begin{figure}[H]
+
+% \begin{figure}
+%  \centering
+%  \resizebox{\columnwidth}{!}{
+%  \includegraphics{images/AST-graphviz.png}
+%  }
+%  \caption[Encoder-Decoder model in a dialogue system application.]{Encoder-Decoder model in a dialogue system application. }
+%     \label{fig:AST-graphviz}
+% \end{figure}
+
+\begin{figure}
  \centering
  \resizebox{\columnwidth}{!}{
- \includegraphics{AST-graphviz}
+%   \includegraphics{images/AST-graphviz.png}
+ %\includesvg[inkscapelatex=false]{images/AST-graphviz2}
+ \includesvg[]{images/AST_graphviz}
+%  \escapeus{\includesvg{images/AST_graphviz2.svg}}
+%  \includesvg{images/AST-graphviz2.svg}
  }
- \caption[Encoder-Decoder model in a dialogue system application.]{Encoder-Decoder model in a dialogue system application. }
-    \label{fig:AST-graphviz}
+ %[inkscapelatex=false,
+ \caption[AST for listing \ref{lst:snippet_ast_code}.]{AST of listing \ref{lst:snippet_ast_code}.}
+    \label{fig:AST_graphviz}
 \end{figure}
 
 	
-We identify two sets of node in this AST: terminal and non-terminal nodes.
-\textit{Definition of AST path}: it is a path connecting two terminal nodes and it must include one non-terminal node which is a common ancestor of the two terminal nodes. 
-The representation of the program is the \textit{set of all its AST paths}.
+We identify two sets of node in the AST: terminal and non-terminal nodes. Terminal nodes are the leafs and the rest are the non-terminal ones.
+\textit{AST path definition}: it is a path connecting two terminal nodes and it must include one non-terminal node which is a common ancestor of the two terminal nodes. 
+The representation of the program is the \textit{set of all its AST paths}. 
 
+%AST paths of code snippet
+\begin{figure}
+ \centering
+ \resizebox{\columnwidth}{!}{
+  \includegraphics{images/AST_paths.png}
+ }
+ %[inkscapelatex=false,
+ \caption[All AST paths for listing \ref{lst:snippet_ast_code}.]{AST paths of listing \ref{lst:snippet_ast_code}.}
+    \label{fig:AST_paths}
+\end{figure}
 
+% \begin{lstlisting}[caption={All AST paths for listing \ref{lst:snippet_ast_code}}, label={lst:AST_paths}, basicstyle=\small,breaklines=true,inputencoding=utf8, extendchars=\true]
 
+% \uparrow and \downarrow
+% ↑
 
-%AST of code snippet
-
-%AST path of code snippet
-
+% \end{lstlisting}
 
 % here I go into details on the first decomposition/representation of the code snippets into fixed length vectors
 
@@ -141,7 +168,7 @@ The representation of the program is the \textit{set of all its AST paths}.
 %3.3
 \section{Hyperparameter Tuning}
 
-This section describe the process of tuning the hyperparameters of the model.
+This section describes the process of tuning the hyperparameters of the model.
 
 It is clear that using shorter code snippets increases the performance but decreases the number of samples in the dataset; thus decreasing the usefulness of the trained model because of less capability in generalization.
 For the tuning of the hyperparameters, we empirically defined to keep those snippets with less than 200 tokens; an example of a method composed by 199 tokens is shown in listing \ref{lst:snippet199}.
