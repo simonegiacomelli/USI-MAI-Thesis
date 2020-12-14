@@ -4,8 +4,9 @@
 
 We aim to create a system that automatically detects technical debt in a class method. To achieve this goal, we took the following three steps: dataset creation, classification and hyperparameter tuning.
 The dataset was automatically created by mining and processing open-source project histories. It's a balanced dataset by construction and the two classes are referred as: SATD and fixed.
+
 We initially identify technical debt through the presence of SATD in the comments of the source code, using keyword labels pattern matching \cite{potdar2014exploratory} \cite{rantala2020prevalence}.
-The identification of a SATD/fixed method pair method is based on a strong assumption: when the SATD comment disappears, due to a commit, we suppose that the technical debt is fixed; so, we regard the new code as TD-free, i.e. belonging to fixed class.
+The identification of a SATD/fixed method pair is based on a strong assumption: when the SATD comment disappears, due to a commit, we suppose that the technical debt is fixed; so, we regard the new code as TD-free, i.e. belonging to fixed class.
 % detail: describe the circumstances where we reject this hypotheses
 The classifier is a neural network capable of representing snippets of code with an fixed length vector, conceptually similar on how word2vec works. The learned vector representation (code embedding) is associated with a semantic label (i.e. SATD or fixed).
 Lastly, to increase the performance of the system we select a set of hyperparameters and perform a distributed grid search for tuning their values. The rest of this chapter explains each part in greater detail.
@@ -74,6 +75,42 @@ In the rest of this section we give some details about each one of them and intr
 % Here I want to explain briefly what are the fundamental pieces and how they interact (without pretending that the reader really understands, but to give the general idea)
 
 \subsection{Representing code using AST paths}
+This section describes how to capture semantic information from a snippet of code and create a representation that can be used to predict properties of the snippet, for example a label (e.g. SATD/fixed).
+To better illustrate these concepts, we use a simple code snippet in listing\ref{lst:snippet_ast_code} to show all the decomposition stages.  
+
+
+\begin{lstlisting}[caption={Code snippet with 199 tokens}, label={lst:snippet_ast_code},language=Java]
+String METHOD_NAME() {
+  if(somePreCondition())
+    while(!completed())
+       doWork();
+  return "ok";
+}
+\end{lstlisting}
+
+The abstract syntax tree (AST) is extracted from the source code using JavaParser \footnote{https://javaparser.org/}; Figure 
+
+\begin{figure}[H]
+ \centering
+ \resizebox{\columnwidth}{!}{
+ \includegraphics{AST-graphviz}
+ }
+ \caption[Encoder-Decoder model in a dialogue system application.]{Encoder-Decoder model in a dialogue system application. }
+    \label{fig:AST-graphviz}
+\end{figure}
+
+	
+We identify two sets of node in this AST: terminal and non-terminal nodes.
+\textit{Definition of AST path}: it is a path connecting two terminal nodes and it must include one non-terminal node which is a common ancestor of the two terminal nodes. 
+The representation of the program is the \textit{set of all its AST paths}.
+
+
+
+
+%AST of code snippet
+
+%AST path of code snippet
+
 
 % here I go into details on the first decomposition/representation of the code snippets into fixed length vectors
 
