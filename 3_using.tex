@@ -24,6 +24,34 @@ These are the fundamental activities involved in the creation of the dataset:
 The following sections describe these activities in detail.
 
 \subsection{Github repository url mining}
+We know from experience and from the literature that the concentration of SATD is very low \cite{bavota2016large} \cite{maldonado2015detecting} \cite{potdar2014exploratory}, for this reason we tasked ourselves to create a dataset from an initial set of open-source projects as big as possible. 
+The search was conducted for all public Java GitHub repositories in a 20 years time window (from 2000 to 2019). 
+The retrieval process of this URLs list was challenging in itself. We dealt and solved the following issues:
+\begin{enumerate}
+    \item GitHub search API limit of 1000 hits.
+    \item GitHub search API number of request per minute maximum quota.
+    \item Filtering to remove low quality repositories
+\end{enumerate}
+The first issue was solved with using two different phases of query: probe and search. The probe query requests only the number of the repositories that were created in a specific time window; if the number exceeds the 1000 limit, it iteratively divides the query in two sub-queries using half of the time window for each.
+It was not enough to specify the day interval in the query; the time of the day was needed also because in the recent years there are multiple instances of more than 1000 repositories created in a single day.
+
+The second issue was solved using an authentication token, as specified by the GitHub documentation.
+
+The last issue was the reason we switched to the GitHub GraphQL API; we quickly realized that the total number of repositories in the selected period was more than seven millions and we needed a way to trim down the list to those most meaningful repositories. We empirically defined, through a trial and error process, a metric to keep those repositories with a good likelihood to contain \textit{higher quality source code}. 
+The GraphQL Repository API can be queried to return additional information; for each repository, we requested the issue count and the commit count so to discard quickly those with less or equal than 100 commits and 100 issues.
+The total number of URLs retrieved was roughly seven million but we did clone only a subset of them: around 250 thousand repositories.
+
+
+% 6 47 57
+% query range 20 anni, a lot of java projects
+% github api v4, why?
+% keep projects with issue count > 100 or commit count > 100
+% token to use for speed
+% save urls to text file
+% total urls spooled 7 million
+% that passed the 
+
+
 % javaparser & pre-selection of repositories by api.
 
 
@@ -39,6 +67,8 @@ The following sections describe these activities in detail.
 % Saving to h2 and then postgresql.
 
 \subsection{Repository cloning and filtering}
+
+
 \subsection{Commit history processing}
 % the commit is like a function that transform the SATD in fixed
 %3.2 
@@ -61,7 +91,7 @@ In the rest of this section we give some details about each one of them and intr
     \item Parsing and creation of the abstract syntax tree of the method source code. 
     \item Extraction of all AST-paths (up to a fixed limit).
     \item Encoding of the AST-paths into a bag of context-vector.
-    \item Transform each context vector into a path-context (so to obtain a bag of path-context).
+    \item Transform each context-vector into a path-context (so to obtain a bag of path-context).
 \end{itemize}
 
 \noindent \textbf{Aggregate.} This process aggregates the bag of path-context (the output from the previous process) using an attention vector. The final result is a code-vector that represents the snippet of code as continuous distributed vector, i.e. a `code embedding'.
@@ -74,9 +104,9 @@ In the rest of this section we give some details about each one of them and intr
 
 % Here I want to explain briefly what are the fundamental pieces and how they interact (without pretending that the reader really understands, but to give the general idea)
 
-\subsection{Representing code using AST paths}
+\subsection{Representing code using AST-paths}
 This section describes how to capture semantic information from a snippet of code and create a representation that can be used to predict properties of the snippet, for example a label (e.g. SATD/fixed).
-To better illustrate how the decomposition is done we use as an example the simple code snippet in listing \ref{lst:snippet_ast_code}.
+To better illustrate how the decomposition is done, we use the simple code snippet in listing \ref{lst:snippet_ast_code} as an example .
 
 %AST of code snippet
 \begin{lstlisting}[caption={Example code to show decomposition}, label={lst:snippet_ast_code},language=Java]
@@ -90,66 +120,104 @@ To better illustrate how the decomposition is done we use as an example the simp
                             
 \end{lstlisting}
 
-\noindent The abstract syntax tree (AST) is extracted from the source code using JavaParser \footnote{https://javaparser.org/}; see an example in figure  \ref{fig:AST_graphviz}.
+Using JavaParser \footnote{https://javaparser.org/} the abstract syntax tree (AST) is extracted from the source code; see an example in figure  \ref{fig:AST_graphviz}.
 
-
-% \begin{figure}
-%  \centering
-%  \resizebox{\columnwidth}{!}{
-%  \includegraphics{images/AST-graphviz.png}
-%  }
-%  \caption[Encoder-Decoder model in a dialogue system application.]{Encoder-Decoder model in a dialogue system application. }
-%     \label{fig:AST-graphviz}
-% \end{figure}
 
 \begin{figure}
  \centering
  \resizebox{\columnwidth}{!}{
-%   \includegraphics{images/AST-graphviz.png}
- %\includesvg[inkscapelatex=false]{images/AST-graphviz2}
  \includesvg[]{images/AST_graphviz}
-%  \escapeus{\includesvg{images/AST_graphviz2.svg}}
-%  \includesvg{images/AST-graphviz2.svg}
  }
- %[inkscapelatex=false,
- \caption[AST for listing \ref{lst:snippet_ast_code}.]{AST of listing \ref{lst:snippet_ast_code}.}
-    \label{fig:AST_graphviz}
+ \caption[AST for listing \ref{lst:snippet_ast_code}.]{Abstract syntax tree of the source code presented in listing \ref{lst:snippet_ast_code}.}
+ \label{fig:AST_graphviz}
 \end{figure}
 
 	
-We identify two sets of node in the AST: terminal and non-terminal nodes. Terminal nodes are the leafs and the rest are the non-terminal ones.
-\textit{AST path definition}: it is a path connecting two terminal nodes and it must include one non-terminal node which is a common ancestor of the two terminal nodes. 
-The representation of the program is the \textit{set of all its AST paths}. 
+We identify three sets of node in the AST: values, terminal and non-terminal nodes. Values are the leafs (this set is identified with $X$), terminal nodes are the immediate parent of a leaf and the rest are the non-terminal ones.
+\textit{AST-path definition}: it is a path connecting two terminal nodes and it must include one non-terminal node which is a common ancestor of the two terminal nodes. 
+The representation of the program is the \textit{set of all its AST-paths}. 
 
-%AST paths of code snippet
+To wrap up this section, we explain the last AST-path in figure \ref{fig:AST_paths} and, for convenience, this AST-path is also reported here:
+
+%AST-paths only last
+\begin{center}
+  \makebox[\textwidth]{\includegraphics[width=\columnwidth]{images/AST_paths_last.png}}
+\end{center}
+
+The two value nodes are the first and the last words, `dowork' and `ok' respectively; the reader can also identify these leaf nodes in the bottom-right part of figure \ref{fig:AST_graphviz}.
+The central part of the AST-path above is the connecting path between those two value nodes: it lists all the intermediate nodes and it also specifies the direction (up or down) one needs to take to traverse the tree. The common ancestor, for this example, is the intermediate node called `block'.
+
+%AST-paths of code snippet
 \begin{figure}
  \centering
  \resizebox{\columnwidth}{!}{
   \includegraphics{images/AST_paths.png}
  }
- %[inkscapelatex=false,
- \caption[All AST paths for listing \ref{lst:snippet_ast_code}.]{AST paths of listing \ref{lst:snippet_ast_code}.}
+ \caption[All AST-paths for listing \ref{lst:snippet_ast_code}.]{AST-paths of listing \ref{lst:snippet_ast_code}.}
     \label{fig:AST_paths}
 \end{figure}
 
-% \begin{lstlisting}[caption={All AST paths for listing \ref{lst:snippet_ast_code}}, label={lst:AST_paths}, basicstyle=\small,breaklines=true,inputencoding=utf8, extendchars=\true]
-
-% \uparrow and \downarrow
-% ↑
-
-% \end{lstlisting}
-
 % here I go into details on the first decomposition/representation of the code snippets into fixed length vectors
 
-\subsection{Bag of path-contexts}
+What is seen in figure \ref{fig:AST_paths} is a bag of context-paths (another name for the set of all AST-paths) and it is the representation for the code snippet. The following section explains how these AST-paths are transformed into fixed length vectors.
 
-\subsection{Context-vector $c_i$}
+\subsection{Context-vector}
 %how many OOV? 
 %https://github.com/tech-srl/code2vec/blob/c98e8f786b7262e56c93e520d039fb7aa5d0f7ef/vocabularies.py#L123
 
-\subsection{Combined context-vector $\widetilde{c}_i$}
+A context-vector $c_i$ is the vector representation for one AST-path. The process of transformation is applied to all AST-paths producing a bag of context-vectors.
+The following picture shows how the context-vector is formed:
+
+\begin{center}
+  \makebox[\textwidth]{\includegraphics[width=\columnwidth]{images/context_vector.png}}
+\end{center}
+
+To explain the picture above we need to introduce two matrices:
+\begin{align*} 
+ value\_vocab \in \mathbb{R}^{|X| \times d}
+\\
+    path\_vocab \in \mathbb{R}^{|P| \times d}
+\end{align*}
+% \begin{itemize}
+%     \item value\_vocab $\in \mathbb{R}^{|X| \times d}$
+%     \item path\_vocab $\in \mathbb{R}^{|P| \times d}$
+% \end{itemize}
+
+The embedding size $d$ is an hyperparameter. $X$ is the set of values of the AST terminals that were observed during training; in our recurring example this set is composed by: string, METHOD\_NAME, someprecondition, completed, dowork and ok. 
+$P$ is the set of all AST-paths across all snippets.
+
+These matrices are initialized randomly and are learned by the model during the training.
+An embedding (either from value\_vocab or path\_vocab) is looked up selecting the appropriate row in its matrix.
+
+The previous notions tells us that:
+\begin{align*} 
+c_i \in  \mathbb{R}^{3 d}
+\end{align*}
+
+The two matrices value\_vocab and path\_vocab do not need to be of the same width $d$ but for convenience it was chosen so.
+
+\subsection{Path-context}
+The previous section describes the definition of the context-vector $c_i$. Applying a fully connected layer to it we obtain the path-contest vector $\widetilde{c}_i$, also called combined context-vector. The following equation describes the computation of this layer:
+
+\begin{align*} 
+\widetilde{c}_i = \tanh( W \cdot c_i )
+\end{align*}
+where $W$ is the weight matrix and
+\begin{align*} 
+W \in  \mathbb{R}^{d \times 3 d}
+\end{align*}
+
+The height of $W$ is for convenience of the same size as before ($d$); it does not need to be strictly so: it can also be of different height.
+One other way to look at this layer is that it compresses the context-vector $c_i$ of size $3d$ into a combined context-vector of size $d$.
 
 \subsection{Attention mechanism and the code-vector}
+
+The previous section left us with a set of path-contexts. The goal of this part of the model is to combine them all into a code-vector.
+This step employs an attention vector $a$.
+\\
+\noindent \emph{-- stopping until feedback on this section --}
+
+ 
 
 \subsection{Training and prediction}
 % detailed explanations in step:
