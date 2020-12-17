@@ -31,47 +31,176 @@ The retrieval process of this URLs list was challenging in itself. We dealt and 
     \item GitHub search API limit of 1000 hits.
     \item GitHub search API number of request per minute maximum quota.
     \item Filtering to remove low quality repositories
+    \item Unexpected interruptions
 \end{enumerate}
-The first issue was solved with using two different phases of query: probe and search. The probe query requests only the number of the repositories that were created in a specific time window; if the number exceeds the 1000 limit, it iteratively divides the query in two sub-queries using half of the time window for each.
+The first issue was solved with using two different intertwined phases of query: probe and harvest. The probe requested only the number of the repositories that were created in a specific time window; if the number exceeds the 1000 limit, it iteratively divides the probe query in two sub-queries using half of the time window for each and add them to the job queue.
 It was not enough to specify the day interval in the query; the time of the day was needed also because in the recent years there are multiple instances of more than 1000 repositories created in a single day.
 
 The second issue was solved using an authentication token, as specified by the GitHub documentation.
 
-The last issue was the reason we switched to the GitHub GraphQL API; we quickly realized that the total number of repositories in the selected period was more than seven millions and we needed a way to trim down the list to those most meaningful repositories. We empirically defined, through a trial and error process, a metric to keep those repositories with a good likelihood to contain \textit{higher quality source code}. 
-The GraphQL Repository API can be queried to return additional information; for each repository, we requested the issue count and the commit count so to discard quickly those with less or equal than 100 commits and 100 issues.
-The total number of URLs retrieved was roughly seven million but we did clone only a subset of them: around 250 thousand repositories.
+The third issue was the reason we switched to the GitHub GraphQL API; we quickly realized that the total number of repositories in the selected period was more than seven millions and we needed a way to trim down the list to those most meaningful repositories. We empirically defined, through a trial and error process, a metric to keep those repositories with a good likelihood to contain \textit{higher quality source code}. 
+The GraphQL Repository API can be queried to return additional information; for each repository, we requested the issue count and the commit count so to discard quickly those with less or equal than 100 commits and 100 issues. It must be noted that some repositories were automatically excluded by the GraphQL query because of atypical structures (e.g. Subversion to git converts and repositories with non-standard naming). 
+
+The last issue affects all long running processes: unexpected interruptions, e.g. network outages, program crashes, api service unavailability. To fix these problems, all failed queries are repeated for a maximum of 50 times, then the program is halted with an exception. 
+The program can recover from a crash because every query is cached to a file; when a query is issued and the cache is present the network request is skipped and the file content is used instead. This was important because the URLs mining execution took roughly 120 hours and a system to reuse past expended resources was needed.
+
+The URLs mining tool creates two text files: one with the complete list and one with the URLs that matches our accept criteria. Both files contains the following columns:
+
+\begin{itemize}
+    \item Repository creation date.
+    \item User name and repository name.
+    \item Issue count.
+    \item Commit count.
+\end{itemize}
+
+The total number of URLs retrieved was roughly seven million but we did accept only a subset of them: around 250 thousand repositories.
+
+% expand on cache because it takes a few days to mine all URLs
 
 
-% 6 47 57
-% query range 20 anni, a lot of java projects
-% github api v4, why?
-% keep projects with issue count > 100 or commit count > 100
-% token to use for speed
-% save urls to text file
-% total urls spooled 7 million
-% that passed the 
 
 
-% javaparser & pre-selection of repositories by api.
-
-
-% Building a list of github repositories - github api tool -reject android repositories
-% %mention the initial idea of specialization
-% %remember --##string##--
-
-% The process of cloning and caching repos.
-% The source code processing. SATD search, exclusions, metrics (lines, tokens)
-% Caching of code vectors.
-% Parsing, comment cleaning, excluded patterns.
-% SATD/fixed tracking. 
-% Saving to h2 and then postgresql.
 
 \subsection{Repository cloning and filtering}
+% 250.000 cloni
+% esclusione repository Android OS , 300.000 commits 
+% spazio su disco e cancellazione on the go
+% the processing was done just after one repo was cloned 
+% description next section
+This section describes the process of cloning 250 thousand repositories and applying further filtering. 
+
+The repository clone task was conducted without the checkout, i.e. only the commit history was downloaded without creating the working copy for the last commit. This approach saved disk space and processing time, particularly when the last commit contained a high number of files. 
+
+Once the repository was locally accessible, using the library JGit \footnote{https://www.eclipse.org/jgit/}, we tested the presence of a few files that indicated an Android OS project; if it was the case, the repository was rejected.
+The problems related to the Android OS was that there were more than 1,700 forks/clones and those repositories counted between 300,000 and 550,000 commits; it is one of the biggest project encountered in this endeavour and it posed a big bottleneck to the commit history processing: traversing the commit tree could take a couple of days only for one Android OS repository.
+The exclusion of Android OS in this phase was established only for performance reasons.
+
+The general issue of detecting forked (i.e. duplicated) repositories will be better explained in the next section.
+
 
 
 \subsection{Commit history processing}
-% the commit is like a function that transform the SATD in fixed
-%3.2 
+
+This section describes the task of traversing all the commits of a repository and collecting the code snippets viable to be part our SATD/fixed dataset.
+
+The processing is composed by many small pieces. We give an overview and later on add explanations and details.
+
+What we are generally looking for is a method body that is affected with SATD and after a commit is not affected by it anymore, i.e. the SATD was removed. What follows from it is that we do not need to blindly parse all the Java files but only those that are changed by a commit.
+
+For each repository we loop on every commit and every file change; but we care only for \textit{modify} type operations; we ignore the rest of git file change operations: add, delete, rename and copy.
+
+At this stage we just have a pair of Java source code texts: the old version before the commit and the new after it; they are also called \textit{before image} and \textit{after image}. Next, we parse the before image and run the SATD detector; if hits are found, then we parse also the after image.
+
+Now we tackle the previous explanation with a different abstraction level in mind: not from the source file point of view but at the method level. 
+What we have is a list of methods affected by SATD coming from the before image and another list of methods created from the after image; we couple the items of these two list by method name and accept as viable candidates only those pairs whose after image method is not affected with SATD. The following code implements the semantic described before (old stands for before image and new stands for after image):
+
+\begin{center}
+  \makebox[\textwidth]{\includegraphics[width=0.7\columnwidth]{images/pairing_methods.png}}
+\end{center}
+
+There are a few considerations to ponder: 
+
+\begin{itemize}
+    \item The appearance order of the methods in the source code do not affect the process.
+    \item When a method is removed it is automatically excluded through the lack of pairing between the two lists.
+    \item The renamed methods are lost; for all intents and purposes they are treated as removed.
+\end{itemize}
+
+\noindent The rest of this section develops some aspects that were not fully explained before but that are important to the creation of the dataset.
+\\
+\\
+\textbf{Keyword label pattern matching.} 
+To detect the SATD, we use keyword label techniques using the 62 pattern reported by Potdar and Shihab \cite{potdar2014exploratory} (they are actually 63 \footnote{http://users.encs.concordia.ca/~eshihab/data/ICSME2014/satd.html}). Out of these patterns we create regular expressions that are applied on all the source comments extracted with JavaParser.
+
+We did an initial experiment to verify the effectiveness of those patterns and we excluded the following two: "there is a problem" and "bail out". After manually verifying roughly one hundred matches we noticed that those two patterns were often used as documentation in `catch' Java blocks and were not documenting SATD. The final list used in our tool is found in listing \ref{lst:patterns61}.
+
+\begin{lstlisting}[caption={61 patterns for SATD detection}, label={lst:patterns61}]
+                # a line that starts with an hash is ignored
+                hack
+                retarded
+                at a loss
+                stupid
+                remove this code
+                ugly
+                take care
+                something's gone wrong
+                nuke
+                is problematic
+                may cause problem
+                hacky
+                unknown why we ever experience this
+                treat this as a soft error
+                silly
+                workaround for bug
+                kludge
+                fixme
+                this isn't quite right
+                trial and error
+                give up
+                this is wrong
+                hang our heads in shame
+                temporary solution
+                causes issue
+                something bad is going on
+                cause for issue
+                this doesn't look right
+                is this next line safe
+                this indicates a more fundamental problem
+                temporary crutch
+                this can be a mess
+                this isn't very solid
+                this is temporary and will go away
+                is this line really safe
+                #there is a problem
+                some fatal error
+                something serious is wrong
+                don't use this
+                get rid of this
+                doubt that this would work
+                this is bs
+                give up and go away
+                risk of this blowing up
+                just abandon it
+                prolly a bug
+                probably a bug
+                hope everything will work
+                toss it
+                barf
+                something bad happened
+                fix this crap
+                yuck
+                certainly buggy
+                remove me before production
+                you can be unhappy now
+                this is uncool
+                #bail out
+                it doesn't work yet
+                crap
+                inconsistency
+                abandon all hope
+                kaboom
+\end{lstlisting}
+
+\textbf{Snippets preprocessing and cleaning.} Every sample in the dataset contains the verbatim method source code pair (before image and after image). It contains also a new pair (called `clean') cleaned by all comments and string literals. The string cleaning process replaces all the non-null and non empty strings to a constant: ``--##string##--''. In other words, the string type values are constrained to this set: null, empty value and ``--##string##--''.
+
+\textbf{Precomputed features}
+The neural model used in this thesis needs a specific representation for each code snippet (see section \ref{sec:code2vec_ast_paths} for details). The computation of such representation is resource expensive and we decided to store it in the database alongside with the sample (columns old\_clean\_features and new\_clean\_features).
+
+
+\textbf{Handling forks and duplicated code.}
+In our research we found that many repositories were duplicates or clones (GitHub keep track of forks but do not track duplicates). 
+We need to be very careful to not introduce noise in the dataset. To ensure a better quality for our samples we implemented the following steps:
+\begin{itemize}
+    \item We concatenated the clean images (before and after images) and computed the hash of such string. This hash is stored in a database field with a unique index on it; this ensures that we do not have duplicated pairs.
+    \item Two additional hashes are calculated: one for the clean before image and a second for the clean after image. Then we discard all pair that are found having an hash in common between any before and after clean image hash; this ensures that we cannot have the same snippet in both before and after image.
+    \item We did the same process as described in the previous point but applied to the precomputed features.
+\end{itemize}
+
+\textbf{Rejected snippets.} 
+% see JavaMethodTest.kt
+We implemented some unit tests \footnote{https://github.com/simonegiacomelli/code2vec-satd-classifier/blob/master/satd-classifier/src/jvmTest/kotlin/satd/step2/JavaMethodTest.kt} to be sure to reject specific Java constructs that would pose issues for the pipeline. For example, methods containing inner named methods (explicit interface implementations) were discarded because the parser in code2vec recognized them as two distinct methods, which is not correct. 
+
+
 \section{The Deep Learning Model}
 The model described in this section is called code2vec \cite{alon2019code2vec}.
 The following three sequential processes can be considered a chain that progressively transform the source code into the desired target (i.e. the two classes SATD/fixed):
@@ -104,7 +233,7 @@ In the rest of this section we give some details about each one of them and intr
 
 % Here I want to explain briefly what are the fundamental pieces and how they interact (without pretending that the reader really understands, but to give the general idea)
 
-\subsection{Representing code using AST-paths}
+\subsection{Representing code using AST-paths} \label{sec:code2vec_ast_paths}
 This section describes how to capture semantic information from a snippet of code and create a representation that can be used to predict properties of the snippet, for example a label (e.g. SATD/fixed).
 To better illustrate how the decomposition is done, we use the simple code snippet in listing \ref{lst:snippet_ast_code} as an example .
 
