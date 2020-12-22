@@ -1,6 +1,22 @@
 \chapter{Empirical Study Design}
 
 %Start with a short description about the goal/research questions
+
+% from a different point of view: Hypothesis. H1 it's possible to create a high quality dataset SATD/fixed using GitHub Java open-source projects and SATD pattern matching
+% H2 it's possible
+The goal of this exploratory study is to evaluate the accuracy of our approach for technical debt identification.
+This section provides details about the design and planning of the study aimed at assessing our model performances.
+ 
+
+We answer the following research question:
+How does our approach perform in detecting technical debt in methods source code?
+
+
+%4.1
+\section{Context Selection}
+% Context Selection [explain the dataset used for the evaluation]
+% 
+
 %select dbsatds.parent_count,dbsatds.valid , dbsatds.accept, count(*) from dbsatds group by 1,2,3
 % 93,061: parent_count, valid, accept = 1
 
@@ -15,42 +31,6 @@
 %      0|   1|  3629|
 %      1|   1|245243|
 %tot 248'872
-
-The goal of this study is to evaluate the accuracy of our approach for technical debt identification.
-The context of the study consists of 93,061 eligible method bodies annotated with SATD and their 93,061 fixed counterparts. These were harvested from 245,243 public Java GitHub repositories. 
-% for context selection: The total number of repositories scanned is 245,243
-
-In this thesis, we answer the following research question:
-What is the accuracy of our approach identifying methods affected by technical debt?
-
-
-%4.1
-\section{Context Selection}
-% Context Selection [explain the dataset used for the evaluation]
-
-We used GitHub GraphQL API \footnote{https://docs.github.com/graphql} to retrieve 7,265,342 urls of public Java repositories created between the start of year 2000 and the end of 2019, thus spanning a time window of 20 years.
-The GraphQL api allowed us to request two additional information for each repository: the number of issues and the number of commits. To exclude smaller and less meaningful repositories, we kept only those urls with issue or commit count greater than 100. This reduced the number of repository urls to 248,872.
-
-After the clone phase we were left with 245,243 repositories because 3,629 were rejected or failed:
-\begin{itemize}
-    \item 1,726 Android OS repository clones were rejected.
-    \item 587 clones failed because they were removed or made private.
-    \item 1,316 for other mixed reasons.
-\end{itemize}
-
-
-
-% The dataset is split as follows:
-% \begin{itemize}
-%     \item 75\% training dataset
-%     \item 15\% validation dataset
-%     \item 15\% test dataset
-% \end{itemize}
-
-
-%4.2 
-\section{Data Collection and Analysis}
-%Data Collection and Analysis [How you compute the results]
 
 % select count(*) from dbsatds = 141400
 
@@ -95,27 +75,80 @@ After the clone phase we were left with 245,243 repositories because 3,629 were 
 %           10|    0|     1|    1|
 %           12|    0|     1|    1|
 %           32|    1|     1|    1|
-The parsing and search process was conducted on the 245,243 cloned repositories; this yielded 141,400 SATD/fixed pair of method bodies and were stored into a database table.
-For each pair we collected the following information:
+
+% The context of the study consists of 141,400 method bodies annotated with keyword label SATD and their 141,400 fixed counterparts. 
+%The context of the study consists of 93,061 eligible 
+
+The context of the study consists of 245,243 public Java GitHub repositories. 
+% for context selection: The total number of repositories scanned is 245,243
+
+We targeted GitHub open-source projects written in Java because of three reasons:
+\begin{itemize}
+    \item The large number of accessible projects available.
+    \item The availability of the commits history. 
+    \item The ease of parsing Java sources thanks to feature rich options of modern parsers.
+\end{itemize}
+We used GitHub GraphQL API \footnote{https://docs.github.com/graphql} to retrieve 7,265,342 URLs of public Java repositories created between the start of year 2000 and the end of 2019, thus spanning a time window of 20 years.
+The GraphQL API allowed us to request two additional information for each repository: the number of issues and the number of commits. To exclude smaller and less meaningful repositories, we kept only those URLs with issue or commit count greater than 100. This reduced the number of repository URLs to 248,872.
+
+After the clone phase we were left with 245,243 repositories because 3,629 were rejected or failed: 1,726 Android OS repository clones were rejected, 587 clones failed because they were removed or made private and 1,316 for other mixed reasons.
+
+The processing of 245,243 repository commit histories yielded 141,400 method bodies annotated with keyword label SATD and their 141,400 fixed counterparts. For each SATD/fixed pair we collected the following information:
 \begin{itemize}
     \item Pattern: the word or sentence that identified the SATD.
     \item Commit message: the commit message that removed the SATD.
     \item Commit hash id.
     \item Repository name and url.
-    \item The body of the method before the commit (affected with SATD) and the body after the commit (fixed).
+    \item The verbatim bodies involved in the change: before the commit (affected with SATD) and after (fixed).
+    \item The `cleaned' version of the bodies from the previous point (see \ref{sec:cleaning} for details).
 \end{itemize}
 
+Of the 141,400 collected samples, 48'339 were rejected leaving us with 93,061 viable pair. Those rejections were enforced for the following reasons:
+\begin{itemize}
+    \item Merge commits (i.e. commits with more than one parent). The reason being that we were specifically looking for a commit fixing a method SATD and a `merge' operation is not likely to do that.
+    \item Empty methods.
+    \item Methods containing inner methods.
+    \item Methods with one throw exception statement.
+    \item Methods with unparsable statements.
+\end{itemize}
+
+For the distributed experiment of hyperparameter tuning, xx were selected amongst the 93,061 viable pairs.
+% 
+%We ran the distributed experiment (see \ref{sec:htuning}) on a reduced  
+
+% The dataset is split as follows:
+% \begin{itemize}
+%     \item 75\% training dataset
+%     \item 15\% validation dataset
+%     \item 15\% test dataset
+% \end{itemize}
+
+
+
+
 \emph{continue describing the parsed information and the subsequent manual and automatic filtering ...}
+
+%4.2 
+\section{Data Collection and Analysis}
+
+% questa sezione deve contenere come abbiamo raccolto i dati per rispondere alla RQ e come abbiamo fatto a misurare tale cosa, quindi le metriche per fare l'assess delle performances.
+
+% per tradurre in contenuto la frase precednet:
+
+To answer the research question we conducted a distributed experiment using code2vec Keras model (described in sections x and y) and optimized for the selected hyperparameters. We did x run with 50 epochs and tested on the one with the best score on the validation dataset. 
+
+
+%Data Collection and Analysis [How you compute the results]
 
 %4.3
 \section{Replication Package}
 %Replication Package [A link to a repo with all data and code]
 A replication package is available on GitHub:
 \begin{itemize}
-    \item The source code for repository mining and deep learning model \footnote{https://github.com/simonegiacomelli/code2vec-satd-classifier} 
-    \item Two Postgresql database backups \footnote{https://github.com/simonegiacomelli/code2vec-satd-classifier-dataset } containing:
+    \item The source code for repository mining and deep learning model \footnote{https://github.com/simonegiacomelli/code2vec-satd-classifier}. 
+    \item Two Postgresql database backups. \footnote{https://github.com/simonegiacomelli/code2vec-satd-classifier-dataset } containing:
     \begin{itemize}
-\item The dataset with the mined GitHub repository urls and all the method bodies collected
-\item The Optuna database containing the data of the distributed experiment (i.e. hyperparameters tuning) with all TensorFlow outputs 
+\item The dataset with the mined GitHub repository urls and all the method bodies collected.
+\item The Optuna database containing the data of the distributed experiment (i.e. hyperparameters tuning) with all Keras outputs. 
 \end{itemize}
 \end{itemize}
