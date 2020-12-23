@@ -339,10 +339,17 @@ One other way to look at this layer is that it compresses the context-vector $c_
 
 \subsection{Attention mechanism and the code-vector} \label{sec:attention_code_vector}
 The previous section left us with a set of path-contexts. The goal of this part of the model is to combine them all into a code-vector.
-This step employs an attention vector $a$.
-\\
-\noindent \emph{-- stopping until feedback on this section --}
+This step employs an attention vector $a$ (see figure \ref{fig:code2vec_arch}; it can be described as a weighted average. The weights are learned with respect to the bag of path-contexts. 
 
+
+\begin{figure}
+ \centering
+ \resizebox{\columnwidth}{!}{
+  \includegraphics{images/code2vec_arch.png}
+ }
+ \caption[]{Code2vec architecture. Alon et al. \cite{alon2019code2vec}}
+    \label{fig:code2vec_arch}
+\end{figure}
  
 
 \subsection{Training and prediction}
@@ -432,7 +439,7 @@ To explore the best values for these parameters we created a distributed experim
  \resizebox{\columnwidth}{!}{
   \includegraphics{images/optuna_objective.png}
  }
- \caption[Simplified version of the Optuna function implementation]{}
+ \caption[]{Simplified version of the objective function - optuna\_worker.py}
     \label{fig:optuna_objective}
 \end{figure}
 
@@ -461,16 +468,26 @@ The first rounds of experiments yielded good values for max\_contexts parameter:
 
 
 
-\textbf{Google Colab Pro.} The distributed experiment was executed on Google Colab infrastructure. We used 12 concurrent sessions, both with GPU and CPU. The Python notebook contained only four lines of code (see listing 
+\textbf{Google Colab Pro.} The distributed experiment was executed on Google Colab infrastructure. We used 12 concurrent sessions, both with GPU and CPU. The Python notebook contained only a few lines of code (see listing \ref{lst:colab}). The first operation was to clone the GitHub repository with the source code for the distributed experiment. The second task was to invoke a Python function to setup the Colab environment: download Postgres binearies, download and restore the backup with the dataset, install all the code2vec libraries and dependencies. The third and last instruction started the Optuna worker. The results were stored in a central database as per Optuna design.
+
+\begin{lstlisting}[caption={Example code to show decomposition}, label={lst:snippet_ast_code},language=Python]
+    !cd /content; cd code2vec-satd-classifier && git pull || git clone \\
+               https://github.com/simonegiacomelli/code2vec-satd-classifier
+    %cd /content/code2vec-satd-classifier/code2vec-satd
+    import satd_colab_starter as starter; starter.main()
+    !python3 optuna_worker.py
+
+\end{lstlisting}
+
 
 % best satd-6 trial_id=37906,37915 0.615% accuracy
-The best hyperparameters configurations was the following:
+\noindent The best hyperparameters configuration found was the following:
 \begin{itemize}
     \item default\_embeddings\_size: 112
     \item max\_contexts: 290
     \item dropout\_keep\_rate: 0.2
 \end{itemize}
-This raised the accuracy to 61.5\%.
+This setup raised the accuracy to 61.5\%.
 
 \begin{figure}
  \centering
