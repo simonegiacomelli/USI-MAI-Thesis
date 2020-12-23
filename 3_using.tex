@@ -3,10 +3,10 @@
 \chapter{Using Deep Learning to Detect Technical Debt}
 
 We aim to create a system that automatically detects technical debt in a class method. To achieve this goal, we took the following three steps: dataset creation, classification and hyperparameter tuning.
-The dataset was automatically created by mining and processing open-source projects histories. It is a balanced dataset by construction and the two classes are referred as: SATD and fixed.
+The dataset was automatically created by mining and processing open-source projects histories. It is a balanced dataset by construction and the two classes are referred to as: SATD and fixed.
 
 We initially identify technical debt through the presence of SATD in the comments of the source code, using keyword labels pattern matching \cite{potdar2014exploratory} \cite{rantala2020prevalence}.
-The identification of a SATD/fixed method pairs is based on a strong assumption: when the SATD comment disappears, due to a commit, we suppose that the technical debt is fixed; so, we regard the new code as TD-free, belonging to the fixed class.
+The identification of a SATD/fixed method pair is based on a strong assumption: when the SATD comment disappears, due to a commit, we suppose that the technical debt is fixed; so, we regard the new code as TD-free, belonging to the fixed class.
 % detail: describe the circumstances where we reject this hypotheses
 The classifier is a neural network capable of representing snippets of code with a fixed-length vector, conceptually similar to how word2vec works. The learned vector representation (code embedding) is associated with a semantic label (i.e. SATD or fixed).
 Lastly, to increase the performance of the system we select a set of hyperparameters and perform a distributed grid search for tuning their values. The rest of this chapter explains each part in greater detail.
@@ -85,7 +85,7 @@ This section describes the task of traversing all the commits of a repository an
 
 What we are generally looking for is a method body that is affected with SATD and after a commit is not affected by it anymore, i.e. the SATD was removed. What follows from it is that we do not need to blindly parse all the Java files but only those that are changed by a commit.
 
-For each repository we itereate on every commit and every file change; but we care only of \textit{modify} type operations; we ignore the rest of git file change operations: add, delete, rename and copy.
+For each repository we iterate on every commit and every file change; but we care only of \textit{modify} type operations; we ignore the rest of git file change operations: add, delete, rename and copy.
 
 At this stage we just have a pair of Java source code texts: the old version before the commit and the new after it; they are also called \textit{before image} and \textit{after image}. Next, we parse the before image and run the SATD detector; if hits are found, then we parse also the after image.
 
@@ -112,74 +112,8 @@ To detect the SATD, we use keyword label techniques using the 62 patterns report
 
 We did an initial experiment to verify the effectiveness of those patterns and we excluded the following two: ``there is a problem'' and ``bail out''. After manually verifying roughly one hundred matches we noticed that those two patterns were often used as documentation in `catch' Java blocks and were not documenting SATD. The final list used in our tool is found in listing \ref{lst:patterns61}.
 
-\begin{lstlisting}[caption={61 patterns for SATD detection}, label={lst:patterns61}]
-                # a line that starts with an hash is ignored
-                hack
-                retarded
-                at a loss
-                stupid
-                remove this code
-                ugly
-                take care
-                something's gone wrong
-                nuke
-                is problematic
-                may cause problem
-                hacky
-                unknown why we ever experience this
-                treat this as a soft error
-                silly
-                workaround for bug
-                kludge
-                fixme
-                this isn't quite right
-                trial and error
-                give up
-                this is wrong
-                hang our heads in shame
-                temporary solution
-                causes issue
-                something bad is going on
-                cause for issue
-                this doesn't look right
-                is this next line safe
-                this indicates a more fundamental problem
-                temporary crutch
-                this can be a mess
-                this isn't very solid
-                this is temporary and will go away
-                is this line really safe
-                #there is a problem
-                some fatal error
-                something serious is wrong
-                don't use this
-                get rid of this
-                doubt that this would work
-                this is bs
-                give up and go away
-                risk of this blowing up
-                just abandon it
-                prolly a bug
-                probably a bug
-                hope everything will work
-                toss it
-                barf
-                something bad happened
-                fix this crap
-                yuck
-                certainly buggy
-                remove me before production
-                you can be unhappy now
-                this is uncool
-                #bail out
-                it doesn't work yet
-                crap
-                inconsistency
-                abandon all hope
-                kaboom
-\end{lstlisting}
 
-\textbf{Snippets preprocessing and cleaning.} \label{sec:cleaning} Every sample in the dataset contains the verbatim method source code pair (before image and after image). It contains also a new pair (called `clean') cleaned by all comments and string literals. The string cleaning process replaces all the non-null and non-empty strings to a constant: ``--##string##--''. In other words, the string type values are constrained to this set: null, empty value and ``--##string##--''.
+\textbf{Snippets preprocessing and cleaning.} \label{sec:cleaning} Every sample in the dataset contains the verbatim method source code pair (before image and after image). It also contains a new pair (called `clean') cleaned by all comments and string literals. The string cleaning process replaces all the non-null and non-empty strings to a constant: ``--\#\#string\#\#--''. In other words, the string type values are constrained to this set: null, empty value and ``--\#\#string\#\#--''.
 
 \textbf{Precomputed features}
 The neural model used in this thesis needs a specific representation for each code snippet (see section \ref{sec:code2vec_ast_paths} for details). The computation of such representation is resource expensive and we decided to store it in the database alongside with the sample (columns old\_clean\_features and new\_clean\_features).
@@ -189,7 +123,7 @@ The neural model used in this thesis needs a specific representation for each co
 In our research we found that many repositories were duplicates or clones (GitHub keeps track of forks but do not track duplicates). 
 We need to be very careful not to introduce noise in the dataset. To ensure a better quality for our samples we implemented the following steps:
 \begin{itemize}
-    \item We concatenated the clean images (before and after images) and computed the hash of such string. This hash is stored in a database field with a unique index on it; this ensures that we do not have duplicated pairs.
+    \item We concatenated the clean images (before and after images) and computed the hash of such a string. This hash is stored in a database field with a unique index on it; this ensures that we do not have duplicated pairs.
     \item Two additional hashes are calculated: one for the clean before image and a second for the clean after image. Then we discard all pairs that are found having a hash in common between any before and after clean image hash; this ensures that we cannot have the same snippet in both before and after image.
     \item We did the same process as described in the previous point but applied to the precomputed features.
 \end{itemize}
@@ -232,7 +166,7 @@ In the rest of this section we give some details about each one of them and intr
 % Here I want to explain briefly what are the fundamental pieces and how they interact (without pretending that the reader really understands, but to give the general idea)
 
 \subsection{Representing code using AST-paths} \label{sec:code2vec_ast_paths}
-This section describes how to capture semantic information from code snippet and create a representation that can be used to predict properties of the snippet, for example a label (e.g. SATD/fixed).
+This section describes how to capture semantic information from code snippets and create a representation that can be used to predict properties of the snippet, for example a label (e.g. SATD/fixed).
 To better illustrate how the decomposition is done, we use the simple code snippet in listing \ref{lst:snippet_ast_code} as an example .
 
 %AST of code snippet
@@ -292,7 +226,7 @@ What is seen in figure \ref{fig:AST_paths} is a bag of context-paths (another na
 %how many OOV? 
 %https://github.com/tech-srl/code2vec/blob/c98e8f786b7262e56c93e520d039fb7aa5d0f7ef/vocabularies.py#L123
 
-A context-vector $c_i$ is the vector representation for a AST-path. The process of transformation is applied to all AST-paths producing a bag of context-vectors.
+A context-vector $c_i$ is the vector representation for an AST-path. The process of transformation is applied to all AST-paths producing a bag of context-vectors.
 The following picture shows how the context-vector is formed:
 
 \begin{center}
@@ -310,7 +244,7 @@ To explain the picture above we need to introduce two matrices:
 %     \item path\_vocab $\in \mathbb{R}^{|P| \times d}$
 % \end{itemize}
 
-The embedding size $d$ is a hyperparameter. $X$ is the set of values of the AST terminals that were observed during training; in our recurring example this set is composed by: string, METHOD\_NAME, someprecondition, completed, dowork and ok. 
+The embedding size $d$ is a hyperparameter. $X$ is the set of values of the AST terminals that were observed during training; in our recurring example this set is composed of: string, METHOD\_NAME, someprecondition, completed, dowork and ok. 
 $P$ is the set of all AST-paths across all snippets.
 
 These matrices are initialized randomly and are learned by the model during the training.
@@ -339,7 +273,7 @@ One other way to look at this layer is that it compresses the context-vector $c_
 
 \subsection{Attention mechanism and the code-vector} \label{sec:attention_code_vector}
 The previous section left us with a set of path-contexts. The goal of this part of the model is to combine them all into a code-vector.
-This step employs an attention vector $a$ (see figure \ref{fig:code2vec_arch}; it can be described as a weighted average. The weights are learned with respect to the bag of path-contexts. 
+This step employs an attention vector $a$ (see figure \ref{fig:code2vec_arch}; it can be described as a weighted average that . The weights are initialized randomly and learned with respect to the bag of path-contexts. 
 
 
 \begin{figure}
@@ -364,7 +298,8 @@ This step employs an attention vector $a$ (see figure \ref{fig:code2vec_arch}; i
 % The abstract syntax tree (AST) is used, there is an attention mechanism and it was successful in predicting semantic labeling.
 
 % Simple and fast
-
+The code-vector is used as input for a binary classifier. During the training, the model learns how to classify two classes: SATD and fixed. 
+In the prediction phase it will calculate the probability that a specific class should be assigned to the given method body. 
 
 %3.3
 \section{Hyperparameter Tuning}
@@ -377,7 +312,7 @@ A dataset with snippets shorter than 200 tokens has 106,272 samples and gives a 
 
 
 Using a smaller set of the dataset decreases the usefulness of the trained model because of less capability in generalization.
-For the tuning of the hyperparameters, we empirically defined to keep those snippets with less than 200 tokens; an example of a method composed of 199 tokens is shown in listing \ref{lst:snippet199}.
+For the tuning of the hyperparameters, we empirically defined them to keep those snippets with less than 200 tokens; an example of a method composed of 199 tokens is shown in listing \ref{lst:snippet199}.
 
 \begin{lstlisting}[caption={Code snippet with 199 tokens}, label={lst:snippet199},language=Java]
 private CompoundWorkflow finishCompoundWorkflow(
@@ -427,7 +362,7 @@ private CompoundWorkflow finishCompoundWorkflow(
 \begin{itemize}
     \item default\_embeddings\_size: this value defines the length of the code vector, i.e. the vector representation of the snippet (see section \ref{sec:attention_code_vector}).
     \item max\_contexts: it is the maximum number of AST-paths used by the model (see section \ref{sec:code2vec_ast_paths}).
-    \item dropout\_keep\_rate: the dropout is a random removal of neurons to prevent excessive adaptation to the training values and in so doing, reduce the likelihood of the network overfiting.
+    \item dropout\_keep\_rate: the dropout is a random removal of neurons to prevent excessive adaptation to the training values and in so doing, reduce the likelihood of the network overfitting.
 \end{itemize}
 
 To explore the best values for these parameters we created a distributed experiment using Google Colab Pro and a tool called Optuna . 
@@ -445,7 +380,7 @@ To explore the best values for these parameters we created a distributed experim
 
 The Optuna distributed worker was easier to setup and the distributed experiment gave less friction than Hyperopt. Figure \ref{fig:optuna_objective} shows a simplified version of the objective function required by Optuna where we define the search space for each hyperparameter. Our objective value is the test prediction accuracy.
 
-The first rounds of experiments yielded good values for max\_contexts parameter: the optimal values found lies between 250-300. The other two parameters, default\_embeddings\_size and dropout\_keep\_rate, needed a different search space: figure \ref{fig:optuna_first} clearly shows the first two value bubbles crushed on the left. This suggested a new experiment with different value search window shown in figure \ref{fig:optuna_second}. 
+The first rounds of experiments yielded good values for max\_contexts parameter: we found that the optimal value lies between 250-300. The other two parameters, default\_embeddings\_size and dropout\_keep\_rate, needed a different search space: figure \ref{fig:optuna_first} clearly shows the first two value bubbles crushed on the left. This suggested a new experiment with a different value search window shown in figure \ref{fig:optuna_second}. 
 
 \begin{figure}
  \centering
@@ -468,9 +403,9 @@ The first rounds of experiments yielded good values for max\_contexts parameter:
 
 
 
-\textbf{Google Colab Pro.} The distributed experiment was executed on Google Colab infrastructure. We used 12 concurrent sessions, both with GPU and CPU. The Python notebook contained only a few lines of code (see listing \ref{lst:colab}). The first operation was to clone the GitHub repository with the source code for the distributed experiment. The second task was to invoke a Python function to setup the Colab environment: download Postgres binearies, download and restore the backup with the dataset, install all the code2vec libraries and dependencies. The third and last instruction started the Optuna worker. The results were stored in a central database as per Optuna design.
+\textbf{Google Colab Pro.} The distributed experiment was executed on Google Colab infrastructure. We used 12 concurrent sessions, both with GPU and CPU. The Python notebook contained only a few lines of code (see listing \ref{lst:colab}). The first operation was to clone the GitHub repository with the source code for the distributed experiment. The second task was to invoke a Python function to setup the Colab environment: download PostgreSQL binaries, download and restore the backup with the dataset, install all the code2vec libraries and dependencies. The third and last step starts the Optuna worker. The results were stored in a central database as per Optuna design.
 
-\begin{lstlisting}[caption={Example code to show decomposition}, label={lst:snippet_ast_code},language=Python]
+\begin{lstlisting}[caption={Google Colab notebook code}, label={lst:colab},language=Python]
     !cd /content; cd code2vec-satd-classifier && git pull || git clone \\
                https://github.com/simonegiacomelli/code2vec-satd-classifier
     %cd /content/code2vec-satd-classifier/code2vec-satd
