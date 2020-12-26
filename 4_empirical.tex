@@ -8,8 +8,13 @@ The goal of this exploratory study is to evaluate the accuracy of our approach f
 This section provides details about the design and planning of the study aimed at assessing our model performances.
  
 
-We answer the following research question:
-How does our approach perform in detecting technical debt in methods source code?
+In this study we answer the following research questions:
+\begin{itemize}
+    \item \textbf{RQ$_1$} \textit{How does our approach perform in detecting technical debt in methods source code?} This RQ investigates the accuracy of the classifier in identifying technical debt in our dataset.
+    \item \textbf{RQ$_2$} \textit{What is the correlation between the prediction confidence level and the accuracy of the model?} With this RQ we want to evaluate the usefulness of leveraging the confidence threshold in achieving better reliability.
+    \item \textbf{RQ$_3$} \textit{When the prediction confidence level is high, what are the reasons the classifications are correct and incorrect?} With this RQ we want to find possible causes that led the classifier to fail or succeed and explain why this happened in the context of a high level of confidence.
+\end{itemize}
+ 
 
 
 %4.1
@@ -99,8 +104,12 @@ The processing of 245,243 repository commit histories yielded 141,400 method bod
     \item Commit message: the commit message that removed the SATD.
     \item Commit hash id.
     \item Repository name and url.
-    \item The verbatim bodies involved in the change: before the commit (affected with SATD) and after (fixed).
-    \item The `cleaned' version of the bodies from the previous point (see \ref{sec:cleaning} for details).
+    \item The verbatim bodies involved in the change: 
+    \begin{itemize}
+    \item Before the commit, affected with SATD. 
+    \item After the commit, not affected with SATD, i.e. fixed.
+    \end{itemize}
+\item The `cleaned' version of the bodies from the point above (see \ref{sec:cleaning} for details).
 \end{itemize}
 
 Of the 141,400 collected samples, 48'339 were rejected leaving us with 93,061 viable pair. Those rejections were enforced for the following reasons:
@@ -108,37 +117,36 @@ Of the 141,400 collected samples, 48'339 were rejected leaving us with 93,061 vi
     \item Merge commits (i.e. commits with more than one parent). The reason being that we were specifically looking for a commit fixing a method SATD and a `merge' operation is not likely to do that.
     \item Empty methods.
     \item Methods containing inner methods.
-    \item Methods with one throw exception statement.
+    \item Methods containing only one instruction being throw exception statement.
     \item Methods with unparsable statements.
 \end{itemize}
 
-For the distributed experiment of hyperparameter tuning, xx were selected amongst the 93,061 viable pairs.
+We selected two different main datasets. The first bigger for the hyperparameter tuning experiment: we filtered for token\_count less than 200; the number of viable pair went from 93,061 to 53,136. The second is a smaller dataset, for additional qualitative analysis, filtered for token\_count less than 50; the number of viable pair went from 93,061 to 9,422.
 % 
-%We ran the distributed experiment (see \ref{sec:htuning}) on a reduced  
 
-% The dataset is split as follows:
-% \begin{itemize}
-%     \item 75\% training dataset
-%     \item 15\% validation dataset
-%     \item 15\% test dataset
-% \end{itemize}
-
-
-
-
-\emph{continue describing the parsed information and the subsequent manual and automatic filtering ...}
+For all the training and testing we always used the following split:  
+\begin{itemize}
+    \item 75\% training dataset
+    \item 15\% test dataset
+    \item 15\% validation dataset
+\end{itemize}
 
 %4.2 
 \section{Data Collection and Analysis}
+%Data Collection and Analysis [How you compute the results]
 
 % questa sezione deve contenere come abbiamo raccolto i dati per rispondere alla RQ e come abbiamo fatto a misurare tale cosa, quindi le metriche per fare l'assess delle performances.
 
 % per tradurre in contenuto la frase precednet:
 
-To answer the research question we conducted a distributed experiment using code2vec Keras model (described in sections x and y) and optimized for the selected hyperparameters. We did x run with 50 epochs and tested on the one with the best score on the validation dataset. 
+To answer RQ$_1$ we built a classifier using code2vec and trained it with a dataset of SATD snippets and their fixes.
+The training was conducted using 20 epochs; the test performance results were measured on the best epoch as reported by the validation set highest accuracy. We conducted a distributed experiment for increasing the performance through hyperparameter tuning.
+
+To answer RQ$_2$ we tracked all confidence level for each prediction, then we report the metrics value for the following confidence thresholds: any, 0.5, 0.6, 0.7, 0.8 and 0.9. For each of them we compare and comment the precision, recall and F1-score.
+
+To answer RQ$_3$ we trained and tested the model on two scenarios with different code snippet lengths. Then we conducted a qualitative analysis on samples of high confidence predictions. We trace the AST-paths and the related attention vector weights back to the training instances in order to show and explain reasons of specific outcomes.
 
 
-%Data Collection and Analysis [How you compute the results]
 
 %4.3
 \section{Replication Package}

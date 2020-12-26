@@ -1,5 +1,6 @@
 \chapter{Additional material}
 
+\section{}
 
 \begin{lstlisting}[caption={61 patterns for SATD detection}, label={lst:patterns61}]
                 # a line that starts with an hash is ignored
@@ -67,3 +68,194 @@
                 abandon all hope
                 kaboom
 \end{lstlisting}
+
+\section{Qualitative results}\label{app:qualitative} 
+
+\subsection{Case-1}
+
+\begin{lstlisting}[basicstyle=\tiny,caption={Case-1 SATD}, label={},language=Java,breaklines=true,
+  postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space}]
+/*
+Prediction:	satd
+Actual:	satd
+	(0.994157) predicted: ['satd']
+	(0.005767) predicted: ['fixed']
+Attention:
+0.055485	context: sleep,(NameExpr3)^(MethodCallExpr)^(ExpressionStmt)^(BlockStmt)^(TryStmt)^(BlockStmt)_(ReturnStmt)_(MethodCallExpr0)_(NameExpr2),postfire
+0.047134	context: interruptedexception,(ClassOrInterfaceType1)^(Parameter)^(CatchClause)^(TryStmt)^(BlockStmt)_(ReturnStmt)_(MethodCallExpr0)_(NameExpr2),postfire
+0.042867	context: 2,(IntegerLiteralExpr2)^(ObjectCreationExpr1)^(MethodCallExpr)^(ExpressionStmt)^(BlockStmt)_(ReturnStmt)_(MethodCallExpr0)_(NameExpr2),postfire
+0.038576	context: e,(VariableDeclaratorId0)^(Parameter)^(CatchClause)^(TryStmt)^(BlockStmt)_(ReturnStmt)_(MethodCallExpr0)_(NameExpr2),postfire
+0.036747	context: 100,(IntegerLiteralExpr2)^(MethodCallExpr)^(ExpressionStmt)^(BlockStmt)^(TryStmt)^(BlockStmt)_(ReturnStmt)_(MethodCallExpr0)_(NameExpr2),postfire
+0.036469	context: thread,(NameExpr0)^(MethodCallExpr)^(ExpressionStmt)^(BlockStmt)^(TryStmt)^(BlockStmt)_(ReturnStmt)_(MethodCallExpr0)_(NameExpr2),postfire
+0.036007	context: this,(ThisExpr1)^(ObjectCreationExpr1)^(MethodCallExpr)^(ExpressionStmt)^(BlockStmt)_(ReturnStmt)_(MethodCallExpr0)_(NameExpr2),postfire
+0.029727	context: illegalactionexception,(ClassOrInterfaceType2)^(MethodDeclaration)_(BlockStmt)_(ExpressionStmt)_(MethodCallExpr0)_(ObjectCreationExpr)_(IntegerLiteralExpr2),2
+0.027548	context: this,(ThisExpr1)^(ObjectCreationExpr1)_(IntegerLiteralExpr2),2
+0.025591	context: METHOD_NAME,(NameExpr1)^(MethodDeclaration)_(BlockStmt)_(ExpressionStmt)_(MethodCallExpr0)_(ObjectCreationExpr)_(IntegerLiteralExpr2),2
+*/
+
+public class Wrapper{
+    public boolean satd() throws IllegalActionException {
+        generateEvents(new ExecEvent(this, 2));
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+        }
+        return super.postfire();
+    }
+}
+\end{lstlisting}
+
+\begin{lstlisting}[basicstyle=\tiny,caption={Case-1 fixed}, label={},language=Java,breaklines=true,
+  postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space}]
+/*
+Prediction:	fixed
+Actual:	fixed
+	(0.999927) predicted: ['fixed']
+Attention:
+0.162827	context: illegalactionexception,(ClassOrInterfaceType2)^(MethodDeclaration)_(BlockStmt)_(TryStmt)_(CatchClause)_(BlockStmt)_(ThrowStmt)_(ObjectCreationExpr)_(ClassOrInterfaceType0),internalerrorexception
+0.162034	context: e,(VariableDeclaratorId0)^(Parameter)^(CatchClause)_(BlockStmt)_(ThrowStmt)_(ObjectCreationExpr)_(ClassOrInterfaceType0),internalerrorexception
+0.146301	context: interruptedexception,(ClassOrInterfaceType1)^(Parameter)^(CatchClause)_(BlockStmt)_(ThrowStmt)_(ObjectCreationExpr)_(ClassOrInterfaceType0),internalerrorexception
+0.072005	context: METHOD_NAME,(NameExpr1)^(MethodDeclaration)_(BlockStmt)_(TryStmt)_(CatchClause)_(BlockStmt)_(ThrowStmt)_(ObjectCreationExpr)_(ClassOrInterfaceType0),internalerrorexception
+0.023477	context: sleep,(NameExpr3)^(MethodCallExpr)^(ExpressionStmt)^(BlockStmt)^(TryStmt)^(BlockStmt)_(ReturnStmt)_(MethodCallExpr0)_(NameExpr2),postfire
+0.019943	context: interruptedexception,(ClassOrInterfaceType1)^(Parameter)^(CatchClause)^(TryStmt)^(BlockStmt)_(ReturnStmt)_(MethodCallExpr0)_(NameExpr2),postfire
+0.018138	context: 2,(IntegerLiteralExpr2)^(ObjectCreationExpr1)^(MethodCallExpr)^(ExpressionStmt)^(BlockStmt)_(ReturnStmt)_(MethodCallExpr0)_(NameExpr2),postfire
+0.016322	context: e,(VariableDeclaratorId0)^(Parameter)^(CatchClause)^(TryStmt)^(BlockStmt)_(ReturnStmt)_(MethodCallExpr0)_(NameExpr2),postfire
+0.015548	context: 100,(IntegerLiteralExpr2)^(MethodCallExpr)^(ExpressionStmt)^(BlockStmt)^(TryStmt)^(BlockStmt)_(ReturnStmt)_(MethodCallExpr0)_(NameExpr2),postfire
+0.015431	context: thread,(NameExpr0)^(MethodCallExpr)^(ExpressionStmt)^(BlockStmt)^(TryStmt)^(BlockStmt)_(ReturnStmt)_(MethodCallExpr0)_(NameExpr2),postfire
+*/
+
+public class Wrapper{
+    public boolean fixed() throws IllegalActionException {
+        generateEvents(new ExecEvent(this, 2));
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            throw new InternalErrorException("--##string##--" + "--##string##--");
+        }
+        return super.postfire();
+    }
+}
+\end{lstlisting}
+
+\subsection{Case-2}
+
+\begin{lstlisting}[basicstyle=\tiny,caption={Case-2 SATD}, label={},language=Java,breaklines=true,
+  postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space}]
+/*
+Prediction:	satd
+Actual:	satd
+	(0.999226) predicted: ['satd']
+	(0.000668) predicted: ['fixed']
+Attention:
+0.065232	context: exchange,(ClassOrInterfaceType1)^(Parameter)^(MethodDeclaration)_(BlockStmt)_(ExpressionStmt)_(MethodCallExpr0)_(IntegerLiteralExpr2),302
+0.058992	context: exchange,(NameExpr1)^(MethodCallExpr)_(IntegerLiteralExpr2),302
+0.052524	context: string,(ClassOrInterfaceType1)^(Parameter)^(MethodDeclaration)_(BlockStmt)_(ExpressionStmt)_(MethodCallExpr0)_(IntegerLiteralExpr2),302
+0.046421	context: exchange,(VariableDeclaratorId0)^(Parameter)^(MethodDeclaration)_(BlockStmt)_(ExpressionStmt)_(MethodCallExpr0)_(IntegerLiteralExpr2),302
+0.038198	context: uri,(VariableDeclaratorId0)^(Parameter)^(MethodDeclaration)_(BlockStmt)_(ExpressionStmt)_(MethodCallExpr0)_(IntegerLiteralExpr2),302
+0.036755	context: exchange,(NameExpr0)^(FieldAccessExpr0)^(MethodCallExpr0)^(MethodCallExpr)_(FieldAccessExpr2)_(NameExpr0),locationheader
+0.030503	context: 302,(IntegerLiteralExpr2)^(MethodCallExpr)^(ExpressionStmt)^(BlockStmt)_(ExpressionStmt)_(MethodCallExpr0)_(MethodCallExpr0)_(FieldAccessExpr0)_(NameExpr0),exchange
+0.029021	context: 302,(IntegerLiteralExpr2)^(MethodCallExpr)^(ExpressionStmt)^(BlockStmt)_(ExpressionStmt)_(MethodCallExpr0)_(FieldAccessExpr2)_(NameExpr0),locationheader
+0.025117	context: exchange,(NameExpr1)^(MethodCallExpr)^(ExpressionStmt)^(BlockStmt)_(ExpressionStmt)_(MethodCallExpr0)_(FieldAccessExpr2)_(NameExpr0),locationheader
+0.021635	context: httpresponse,(NameExpr3)^(MethodCallExpr)^(ExpressionStmt)^(BlockStmt)_(ExpressionStmt)_(MethodCallExpr0)_(MethodCallExpr0)_(FieldAccessExpr0)_(NameExpr0),exchange
+*/
+
+public class Wrapper{
+    static void satd(final Exchange exchange, final String uri) {
+        httpResponse(exchange, 302);
+        exchange.response.getHeaders().add(LocationHeader.NAME, uri);
+    }
+}
+\end{lstlisting}
+
+\begin{lstlisting}[basicstyle=\tiny,caption={Case-2 fixed}, label={},language=Java,breaklines=true,
+  postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space}]
+/*
+Prediction:	fixed
+Actual:	fixed
+	(0.999886) predicted: ['fixed']
+	(0.000081) predicted: ['satd']
+Attention:
+0.142238	context: response,(ClassOrInterfaceType0)^(VariableDeclarationExpr)_(VariableDeclarator)_(MethodCallExpr1)_(FieldAccessExpr1)_(NameExpr2),found
+0.140574	context: response,(VariableDeclaratorId0)^(VariableDeclarator)_(MethodCallExpr1)_(FieldAccessExpr1)_(NameExpr2),found
+0.125663	context: METHOD_NAME,(NameExpr1)^(MethodDeclaration)_(BlockStmt)_(ExpressionStmt)_(VariableDeclarationExpr)_(VariableDeclarator)_(MethodCallExpr1)_(FieldAccessExpr1)_(NameExpr2),found
+0.032170	context: response,(VariableDeclaratorId0)^(VariableDeclarator)_(MethodCallExpr1)_(FieldAccessExpr1)_(NameExpr0),status
+0.032053	context: status,(NameExpr0)^(FieldAccessExpr1)_(NameExpr2),found
+0.021654	context: response,(ClassOrInterfaceType0)^(VariableDeclarationExpr)^(ExpressionStmt)^(BlockStmt)_(ExpressionStmt)_(MethodCallExpr0)_(FieldAccessExpr2)_(NameExpr0),locationheader
+0.020603	context: found,(NameExpr2)^(FieldAccessExpr1)^(MethodCallExpr)^(VariableDeclarator)^(VariableDeclarationExpr)^(ExpressionStmt)^(BlockStmt)_(ReturnStmt)_(NameExpr0),response
+0.019897	context: response,(ClassOrInterfaceType0)^(VariableDeclarationExpr)_(VariableDeclarator)_(MethodCallExpr1)_(FieldAccessExpr1)_(NameExpr0),status
+0.018418	context: status,(NameExpr0)^(FieldAccessExpr1)^(MethodCallExpr)^(VariableDeclarator)^(VariableDeclarationExpr)^(ExpressionStmt)^(BlockStmt)_(ReturnStmt)_(NameExpr0),response
+0.017697	context: string,(ClassOrInterfaceType1)^(Parameter)^(MethodDeclaration)_(BlockStmt)_(ExpressionStmt)_(MethodCallExpr0)_(FieldAccessExpr2)_(NameExpr0),locationheader
+*/
+
+public class Wrapper{
+    static Response fixed(final String uri) {
+        Response response = httpResponse(Status.FOUND);
+        response.getHeaders().add(LocationHeader.NAME, uri);
+        return response;
+    }
+}
+\end{lstlisting}
+
+
+\subsection{Case-3}
+
+\begin{lstlisting}[basicstyle=\tiny,caption={Case-3 SATD}, label={},language=Java,breaklines=true,
+  postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space}]
+/*
+Prediction:	satd
+Actual:	satd
+	(0.999509) predicted: ['satd']
+	(0.000419) predicted: ['fixed']
+Attention:
+0.132759	context: null,(NullLiteralExpr0)^(ReturnStmt)^(IfStmt)^(BlockStmt)_(ReturnStmt)_(MethodCallExpr0)_(NameExpr5),constructtool
+0.064306	context: null,(NullLiteralExpr0)^(ReturnStmt)^(IfStmt)^(BlockStmt)_(ReturnStmt)_(MethodCallExpr0)_(NameExpr4),materials
+0.060350	context: null,(NullLiteralExpr0)^(ReturnStmt)^(IfStmt)^(BlockStmt)_(ReturnStmt)_(MethodCallExpr0)_(ThisExpr2),this
+0.050614	context: gemsconfig,(NameExpr0)^(FieldAccessExpr)^(IfStmt)_(ReturnStmt)_(NullLiteralExpr0),null
+0.041519	context: tooldisableaxe,(NameExpr2)^(FieldAccessExpr)^(IfStmt)_(ReturnStmt)_(NullLiteralExpr0),null
+0.036061	context: tooldisableaxe,(NameExpr2)^(FieldAccessExpr)^(IfStmt)^(BlockStmt)_(ReturnStmt)_(MethodCallExpr0)_(NameExpr5),constructtool
+0.032750	context: materials,(VariableDeclaratorId0)^(Parameter)^(MethodDeclaration)_(BlockStmt)_(IfStmt)_(FieldAccessExpr0)_(NameExpr2),tooldisableaxe
+0.026796	context: itemstack,(ClassOrInterfaceType1)^(Parameter)^(MethodDeclaration)_(BlockStmt)_(IfStmt)_(FieldAccessExpr0)_(NameExpr2),tooldisableaxe
+0.025070	context: rod,(VariableDeclaratorId0)^(Parameter)^(MethodDeclaration)_(BlockStmt)_(IfStmt)_(FieldAccessExpr0)_(NameExpr2),tooldisableaxe
+0.020929	context: tooldisableaxe,(NameExpr2)^(FieldAccessExpr)^(IfStmt)^(BlockStmt)_(ReturnStmt)_(MethodCallExpr0)_(NameExpr4),materials
+*/
+
+public class Wrapper{
+    @Override
+    public ItemStack satd(ItemStack rod, ItemStack... materials) {
+        if (GemsConfig.TOOL_DISABLE_AXE)
+            return null;
+        return ToolHelper.constructTool(this, rod, materials);
+    }
+}
+\end{lstlisting}
+
+\begin{lstlisting}[basicstyle=\tiny,caption={Case-3 fixed}, label={},language=Java,breaklines=true,
+  postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space}]
+/*
+Prediction:	fixed
+Actual:	fixed
+	(0.996488) predicted: ['fixed']
+	(0.003202) predicted: ['satd']
+Attention:
+0.098242	context: tooldisableaxe,(NameExpr2)^(FieldAccessExpr)^(IfStmt)_(ReturnStmt)_(FieldAccessExpr0)_(NameExpr0),itemstack
+0.042913	context: empty,(NameExpr2)^(FieldAccessExpr)^(ReturnStmt)^(IfStmt)^(BlockStmt)_(ReturnStmt)_(MethodCallExpr0)_(NameExpr5),constructtool
+0.037714	context: gemsconfig,(NameExpr0)^(FieldAccessExpr)^(IfStmt)_(ReturnStmt)_(FieldAccessExpr0)_(NameExpr0),itemstack
+0.033466	context: itemstack,(NameExpr0)^(FieldAccessExpr)^(ReturnStmt)^(IfStmt)^(BlockStmt)_(ReturnStmt)_(MethodCallExpr0)_(NameExpr5),constructtool
+0.032388	context: empty,(NameExpr2)^(FieldAccessExpr)^(ReturnStmt)^(IfStmt)^(BlockStmt)_(ReturnStmt)_(MethodCallExpr0)_(NameExpr4),materials
+0.031300	context: tooldisableaxe,(NameExpr2)^(FieldAccessExpr)^(IfStmt)^(BlockStmt)_(ReturnStmt)_(MethodCallExpr0)_(NameExpr5),constructtool
+0.028426	context: materials,(VariableDeclaratorId0)^(Parameter)^(MethodDeclaration)_(BlockStmt)_(IfStmt)_(FieldAccessExpr0)_(NameExpr2),tooldisableaxe
+0.027018	context: materials,(VariableDeclaratorId0)^(Parameter)^(MethodDeclaration)_(BlockStmt)_(IfStmt)_(ReturnStmt)_(FieldAccessExpr0)_(NameExpr0),itemstack
+0.024788	context: empty,(NameExpr2)^(FieldAccessExpr)^(ReturnStmt)^(IfStmt)^(BlockStmt)_(ReturnStmt)_(MethodCallExpr0)_(ThisExpr2),this
+0.024491	context: itemstack,(NameExpr0)^(FieldAccessExpr)^(ReturnStmt)^(IfStmt)^(BlockStmt)_(ReturnStmt)_(MethodCallExpr0)_(NameExpr4),materials
+*/
+
+public class Wrapper{
+    @Override
+    public ItemStack fixed(ItemStack rod, ItemStack... materials) {
+        if (GemsConfig.TOOL_DISABLE_AXE)
+            return ItemStack.EMPTY;
+        return ToolHelper.constructTool(this, rod, materials);
+    }
+}
+\end{lstlisting}
+
