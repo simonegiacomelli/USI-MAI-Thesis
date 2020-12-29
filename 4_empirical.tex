@@ -11,8 +11,8 @@ This section provide details about the design and planning of the study aimed at
 In this study we answer the following research questions:
 \begin{itemize}
     \item \textbf{RQ$_1$} \textit{How does our approach perform in detecting technical debt in unseen methods source code?} This RQ investigates the accuracy of the classifier in identifying technical debt in our dataset.
-    \item \textbf{RQ$_2$} \textit{What is the correlation between the prediction confidence level and the accuracy of the model?} With this RQ we want to evaluate the usefulness of leveraging the confidence threshold in achieving better reliability.
-    \item \textbf{RQ$_3$} \textit{When the prediction confidence level is high, what are the reasons the classifications are correct and incorrect?} With this RQ we want to find possible causes that led the classifier to fail or succeed and explain why this happened in the context of a high level of confidence.
+    \item \textbf{RQ$_2$} \textit{What is the correlation between the prediction confidence level and the accuracy of the model?} With this RQ we want to evaluate the usefulness of leveraging the confidence threshold as an indicator of the quality of the predictions. Besides reporting quantitative data, we also qualitatively analyze cases of correct and wrong prediction in the ``high confidence'' scenario. Such an analysis provides lessons learned useful at improving our model.
+    % \item \textbf{RQ$_3$} \textit{When the prediction confidence level is high, what are the reasons the classifications are correct and incorrect?} With this RQ we want to find possible causes that led the classifier to fail or succeed and explain why this happened in the context of a high level of confidence.
 \end{itemize}
  
 
@@ -145,7 +145,10 @@ We collected the test accuracy for multiple run with incremental snippet length;
 
 To answer RQ$_2$ we tracked all confidence level for the experiments with token count 50 and 200. Then we report the metrics value for the following confidence thresholds: any, 0.6, 0.7, 0.8 and 0.9; For each of them we compare and comment the precision, recall and F1-score. We present via box plot the prediction count for the different classes (true positive, true negative, false positive and false negative). 
 
-To answer RQ$_3$ we trained and tested the model on two scenarios with different code snippet lengths. Then we conducted a qualitative analysis on samples of high confidence predictions. We trace the AST-paths and the related attention vector weights back to the training instances in order to show and explain reasons of specific outcomes.
+%% Bavota-8
+%To answer RQ$_3$ 
+We %trained and 
+tested the model on two scenarios with different code snippet lengths. Then we conducted a qualitative analysis on samples of high confidence predictions. We trace the AST-paths and the related attention vector weights back to the training instances in order to show and explain reasons of specific outcomes.
 
 
 

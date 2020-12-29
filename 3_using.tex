@@ -14,22 +14,22 @@ Lastly, to increase the performance of the system we select a set of hyperparame
 
 These are the fundamental activities involved in the creation of the dataset:
 \begin{itemize}
-    \item Github repository URL mining: using Github API, we extracted 248,872 projects' URL matching our search profile.
+    \item GitHub repository URL mining: using GitHub API, we extracted 248,872 projects' URL matching our search profile.
     \item Repository cloning and filtering: some projects can be discarded only after the commit history is available for a precursory analysis to determine if a project qualifies for the next activity.
     \item Commit history processing: the directed acyclic graph of the commits is traversed and the source code is parsed in search of acceptable SATD/fixed pair.
 \end{itemize}
 
 The following sections describe these activities in detail.
 
-\subsection{Github repository url mining}
+\subsection{GitHub repository url mining}
 We know from experience and the literature that the concentration of SATD is very low \cite{bavota2016large} \cite{maldonado2015detecting} \cite{potdar2014exploratory}, for this reason we created a dataset from an initial set of open-source projects as big as possible. 
 The search was conducted for all public Java GitHub repositories in a 20 years time window (from 2000 to 2019). 
 The retrieval process of this URLs list was challenging in itself. We dealt and solved the following issues:
 \begin{enumerate}
     \item GitHub search API limit of 1000 hits.
     \item GitHub search API number of request per minute maximum quota.
-    \item Filtering to remove low-quality repositories
-    \item Unexpected interruptions
+    \item Filtering to remove low-quality repositories.
+    \item Unexpected interruptions.
 \end{enumerate}
 We addressed the first issue with two different intertwined phases of queries: probe and harvest. The probe requested only the number of the repositories that were created in a specific time window; if the number exceeds the 1000 limit, it iteratively divides the probe query into two sub-queries using half of the time window for each and adds them to the job queue.
 It was not enough to specify the day interval in the query; the time of the day was also needed because in the recent years there are multiple instances of more than 1000 repositories created in a single day.
@@ -165,7 +165,7 @@ In the rest of this section we give some details about each one of them and intr
 
 \subsection{Representing code using AST-paths} \label{sec:code2vec_ast_paths}
 This section describes how to capture semantic information from code snippets and create a representation that can be used to predict properties of the snippet, for example a label (e.g. SATD/fixed).
-To better illustrate how the decomposition is done, we use the simple code snippet in listing \ref{lst:snippet_ast_code} as an example .
+To better illustrate how the decomposition is done, we use the simple code snippet in listing \ref{lst:snippet_ast_code} as an example.
 
 %AST of code snippet
 \begin{lstlisting}[caption={Example code to show decomposition}, label={lst:snippet_ast_code},language=Java]
@@ -271,7 +271,7 @@ One other way to look at this layer is that it compresses the context-vector $c_
 
 \subsection{Attention mechanism and the code-vector} \label{sec:attention_code_vector}
 The previous section left us with a set of path-contexts. The goal of this part of the model is to combine them all into a code-vector.
-This step employs an attention vector $a$ (see figure \ref{fig:code2vec_arch}; it can be described as a weighted average that . The weights are initialized randomly and learned with respect to the bag of path-contexts. 
+This step employs an attention vector $a$ (see figure \ref{fig:code2vec_arch}) it can be described as a weighted average. The weights are initialized randomly and learned with respect to the bag of path-contexts. 
 
 
 \begin{figure}

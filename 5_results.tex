@@ -42,7 +42,7 @@ Table \ref{tbl:rq1} reports the precision, recall, accuracy and F1-score for twe
 
 \textbf{RQ$_2$} \textit{What is the correlation between the prediction confidence level and the accuracy of the model?}
 
-We take two experiments from RQ$_1$ (dataset-50 and dataset-200) and analyze how the confidence level affects the quality metrics of the predictions. We observe that for the experiment in table \ref{tbl:rq2_token_50}, when filtering for a confidence level greater than 0.9 we reduce the coverage about 44\% gaining on precision from 71\% to 78\%; the excluded samples shows their effect also on the recall that goes from 62\% to 52\%. 
+We take two experiments from RQ$_1$ (dataset-50 and dataset-200) and analyze how the confidence level affects the quality metrics of the predictions. We observe that for the experiment in table \ref{tbl:rq2_token_50}, when filtering for a confidence level greater than 0.9 we reduce the coverage by 44\% gaining on precision from 71\% to 78\%; the excluded samples shows their effect also on the recall that goes from 62\% to 52\%. 
 Table \ref{tbl:rq2_token_200} shows a different drop in coverage; with confidence greater than 0.9 the test set covered is about 2\%, the precision is high as 99\% and the recall drops to 10\%, both due to the (correct and incorrect) discarded predictions.
  
 Figure \ref{fig:rq2_box_plot} presents, via box plots, the confidence level divided by class (i.e true positive, true negative, false positive and false negative) for both experiments. The plot shows a much greater confidence when using the smaller dataset: the median for the true positive dataset-50 is 0.97 and 0.56 for dataset-200.
@@ -107,9 +107,7 @@ Figure \ref{fig:rq2_box_plot} presents, via box plots, the confidence level divi
 %Discuss interesting cases in which your approach succeeds/fails
 %, trying to explain what could make the model failing in those cases.
 
-\textbf{RQ$_3$} \textit{When the prediction confidence level is high, what are the reasons the classifications are correct and incorrect?}
-
-To answer RQ$_3$, we discuss some qualitative examples where our model prediction succeed and where it fails. Then we explain why it was so.
+We discuss some qualitative examples where our model prediction succeed and where it fails. Then we explain why it was so.
 We focus on high confidence predictions (correct and incorrect) using the following two scenarios, the same discussed in RQ$_2$:
 \begin{itemize}
     \item Scenario-1: trained with a dataset composed only of those snippets with token\_count less than 50. The test dataset contains 1,413 sample pairs.
