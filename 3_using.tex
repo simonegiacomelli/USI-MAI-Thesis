@@ -304,13 +304,13 @@ In the prediction phase it will calculate the probability that a specific class 
 
 This section describes the process of tuning the hyperparameters of the model.
 
-The initial experiments led us to quickly understand that using shorter snippets yielded better performances.
-For example, a dataset with snippets shorter than 25 tokens has 4,256 samples and gives a 73\% test accuracy.
-A dataset with snippets shorter than 200 tokens has 106,272 samples and gives a 58\% test accuracy. 
+The hyperparameter tuning was performed on a subset of the mined dataset. Such subset is composed by 106,272 instances (53,136 pairs) and features methods having less than 200 tokens. Such constraint was mainly due to the high cost of training when dealing with longer methods; an example of a method composed of 199 tokens is shown in listing \ref{lst:snippet199}.
+
+%The initial experiments led us to quickly understand that using shorter snippets yielded better performances. For example, a dataset with snippets shorter than 25 tokens has 4,256 samples and gives a 73\% test accuracy. A dataset with snippets shorter than 200 tokens has 106,272 samples and gives a 58\% test accuracy. 
 
 
-Using a smaller set of the dataset decreases the usefulness of the trained model because of less capability in generalization.
-For the tuning of the hyperparameters, we empirically defined them to keep those snippets with less than 200 tokens; an example of a method composed of 199 tokens is shown in listing \ref{lst:snippet199}.
+%Using a smaller set of the dataset decreases the usefulness of the trained model because of less capability in generalization. For the tuning of the hyperparameters, we empirically defined them to keep those snippets with less than 200 tokens;
+
 
 \begin{lstlisting}[caption={Code snippet with 199 tokens}, label={lst:snippet199},language=Java]
 private CompoundWorkflow finishCompoundWorkflow(
@@ -385,7 +385,7 @@ The first rounds of experiments yielded good values for max\_contexts parameter:
  \resizebox{\columnwidth}{!}{
   \includegraphics{images/optuna_first.png}
  }
- \caption[]{Slice plot for first grid search experiment}
+ \caption[]{First experiment, grid search slice plot}
     \label{fig:optuna_first}
 \end{figure}
 
@@ -427,8 +427,8 @@ This setup raised the accuracy from 58\% (using default values) to 61.5\%.
  \resizebox{\columnwidth}{!}{
   \includegraphics{images/optuna_history.png}
  }
- \caption[]{Second grid search experiment optimization history plot}
-    \label{fig:optuna_second}
+ \caption[]{Second experiment, grid search optimization history plot}
+    \label{fig:optuna_history}
 \end{figure}
 
 %code2vec model reported by keras
