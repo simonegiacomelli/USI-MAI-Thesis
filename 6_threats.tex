@@ -1,3 +1,19 @@
 \chapter{Threats to Validity}
 
-\dots Discussion on the limitations of my study \dots 
+\section{Construct validity}
+Threats to \textit{construct validity} concern the relation between the theory and the observation. In other words, the threat is that the measurements performed really represents what is investigated according to our research questions. In this study we mined the dataset from scratch, which is a third degree type of data \cite{runeson2009guidelines}, and we are aware of the threats explained in the following paragraphs. 
+
+The SATD detection relies on the keyword pattern matching proposed by Potdar and Shihab \cite{potdar2014exploratory}. Such a heuristic can introduce imprecisions in the correct identification of SATD in code comments. It is estimated that the original pattern list is likely to produce $\sim$25\% of false positive SATD \cite{bavota2016large}. To diminish this issue we manually verified more than one hundred random samples and made sure to exclude some keywords that were repeatedly found to produce many false positives.
+There might be better strategies for SATD identification. Instead of keyword matching, other researches employ natural language processing (NLP) \cite{maldonado2017using} or deep learning \cite{wang2020detecting}. 
+
+Stale comments with matching keywords in it are detected as SATD but are actually harmless non-SATD comments; in our procedure then, we locate the commit that removes the SATD comment and identify the `fixed' code. We are aware that this leads to the introduction of a false positive in the training dataset. However, it is shown \cite{bavota2016large} that such cases only represent less than 10\% of the overall SATD instances. Thus, the impact on our findings should be limited.
+
+As observed in multiple studies there are many kinds of SATD \cite{alves2014towards} \cite{maldonado2015detecting}; specifically, self-admitted design debts need a broader context to be identified than the single method body. This information is simply not present in the boundaries of the snippet, so the model is hindered in learning this type of SATD with the code representation we use in this research. In other words, we might have some code snippet labeled as SATD but such information is not fully shown by the features extracted from the code.
+
+Also, possible imprecisions might be introduced due to errors in the implementation of the tool we wrote to create the dataset. We wrote automated tests to ensure the correct behaviour of our tool and all the source code is available in the replication package.
+
+\section{Internal validity}
+Threats to internal validity} concern external factors we did not consider that could affect the variables and the relations being investigated. To avoid implementation errors, we have carefully reviewed our hyperparameter settings. Our grid search did not exhaust the search space but covered a reasonable interval in the hyperparameter interval window.
+
+\section{External  validity}
+Threats to \textit{external validity} concern the generalisation of results. Although we mined a large number of projects (245,243), other systems should be analysed to support our conclusions. This is especially needed due to the fact that (i) all the projects subject of our study are written in Java, thus calling for the need of analysing software projects written in other programming languages, and (ii) we limited our analysis to openly available GitHub projects ignoring industrial systems.

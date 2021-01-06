@@ -11,7 +11,8 @@ Lastly, to increase the performance of the system we select a set of hyperparame
 
 %3.1
 \section{Mining SATD Instances and their Fixes}
-
+\label{sec:mining_satd}
+ 
 These are the fundamental activities involved in the creation of the dataset:
 \begin{itemize}
     \item GitHub repository URL mining: using GitHub API, we extracted 248,872 projects' URL matching our search profile.
@@ -69,7 +70,7 @@ This section describes the process of cloning 250 thousand repositories and appl
 
 The repository clone task was conducted without the checkout, i.e. only the commit history was downloaded without creating the working copy for the last commit. This approach saved disk space and processing time, particularly when the last commit contained a high number of files. 
 
-Once the repository was locally accessible, using the library JGit\footnote{https://www.eclipse.org/jgit/}, we tested the presence of a few files that indicated an Android OS project; if it was the case, the repository was rejected.
+Once the repository was locally accessible, using the library JGit\footnote{\url{https://www.eclipse.org/jgit/}}, we tested the presence of a few files that indicated an Android OS project; if it was the case, the repository was rejected.
 The problems related to the Android OS was that there were more than 1,700 forks/clones and those repositories counted between 300,000 and 550,000 commits; it is one of the biggest project encountered in this endeavour and it posed a significant bottleneck to the commit history processing: traversing the commit tree could take a couple of days only for one Android OS repository.
 The exclusion of Android OS in this phase was established only for performance reasons.
 
@@ -106,7 +107,7 @@ There are a few considerations to ponder:
 \\
 \\
 \textbf{Keyword label pattern matching.} 
-To detect the SATD, we use keyword label techniques using the 62 patterns reported by Potdar and Shihab \cite{potdar2014exploratory} (they are actually 63\footnote{http://users.encs.concordia.ca/~eshihab/data/ICSME2014/satd.html}). Out of these patterns we create regular expressions that are applied on all the source comments extracted with JavaParser.
+To detect the SATD, we use keyword label techniques using the 62 patterns reported by Potdar and Shihab \cite{potdar2014exploratory} (they are actually 63\footnote{\url{http://users.encs.concordia.ca/~eshihab/data/ICSME2014/satd.html}}). Out of these patterns we create regular expressions that are applied on all the source comments extracted with JavaParser.
 
 We did an initial experiment to verify the effectiveness of those patterns and we excluded the following two: ``there is a problem'' and ``bail out''. After manually verifying roughly one hundred matches we noticed that those two patterns were often used as documentation in `catch' Java blocks and were not documenting SATD. The final list used in our tool is found in listing \ref{lst:patterns61}.
 
@@ -128,7 +129,7 @@ We need to be very careful not to introduce noise in the dataset. To ensure a be
 
 \textbf{Rejected snippets.} 
 % see JavaMethodTest.kt
-We implemented unit tests\footnote{https://github.com/simonegiacomelli/code2vec-satd-classifier/blob/master/satd-classifier/src/jvmTest/kotlin/satd/step2/JavaMethodTest.kt} to be sure to reject specific Java constructs that would pose issues for the pipeline. For example, methods containing inner named methods (explicit interface implementations) were discarded because the parser in code2vec recognized them as two distinct methods, which is not correct. 
+We implemented unit tests\footnote{\url{https://github.com/simonegiacomelli/code2vec-satd-classifier/blob/master/satd-classifier/src/jvmTest/kotlin/satd/step2/JavaMethodTest.kt}} to be sure to reject specific Java constructs that would pose issues for the pipeline. For example, methods containing inner named methods (explicit interface implementations) were discarded because the parser in code2vec recognized them as two distinct methods, which is not correct. 
 
 
 \section{The Deep Learning Model}
@@ -179,7 +180,7 @@ To better illustrate how the decomposition is done, we use the simple code snipp
                             
 \end{lstlisting}
 
-Using JavaParser\footnote{https://javaparser.org/} the AST is extracted from the source code; see an example in figure  \ref{fig:AST_graphviz}.
+Using JavaParser\footnote{\url{https://javaparser.org/}} the AST is extracted from the source code; see an example in figure  \ref{fig:AST_graphviz}.
 
 
 \begin{figure}

@@ -1,3 +1,31 @@
 \chapter{Conclusion}
 
-\dots conclusion \dots 
+Technical debt is a risk to any software project, both in term of economical cost and indirect damages. This is a great force motivating both researchers and professionals to study, detect and manage technical debt. 
+The literature shows many techniques to automatically detect TD, however none of the leverages SATD to learn a deep learning model capable of performing a binary classification.
+
+In this thesis we presented an approach to learn a model to automatically detect technical debt in a source code snippet representing it as a fixed length vector.
+We created a dataset from scratch mining roughly 250 thousand GitHub Java repositories. 
+
+We evaluated the accuracy of the model using precision, recall and F1-score measures and verified the impact of the prediction confidence score on the accuracy. We also dug deeper in specific cases, through a qualitative analysis, in the reasons why the model was correct or wrong in its prediction. Our qualitative analysis explained some of the limitations but also showed the potential of detecting TD using this approach.
+We conducted an hyperparameter selection and tuning with a distributed grid search using Google Colab to find the best configuration in a specific search space boundary.
+
+\section{Future work}
+
+During the research described in this thesis, we collected some additional directions we deemed worth to be investigated in future work.
+
+Implement a comparative analysis between the approach proposed in this document and another classifier belonging to a different model type. Specifically, use natural language processing on the source code and use related techniques to perform the classification. This analysis could compare the two models on different measures like: accuracy and resource cost for the prediction and cost of training the model.
+
+As explained in section \ref{sec:mining_satd}, we created a dataset from scratch to be used in this study. We did analysis and quality assessment on randomly sampled observations. However, further work needs to be done to better determine the characteristics of such dataset. The feature extracted, e.g. the distribution of the code snippet length, the type of SATD (design debt, defect debt and so on) and the project type where the snippet come from (Android, backend server, web project and so on) may be used to drive the evaluation and measure how the they impact the model results.
+
+Another comparative analysis employing a competing dataset would help to better understand biases and quality issues contained in our dataset. Other researchers manually labeled SATD comments on Java projects and made the data publicly available \cite{maldonado2015detecting}; using this dataset as a starting point (to evaluate our classifier we need also samples of `clean' code) we could test the accuracy of our model against it. Furthermore, the dataset labels include also the SATD type; this information could be used to enhance the model or evaluate the accuracy against subset of SATD types.
+
+
+
+
+
+%dataset analysis: e.g. the distribution of the snippets length across token-length
+%run a 10-fold cross evaluation on multiple token-length sub-datasets; and reporting the average metrics with variance
+%separate the box plots (one for each experiment) and use a logarithmic scale 
+%better table and figure placement (latex magic)
+
+

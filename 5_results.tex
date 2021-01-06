@@ -298,5 +298,5 @@ public boolean contains(String s) {
 The model correctly labeled as SATD the method composed only by `return false'; this is a consequence of not using the argument `s' of the method. On the other hand, the fixed counterpart was found to employ AST-paths involving the argument `s' in the evaluation of the return value.
 
 \textbf{Wrong predictions, Scenario-2.}
-We lowered the confidence ration threshold to 0.7 and got four wrong prediction samples pair. This means that the model is less sure about the results probably due to the noisy dataset.
+We lowered the confidence ratio threshold to 0.7 and got four wrong prediction samples pair. This means that the model is less sure about the results probably due to the noisy dataset.
 The actual fixed, wrongly predicted as SATD, are mainly `return null' that usually are actual SATD. In these cases, the fixes introduced the (normally) smelly code.

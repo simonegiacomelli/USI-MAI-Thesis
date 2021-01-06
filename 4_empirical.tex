@@ -93,7 +93,7 @@ We targeted GitHub open-source projects written in Java because of three reasons
     \item The availability of the commits history. 
     \item The ease of parsing Java sources thanks to feature rich options of modern parsers.
 \end{itemize}
-We used GitHub GraphQL API \footnote{https://docs.github.com/graphql} to retrieve 7,265,342 URLs of public Java repositories created between the start of year 2000 and the end of 2019, thus spanning a time window of 20 years.
+We used GitHub GraphQL API \footnote{\url{https://docs.github.com/graphql}} to retrieve 7,265,342 URLs of public Java repositories created between the start of year 2000 and the end of 2019, thus spanning a time window of 20 years.
 The GraphQL API allowed us to request two additional information for each repository: the number of issues and the number of commits. To exclude smaller and less meaningful repositories, we kept only those URLs with issue or commit count greater than 100. This reduced the number of repository URLs to 248,872.
 
 After the clone phase we were left with 245,243 repositories because 3,629 were rejected or failed: 1,726 Android OS repository clones were rejected, 587 clones failed because they were removed or made private and 1,316 for other mixed reasons.
@@ -157,8 +157,8 @@ To address the qualitative analysis of RQ$_2$, as we will detail later, we train
 %Replication Package [A link to a repo with all data and code]
 A replication package is available on GitHub:
 \begin{itemize}
-    \item The source code for repository mining and deep learning model \footnote{https://github.com/simonegiacomelli/code2vec-satd-classifier}. 
-    \item Two Postgresql database backups. \footnote{https://github.com/simonegiacomelli/code2vec-satd-classifier-dataset } containing:
+    \item The source code for repository mining and deep learning model \footnote{\url{https://github.com/simonegiacomelli/code2vec-satd-classifier}}. 
+    \item Two Postgresql database backups. \footnote{\url{https://github.com/simonegiacomelli/code2vec-satd-classifier-dataset}} containing:
     \begin{itemize}
 \item The dataset with the mined GitHub repository urls and all the method bodies collected.
 \item The Optuna database containing the data of the distributed experiment (i.e. hyperparameters tuning) with all Keras outputs. 
