@@ -1,44 +1,43 @@
 \chapter{Introduction}
-Technical Debt (TD) is a metaphor that has its root in the financial field. In software engineering, a TD is contracted when a workaround or shortcut is taken during code implementation.
-Choosing an easy and quick solution over a slower and more correct one gives the benefit to save time and deliver the artifact faster. % but could cost more down the road because of TD. 
-%
-The downsides of incurring in technical debt are many, one of the most intuitive is that further work on the affected parts will be more expensive and time consuming than work on clean and healthy code. There are also indirect effects to contemplate: the software could misbehave in the domain it is operating; unexpected output or wrong behavior can cause damages and increased costs \cite{tom2013exploration}.
+Technical Debt (TD) is a metaphor that has its roots in the financial field. In software engineering, a TD is contracted when a workaround or shortcut is taken during code implementation.
+Choosing an easy and quick solution over a slower and more appropriate one can save time to deliver the artifact faster in the short run. However, it has many downsides in the long run. Many studies have shown that further work on the affected parts will be more expensive and time consuming than work on clean and healthy code \cite{tom2013exploration} \cite{allman2012managing} \cite{guo2016exploring} \cite{besker2018embracing} \cite{cunningham1992wycash}.
+There are also indirect effects to contemplate: the software could misbehave in the operating domain; unexpected output or wrong behavior can cause damages and increased costs \cite{guo2011tracking}.
 % \\
 % TD do not only appear in software projects but can also be found in many layers of a technology stack: for example, delaying an hardware upgrade or a maintenance can give an immediate benefit of less downtime or financial savings, but an increased cost for future unexpected downtime or failures \cite{allman2012managing}.
 %
-Developers or managers can incur in TD, knowingly or unknowingly, because of strict deadlines, limited resources available or just plain laziness \cite{hinsen2015technical,allman2012managing}. Cunningham, who coined the technical debt metaphor, writes: "A little debt speeds development so long as it is paid back promptly with a rewrite" \cite{cunningham1992wycash}. Cunningham implies that one could benefit from a small amount of TD but it should be paid back as soon as possible. 
+Developers or managers can accumulate TD, knowingly or unknowingly, because of strict deadlines, limited resources available or just plain laziness \cite{hinsen2015technical,allman2012managing}. Cunningham, who coined the technical debt metaphor, writes: `A little debt speeds development so long as it is paid back promptly with a rewrite' \cite{cunningham1992wycash}. Cunningham implies that one could benefit from a small amount of TD but it should be paid back as soon as possible. 
 %
 %TD can arise from intentional and unintentional decision, e.g. an inexperienced person could contract it without being aware of what is happening \cite{hinsen2015technical}; In both cases it's often done for saving the limited available resources and shortening time-to-market \cite{tom2012consolidated}. For example, startups are highly pressured to quickly test products and ideas in order to save capitals and be faster than competitors.
 %Besker et al. studied how startups incur in TD, which are the factors, challenges and benefits of intentional acquisition of TD; two of the regulating factors found by the authors are the experience of the developers and the software knowledge of the founders \cite{besker2018embracing}.
-In contrast to the beneficial viewpoint of TD, Ron Jeffries argues that the metaphor could be "perhaps too gentle", because it highlights the wise aspect of the choice of contracting a debt; the problem is that people also take debt unwisely. 
+In contrast to the beneficial viewpoint of TD, Ron Jeffries argues that the metaphor could be `Perhaps too gentle', because it highlights the wise aspect of the choice of contracting a debt; the problem is that people also take debt unwisely. 
 Technical debt benefits a software project as long as it is handled before the bigger long term cost is realized.
 %
-It is generally accepted by the community that technical debt needs to be managed otherwise bad things happens \cite{guo2016exploring} \cite{hinsen2015technical} \cite{allman2012managing} \cite{martini2018technical}. 
+It is generally accepted by the community that technical debt needs to be managed otherwise bad things will happen \cite{guo2016exploring} \cite{hinsen2015technical} \cite{allman2012managing} \cite{martini2018technical}. 
 
-This is why it is important detecting technical debt: avoid additional economical costs and unwelcome consequences. 
+This is why it is important to detect technical debt: avoid additional costs and unwelcome consequences. 
 %There are multiple approaches to detect TD:
 %The literature shows multiple approaches to automatically detect TD.  
 
-When developers are aware they are introducing technical debt in the source code, for the many reasons we mentioned above, they can decide to leave a code comment to document what they are doing; this is called self-admitted technical debt (SATD) \cite{potdar2014exploratory}. In other words, a SATD is a written confession left as a testimony that there is something `not-quite-right'.
+When developers are aware that they introduce technical debt in the source code, for the many reasons we mentioned above, they can decide to leave a code comment to document what they are doing; this is called self-admitted technical debt (SATD) \cite{potdar2014exploratory}. In other words, a SATD is a written confession left as a testimony that there is something `not-quite-right'.
 % approaches to detect SATD
 
 %1.1
 
 \section{Objectives and Results}
 %Once the context is clear, I will explain the goal of the thesis and summarize the achieved results
-There is extensive literature, described in chapter 2, on techniques to automatically detect technical debt. However, to the best of our knowledge, no study leverages SATD annotations to create a technical debt detector.
-We propose a method to use SATD comments for automatically detecting technical debt in source code using a deep learning model. 
-This thesis describes how to learn a model that classifies code snippets into two categories: TD-free and affected by TD.
+There is an extensive literature on techniques to detect technical debt automatically. However, to the best of our knowledge, no study leverages SATD annotations to create a technical debt detector.
+We propose a method to use SATD comments to detect technical debt in source code using a deep learning model. 
+This thesis describes how to learn a model that classifies code snippets into two categories: TD-free or TD-affected.
 To create the dataset needed to learn the model, we processed 245,243 projects commit histories cloned from public GitHub repositories. 
-The model internally represents the code snippet as a fixed-length vector. The pre-processing pipeline extracts features from the source code (AST-paths) and they are embedded as code-vectors. Conceptually, this is similar to how word2vec works. The distance between two vectors gives a measure on how similar or dissimilar two snippets are. The last part of the model is a fully connected layer; its purpose is to perform the final binary classification of the code-vector. 
+The model internally represents the code snippet as a fixed-length vector. The pre-processing pipeline extracts features from the source code (AST-paths) and they are embedded as code-vectors. Conceptually, this is similar to how word2vec works. The distance between two vectors gives a measure of how similar or dissimilar two snippets are. The last part of the model is a fully connected layer; its purpose is to perform the final binary classification of the code-vector. 
 
-We present a large-scale empirical study to (i) assess the accuracy of our classifier and (ii) research the correlation between the model prediction confidence and the accuracy of the prediction itself. Besides quantitatively evaluating the results, we present a qualitative analysis on concrete high confidence predictions.
+We present a large-scale empirical study to (i) assess the accuracy of our classifier and (ii) research the correlation between the model prediction confidence and the accuracy of the prediction itself. Besides quantitatively evaluating the results, we present a qualitative analysis of concrete high confidence predictions.
 
 % quant results 
-We tested the accuracy of the model on two dataset of different size. The results using the smaller dataset, shows 71\% for precision, 62\% recall and 66\% for F1-score. The second best precision (67\%) and the second highest F1-score (61\%) comes with the largest dataset.
+We tested the accuracy of the model on two two different datasets with unequal sizes. The results using the smaller dataset, shows 71\% for precision, 62\% recall and 66\% for F1-score. The second best precision (67\%) and the second highest F1-score (61\%) comes with the largest dataset.
 
 %quant results with confidence
-The results on the confidence level analysis show interesting results: when filtering for a confidence level greater than 0.9 we measured a gain on precision, going from 71\% up to 78\%; the excluded samples shows their effect also on the recall that goes from 62\% down to 52\%. When using a dataset with bigger code snippets and confidence greater than 0.9 we discard 98\% of the test predictions; however the precision is high as 99\% and the recall drops to 10\%, both due to the (correct and incorrect) discarded predictions.
+The results on the confidence level analysis show interesting results: when filtering for a confidence level greater than 0.9 we measured a gain on precision, from 71\% to 78\%; the excluded samples shows their effect also on the recall that goes from 62\% down to 52\%. When using a dataset with bigger code snippets and confidence greater than 0.9 we discard 98\% of the test predictions; however the precision is high as 99\% and the recall drops to 10\%, both due to the (correct and incorrect) discarded predictions.
 
 
 
@@ -53,12 +52,12 @@ The results on the confidence level analysis show interesting results: when filt
 \section{Structure of the Thesis}
 The remainder of the manuscript is organized as follows.
 \begin{itemize}
- \item \textbf{Chapter 2} presents the state of the art regarding technical debt and self-admitted technical debt. It explores topics about automatic software bugs identification and introduces the basic concepts of code smells, anti-patterns and the prominent literature on these subjects. The last part examines the most recent researches on machine learning applied to technical debt.
+ \item \textbf{Chapter 2} presents the state of the art in technical debt and self-admitted technical debt. It explores automatic software bugs identification and introduces the basic concepts of code smells, anti-patterns and the prominent literature on these subjects. The last part examines the most recent researches on machine learning applied to technical debt.
  \item \textbf{Chapter 3} explains how we used deep learning to detect technical debt. There are three main sections: dataset creation, deep learning model and hyperparameter tuning.
  \item \textbf{Chapter 4} presents the research questions and details the design and planning of the study.
- \item \textbf{Chapter 5} presents a quantitative analysis of the results that we achieved. We also presents qualitative research and related findings.
- \item \textbf{Chapter 6} discuss about threats to validity. We explain which threats we faced and show how we minimized them.
- \item \textbf{Chapter 7} concludes the work by summarizing our findings and recommending directions for future work.
+ \item \textbf{Chapter 5} presents a quantitative analysis of the results that we achieved. We also present qualitative research and related findings.
+ \item \textbf{Chapter 6} discusses  threats to validity. We explain which threats we faced and show how we mitigate them.
+ \item \textbf{Chapter 7} concludes the work by summarizing our findings and recommends directions for future work.
 \end{itemize}
 
 

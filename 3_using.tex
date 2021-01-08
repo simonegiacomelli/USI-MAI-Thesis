@@ -15,17 +15,17 @@ Lastly, to increase the performance of the system we select a set of hyperparame
  
 These are the fundamental activities involved in the creation of the dataset:
 \begin{itemize}
-    \item GitHub repository URL mining: using GitHub API, we extracted 248,872 projects' URL matching our search profile.
+    \item GitHub repository URL mining: using GitHub API, we extracted 248,872 projects' URLs matching our search profile.
     \item Repository cloning and filtering: some projects can be discarded only after the commit history is available for a precursory analysis to determine if a project qualifies for the next activity.
     \item Commit history processing: the directed acyclic graph of the commits is traversed and the source code is parsed in search of acceptable SATD/fixed pair.
 \end{itemize}
 
 The following sections describe these activities in detail.
 
-\subsection{GitHub repository url mining}
+\subsection{GitHub repository URL mining}
 We know from experience and the literature that the concentration of SATD is very low \cite{bavota2016large} \cite{maldonado2015detecting} \cite{potdar2014exploratory}, for this reason we created a dataset from an initial set of open-source projects as big as possible. 
 The search was conducted for all public Java GitHub repositories in a 20 years time window (from 2000 to 2019). 
-The retrieval process of this URLs list was challenging in itself. We dealt and solved the following issues:
+The retrieval process of this URL list was challenging in itself. We dealt and solved the following issues:
 \begin{enumerate}
     \item GitHub search API limit of 1000 hits.
     \item GitHub search API number of request per minute maximum quota.
@@ -80,7 +80,7 @@ The general issue of detecting forked (i.e. duplicated) repositories will be bet
 
 \subsection{Commit history processing}
 
-This section describes the task of traversing all the commits of a repository and collecting the code snippets to our SATD/fixed dataset.
+This section describes traversing all the commits of a repository and collecting the code snippets to our SATD/fixed dataset.
 
 What we are generally looking for is a method body that is affected with SATD and after a commit is not affected by it anymore, i.e. the SATD was removed. What follows from it is that we do not need to blindly parse all the Java files but only those that are changed by a commit.
 
@@ -305,7 +305,7 @@ In the prediction phase it will calculate the probability that a specific class 
 
 This section describes the process of tuning the hyperparameters of the model.
 
-The hyperparameter tuning was performed on a subset of the mined dataset. Such subset is composed by 106,272 instances (53,136 pairs) and it features methods having less than 200 tokens. Such constraint was mainly due to the high cost of training when dealing with longer methods; an example of a method composed of 199 tokens is shown in listing \ref{lst:snippet199}.
+The hyperparameter tuning was performed on a subset of the mined dataset. Such subset is composed of 106,272 instances (53,136 pairs) and it features methods having less than 200 tokens. Such constraint was mainly due to the high cost of training when dealing with longer methods; an example of a method composed of 199 tokens is shown in listing \ref{lst:snippet199}.
 
 %The initial experiments led us to quickly understand that using shorter snippets yielded better performances. For example, a dataset with snippets shorter than 25 tokens has 4,256 samples and gives a 73\% test accuracy. A dataset with snippets shorter than 200 tokens has 106,272 samples and gives a 58\% test accuracy. 
 
@@ -359,16 +359,18 @@ private CompoundWorkflow finishCompoundWorkflow(
 
 \noindent We based the tuning operation on these three hyperparameters:
 \begin{itemize}
-    \item default\_embeddings\_size: this value defines the length of the code vector, i.e. the vector representation of the snippet (see section \ref{sec:attention_code_vector}).
-    \item max\_contexts: it is the maximum number of AST-paths used by the model (see section \ref{sec:code2vec_ast_paths}).
-    \item dropout\_keep\_rate: the dropout is a random removal of neurons to prevent excessive adaptation to the training values and in so doing, reduce the likelihood of the network overfitting.
+    \item \textit{default\_embeddings\_size:} this value defines the length of the code vector, i.e. the vector representation of the snippet (see section \ref{sec:attention_code_vector}).
+    \item \textit{max\_contexts:} it is the maximum number of AST-paths used by the model (see section \ref{sec:code2vec_ast_paths}).
+    \item \textit{dropout\_keep\_rate:} the dropout is a random removal of neurons to prevent excessive adaptation to the training values and in so doing, reduce the likelihood of the network overfitting.
 \end{itemize}
 
-To explore the best values for these parameters we created a distributed experiment using Google Colab Pro and a tool called Optuna . 
+To explore the best values for these parameters we created a distributed experiment using Google Colab Pro and a tool called Optuna. 
 
-\textbf{Optuna} is defined as ``A next-generation hyperparameter optimization framework''. It is capable to construct the parameter search space dynamically and it implements both searching and pruning strategies \cite{optuna_2019}. The initial experiments were conducted with a competing tool, Hyperopt \cite{bergstra2013making}, but it was abandoned in favor of Optuna.
+\textbf{Optuna} is defined as a ``next-generation hyperparameter optimization framework''. It is capable to construct the parameter search space dynamically and it implements both searching and pruning strategies \cite{optuna_2019}. The initial experiments were conducted with a competing tool, Hyperopt \cite{bergstra2013making}, but it was abandoned in favor of Optuna.
 
-\begin{figure}
+The Optuna distributed worker was easier to setup and the distributed experiment gave less friction than Hyperopt. Figure \ref{fig:optuna_objective} shows a simplified version of the objective function required by Optuna where we define the search space for each hyperparameter. Our objective value is the test prediction accuracy.
+
+\begin{figure}[hbt!]
  \centering
  \resizebox{\columnwidth}{!}{
   \includegraphics{images/optuna_objective.png}
@@ -377,9 +379,7 @@ To explore the best values for these parameters we created a distributed experim
     \label{fig:optuna_objective}
 \end{figure}
 
-The Optuna distributed worker was easier to setup and the distributed experiment gave less friction than Hyperopt. Figure \ref{fig:optuna_objective} shows a simplified version of the objective function required by Optuna where we define the search space for each hyperparameter. Our objective value is the test prediction accuracy.
-
-The first rounds of experiments yielded good values for max\_contexts parameter: we found that the optimal value lies between 250-300. The other two parameters, default\_embeddings\_size and dropout\_keep\_rate, needed a different search space: figure \ref{fig:optuna_first} clearly shows the first two value bubbles crushed on the left. This suggested a new experiment with a different value search window shown in figure \ref{fig:optuna_second}. 
+The first rounds of experiments yielded good values for \textit{max\_contexts} parameter: we found that the optimal value lies between 250-300. The other two parameters, \textit{default\_embeddings\_size} and \textit{dropout\_keep\_rate}, needed a different search space: figure \ref{fig:optuna_first} clearly shows the first two value bubbles crushed on the left. This suggested a new experiment with a different value search window shown in figure \ref{fig:optuna_second}. 
 
 \begin{figure}
  \centering

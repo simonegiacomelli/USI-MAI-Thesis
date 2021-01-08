@@ -118,7 +118,7 @@ We focus on high confidence predictions (correct and incorrect) using the follow
 
 All test session results are stored into a database with the information related to the prediction: a boolean value indicating if it was correct or incorrect, the confidence rating and some information on the attention vector weights. Each record contains these fields in pairs, one for the SATD and one for the fixed. It contains also the identifier link to trace back to the method source code and all related data.
 
-The following paragraphs explains the findings for specific cases of both schenarios.
+The following paragraphs explain the findings for specific cases of both schenarios.
 
 \textbf{Correct predictions, Scenario-1.} We queried Scenario-1 filtering for those samples that were correctly predicted with confidence greater than 0.99; the filter was applied to both elements of the pair at the same time, so both SATD/fixed were true positive with a high confidence rating.
 
@@ -129,7 +129,7 @@ Then, we manually went through a few of the 91 query hits, inspecting the source
     \item Case-3 Return null %id-57467
 \end{itemize}
 
-For each of these cases we extracted the weights of the attention vector and the related AST-paths, for both labels: SATD and fixed\footnote{The appendix section \ref{app:qualitative} contains the clean source code snippets of these three cases, the prediction confidence and the attention weights with the AST-paths}. These weights are sorted in descending ordered; looking to those values, we noticed that, for example, the first AST-path weight was roughly twice than the second. This means that the first AST-path was pivotal for the correct prediction; if the AST-path was decisive, it suggests it should be present in a meaningful way in the training set. After fixing the representation of the AST-path to the same stored in the database, we searched all the occurrences of the first particular path in this session training dataset samples. We also inspected the general distribution of weights and explained the most important AST-paths.
+For each of these cases we extracted the weights of the attention vector and the related AST-paths, for both labels: SATD and fixed\footnote{The appendix section \ref{app:qualitative} contains the clean source code snippets of these three cases, the prediction confidence and the attention weights with the AST-paths}. These weights are sorted in descending order; looking at those values, we noticed that the first AST-path weight was roughly twice than the second. This means that the first AST-path was pivotal for the correct prediction. If the AST-path was decisive, it suggests it should be present in a meaningful way in the training set. After fixing the representation of the AST-path to the same stored in the database, we searched all the occurrences of the first particular path in this session training dataset samples. We also inspected the general distribution of weights and explained the most important AST-paths.
 
 
 \begin{lstlisting}[caption={Case-1 SATD, verbatim source code}, label={lst:case_empty_exception},language=Java]
@@ -177,7 +177,7 @@ static void httpRedirect(final Exchange exchange, final String uri) {
 \end{lstlisting}
 
 
-\textbf{Case-3.} Returning null from a function is often associated with a bad smell. We went through the training samples with a common AST-path from Case-3 and we found three hit of SATD for a similar `return null'. We inspected other similar snippets to this case from Scenario-1 and found interesting different outcomes. We noticed methods containing a `return null' were correctly classified as negative (i.e. fixed): the code of such methods was using the arguments of the function before, eventually returning null; this changed the attention vector weights far from the `return null' statement. 
+\textbf{Case-3.} Returning null from a function is often associated with a bad smell. We went through the training samples with a common AST-path from Case-3 and we found three hits of SATD for a similar `return null'. We inspected other similar snippets to this case from Scenario-1 and found interesting different outcomes. We noticed methods containing a `return null' were correctly classified as negative (i.e. fixed): the code of such methods was using the arguments of the function before, eventually returning null; this changed the attention vector weights far from the `return null' statement. 
 
 
 \begin{lstlisting}[caption={Case-3 SATD, verbatim source code}, label={lst:case3satd},language=Java]
@@ -216,9 +216,9 @@ public String getClientID() {
 }
 \end{lstlisting}
 
-First we observe that the two snippets have the same AST structure: they share the same signature and returns the value coming from two consecutive invocations. Thus, the AST-paths (excluding the value leaves) will be identical. 
-We analyzed the presence of such paths into the training samples. 
-First we start with the actual SATD element (predicted as fixed), the easiest to explain; we traced the first two AST-paths and found they recur most often in the fixed training samples: 15+44 (59) fixed occurrences versus 8+19 (27) SATD occurrences. 
+First we observe that the two snippets have the same AST structure: they share the same signature and return the value from two consecutive invocations. Thus, the AST-paths (excluding the value leaves) are identical. 
+We analyzed the presence of such paths in the training samples. 
+First we start with the actual SATD element (predicted as fixed), the easiest to explain; we traced the first two AST-paths and found that they recur most often in the fixed training samples: 15+44 (59) fixed occurrences versus 8+19 (27) SATD occurrences. 
 Second, we explain the wrong prediction for the actual fixed element; this is more interesting because it has the same rough balance of before but leading to a different prediction. In-fact, the first two AST-paths have the following recurrence: 137+516 (653) fixed and 75+266 (341) SATD. Why did it predict with a SATD label and not a fixed? The answer lies in the number of samples that use both AST-paths at the same time: 75 SATD and 39 fixed. This ratio inversion was not present in the counterpart prediction above; the model took this into account as the dominant factor for the SATD prediction. 
 %predicted:fixed actual:satd
 %
@@ -295,7 +295,7 @@ public boolean contains(String s) {
 }
 \end{lstlisting}
 
-The model correctly labeled as SATD the method composed only by `return false'; this is a consequence of not using the argument `s' of the method. On the other hand, the fixed counterpart was found to employ AST-paths involving the argument `s' in the evaluation of the return value.
+The model correctly labeled as SATD the method composed only of a `return false' statement. This is a consequence of not using the argument `s' of the method. On the other hand, the fixed counterpart was found to employ AST-paths involving the argument `s' in the evaluation of the return value.
 
 \textbf{Wrong predictions, Scenario-2.}
 We lowered the confidence ratio threshold to 0.7 and got four wrong prediction samples pair. This means that the model is less sure about the results probably due to the noisy dataset.
