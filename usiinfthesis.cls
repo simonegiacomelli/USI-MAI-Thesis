@@ -478,6 +478,7 @@ date of the approved research program.\\[18mm]
 %%% other useful packages
 
 \RequirePackage{booktabs}
+\newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}
 \RequirePackage{graphicx}
 \RequirePackage{textcomp}
 \RequirePackage{url}

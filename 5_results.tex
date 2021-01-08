@@ -12,17 +12,17 @@ Thise section reports the results for {RQ$_1$} and {RQ$_2$}.
 Table \ref{tbl:rq1} reports the precision, recall, accuracy and F1-score for twelve experiments on different dataset filtered by token count. The results using the smaller dataset, with tokens count less than 50 (dataset-50), shows the best precision (71\%), the second highest recall (62\%) and the best F1-score (66\%). The lowest F1-score (49\%) and lowest precision (42\%) are found with dataset-300. We notice that the second best precision (67\%) and the second highest F1-score comes with the largest dataset-600; this may lead to think that the size of the snippet influence the accuracy of the model only up to a point: in-fact we observe that the accuracy for larger dataset than 200 tokens remains roughly the same.
 
 %https://www.tablesgenerator.com/#
-\begin{table}[h!]
-\centering
+\begin{table*}[h!]\centering
+\ra{1.3}
 \caption{Twelve experiments on different snippet sizes.\label{tbl:rq1}}
-\begin{tabular}{|r|r|r|r|r|r|}
-\hline
-\multicolumn{1}{|l|}{\#Tokens $< x$} &
-  \multicolumn{1}{l|}{\#Test samples} &
-  \multicolumn{1}{l|}{Prec.} &
-  \multicolumn{1}{l|}{Recall} &
-  \multicolumn{1}{l|}{Accuracy} &
-  \multicolumn{1}{l|}{F1-score} \\ \hline
+\begin{tabular}{@{}rrrrrr@{}}\toprule
+\multicolumn{1}{r}{\#Tokens $< x$} &
+  \multicolumn{1}{r}{\#Test samples} &
+  \multicolumn{1}{r}{Prec.} &
+  \multicolumn{1}{r}{Recall} &
+  \multicolumn{1}{r}{Accuracy} &
+  \multicolumn{1}{r}{F1-score} \\ 
+\midrule
 50  & 2826  & 71\% & 62\% & 64\% & 66\% \\ %run_id 6
 100 & 8206  & 60\% & 62\% & 62\% & 61\% \\
 150 & 12612 & 51\% & 63\% & 60\% & 56\% \\
@@ -35,9 +35,9 @@ Table \ref{tbl:rq1} reports the precision, recall, accuracy and F1-score for twe
 500 & 24276 & 61\% & 57\% & 58\% & 59\% \\
 550 & 24812 & 56\% & 58\% & 58\% & 57\% \\
 600 & 25250 & 67\% & 56\% & 58\% & 61\% \\
-\hline
+\bottomrule
 \end{tabular}
-\end{table}
+\end{table*}
 
 
 \textbf{RQ$_2$} \textit{What is the correlation between the prediction confidence level and the accuracy of the model?}
@@ -47,49 +47,49 @@ Table \ref{tbl:rq2_token_200} shows a different drop in coverage; with confidenc
  
 Figure \ref{fig:rq2_box_plot} presents, via box plots, the confidence level divided by class (i.e true positive, true negative, false positive and false negative) for both experiments. The plot shows a much greater confidence when using the smaller dataset: the median for the true positive dataset-50 is 0.97 and 0.56 for dataset-200.
 
-\begin{table}[h!]
-\centering
+\begin{table*}[h!]\centering
+\ra{1.3}
 \caption{Experiment `\#Tokens $< 50$' split for prediction confidence.\label{tbl:rq2_token_50}}
 
-\begin{tabular}{|r|r|r|r|r|r|}
-\hline
-  \multicolumn{1}{|l|}{\#Confidence $> x$} &
-  \multicolumn{1}{l|}{\#Test samples} &
-  \multicolumn{1}{l|}{Test samples coverage} &
-  \multicolumn{1}{l|}{Prec.} &
-  \multicolumn{1}{l|}{Recall} &
-  \multicolumn{1}{l|}{F1-score} \\ 
-\hline
+\begin{tabular}{@{}rrrrrr@{}}
+\toprule
+  \multicolumn{1}{r}{\#Confidence $> x$} &
+  \multicolumn{1}{r}{\#Test samples} &
+  \multicolumn{1}{r}{Test samples coverage} &
+  \multicolumn{1}{r}{Prec.} &
+  \multicolumn{1}{r}{Recall} &
+  \multicolumn{1}{r}{F1-score} \\ 
+\midrule
 0   & 2826 & 100\% & 71\% & 62\% & 66\% \\
 0.6 & 2592 & 92\%  & 72\% & 61\% & 66\% \\
 0.7 & 2345 & 83\%  & 74\% & 59\% & 66\% \\
 0.8 & 2027 & 72\%  & 76\% & 57\% & 65\% \\
 0.9 & 1590 & 56\%  & 78\% & 52\% & 63\% \\
-\hline
+\bottomrule
 \end{tabular}
-\end{table}
+\end{table*}
 
-\begin{table}[h!]
-\centering
+\begin{table*}[h!]\centering
+\ra{1.3}
 \caption{Experiment `\#Tokens $< 200$' split for prediction confidence.\label{tbl:rq2_token_200}}
 
-\begin{tabular}{|r|r|r|r|r|r|}
-\hline
-  \multicolumn{1}{|l|}{\#Confidence $> x$} &
-  \multicolumn{1}{l|}{\#Test samples} &
-  \multicolumn{1}{l|}{Test samples coverage} &
-  \multicolumn{1}{l|}{Prec.} &
-  \multicolumn{1}{l|}{Recall} &
-  \multicolumn{1}{l|}{F1-score} \\ 
-\hline
+\begin{tabular}{@{}rrrrrr@{}}
+\toprule
+  \multicolumn{1}{r}{\#Confidence $> x$} &
+  \multicolumn{1}{r}{\#Test samples} &
+  \multicolumn{1}{r}{Test samples coverage} &
+  \multicolumn{1}{r}{Prec.} &
+  \multicolumn{1}{r}{Recall} &
+  \multicolumn{1}{r}{F1-score} \\ 
+\midrule
 0   & 15940 & 100\% & 51\% & 60\% & 55\% \\
 0.6 & 4761  & 30\%  & 61\% & 34\% & 44\% \\
 0.7 & 1616  & 10\%  & 79\% & 20\% & 32\% \\
 0.8 & 757   & 5\%   & 92\% & 14\% & 25\% \\
 0.9 & 349   & 2\%   & 99\% & 10\% & 18\% \\ 
-\hline
+\bottomrule
 \end{tabular}
-\end{table}
+\end{table*}
 
 %includere i box plot
 \begin{figure}[h!]
