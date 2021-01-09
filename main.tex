@@ -73,27 +73,6 @@ morecomment=[l]{//s},
 \frontmatter %generates the frontmatter, this is FIXED
 
 \begin{abstract}
-\textit{Still writing it} \dots
-\\
-The Technical Debt metaphor describes a misalignment between the implemented solution and the appropriate one. Software developers accumulate technical debt when they choose speed at the expense of quality and correctness. As the debt metaphor suggests, there are multiple elements involved; two are: gain and interest. The gain is a shorter time to market and lower initial costs. The interest is all the additional effort caused by choosing the easy but limited solution, i.e. it's harder to implement changes. When the debt is not paid in a timely manner the interest can crush the evolution capabilities of the project itself. Researcher agrees that it's important to track, manage and repay technical debt to avoid dire consequences.
-
-Developers, while introducing technical debt, can decide to leave a source code comment to document what they are doing; this is called self-admitted technical debt (SATD). A SATD is an acknowledgement that something needs to be fixed.
-
-
-% There is an extensive literature on techniques to detect technical debt automatically. However, to the best of our knowledge, no study leverages SATD annotations to create a technical debt detector.
-% We propose a method to use SATD comments to detect technical debt in source code using a deep learning model. 
-% This thesis describes how to learn a model that classifies code snippets into two categories: TD-free or TD-affected.
-% To create the dataset needed to learn the model, we processed 245,243 projects commit histories cloned from public GitHub repositories. 
-% The model internally represents the code snippet as a fixed-length vector. The pre-processing pipeline extracts features from the source code (AST-paths) and they are embedded as code-vectors. Conceptually, this is similar to how word2vec works. The distance between two vectors gives a measure of how similar or dissimilar two snippets are. The last part of the model is a fully connected layer; its purpose is to perform the final binary classification of the code-vector. 
-
-% We present a large-scale empirical study to (i) assess the accuracy of our classifier and (ii) research the correlation between the model prediction confidence and the accuracy of the prediction itself. Besides quantitatively evaluating the results, we present a qualitative analysis of concrete high confidence predictions.
-
-
-% We tested the accuracy of the model on two two different datasets with unequal sizes. The results using the smaller dataset, shows 71\% for precision, 62\% recall and 66\% for F1-score. The second best precision (67\%) and the second highest F1-score (61\%) comes with the largest dataset.
-
-
-% The results on the confidence level analysis show interesting results: when filtering for a confidence level greater than 0.9 we measured a gain on precision, from 71\% to 78\%; the excluded samples shows their effect also on the recall that goes from 62\% down to 52\%. When using a dataset with bigger code snippets and confidence greater than 0.9 we discard 98\% of the test predictions; however the precision is high as 99\% and the recall drops to 10\%, both due to the (correct and incorrect) discarded predictions.
-
 % Composed of four parts: \\
 % a: context\\
 % b: problem\\
@@ -101,6 +80,21 @@ Developers, while introducing technical debt, can decide to leave a source code 
 % d: results\\
 % \\
 % max 400 words.
+The `technical debt' metaphor describes a misalignment between the appropriate solution to a problem and the non-optimal actual implementation. Software developers accumulate technical debt when they choose speed at the expense of quality and correctness. As the debt metaphor suggests, there are multiple elements involved; two of them are: gain and interest. The gain is a shorter time to market and lower initial costs. The interest is all the additional effort caused by choosing the easy but limited solution, i.e. it's harder to make changes on suboptimal code implementation. When the debt is not paid in a timely manner the interest can crush the evolution capabilities of the project itself. Researcher agrees that it's important to track, manage and repay technical debt to avoid dire consequences.
+
+Developers, while introducing technical debt, can decide to leave a source code comment to document what they are doing; this is called self-admitted technical debt (SATD). A SATD is an acknowledgement that something needs to be fixed.
+
+In this thesis we propose a technical debt classifier fueled by the SATD harvested from 245,243 GitHub Java projects. We detail the process of the creation of the dataset. We explain how to extract features from a source snippet; these features are learned by the network and, also using an attention mechanism, encoded in a fixed-length vector. The last layer of the deep learning model finally classifies the snippet as TD-free or TD-affected.  
+
+In this empirical study we assess, using quantitative and qualitative research, the accuracy of the classifier and analyze how the prediction confidence influences it.
+
+The results on multiple datasets show a precision ranging between 67\% and 71\%, and a F1-score between 61\% and 66\%. Our quantitative analysis on the prediction confidence score shows that we can significantly increase the precision at the expanse of lowering the recall. 
+We explore quantitative and qualitative findings in both correct and incorrect prediction; we show patterns successfully learned by the network (empty exception block, magic constant and return null) and we also show why specific predictions fail. We conducted an experiment to optimize the hyperparameters of the model using a distributed computing grid search.
+
+
+% The results on the confidence level analysis show interesting results: when filtering for a confidence level greater than 0.9 we measured a gain on precision, from 71\% to 78\%; the excluded samples shows their effect also on the recall that goes from 62\% down to 52\%. When using a dataset with bigger code snippets and confidence greater than 0.9 we discard 98\% of the test predictions; however the precision is high as 99\% and the recall drops to 10\%, both due to the (correct and incorrect) discarded predictions.
+
+
 \end{abstract}
 
 
