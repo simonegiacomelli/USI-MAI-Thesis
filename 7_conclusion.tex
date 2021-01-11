@@ -1,4 +1,4 @@
-\chapter{Conclusion}
+\chapter{Conclusion and Future Work}
 
 Technical debt is a risk to any software project, both in terms of economical cost and indirect damages. This is a great force motivating researchers and professionals to study, detect and manage technical debt. 
 The literature shows many techniques to detect TD automatically, however none of them leverages SATD to learn a deep learning model capable of performing a binary classification.
@@ -8,9 +8,8 @@ We created a dataset from scratch mining roughly 250 thousand GitHub Java reposi
 
 We evaluated the accuracy of the model using precision, recall and F1-score measures and verified the impact of the prediction confidence score on the accuracy. We also dug deeper in specific cases. We also dug deeper in specific cases through qualitative analysis to investigate why the model was correct or wrong in its prediction. Our qualitative analysis explained some of the limitations but also showed the potential of detecting TD using this approach.
 We conducted a hyperparameter selection and tuning with a distributed grid search using Google Colab to find the best configuration in a specific search space boundary.
-
-\section{Future work}
-
+\\
+\\
 We collected some additional directions we deemed worth to be investigated in future work.
 
 Implement a comparative analysis between the approach proposed in this document and another classifier belonging to a different model type. Specifically, use natural language processing on the source code and use related techniques to perform the classification. This analysis could compare the two models on different measures like: accuracy and resource cost for the prediction and cost of training the model.
