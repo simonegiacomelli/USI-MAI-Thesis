@@ -231,7 +231,7 @@
     {Faculty of Informatics of the \em{Universit\`a della Svizzera Italiana}}\\[2mm]
     {in partial fulfillment of the requirements for the degree of}\\[2mm]
      \ifthenelse{\boolean{@mscthesis}}{%
-     Master of Science in Informatics%
+     Master of Science in Artificial Intelligence%
      \ifthenelse{\boolean{@mscspec}}{\\[2mm] \@specialization\\[16mm]}{\\[32mm]}}
     {Doctor of Philosophy \\[32mm]}
     {presented by}\\[2mm]

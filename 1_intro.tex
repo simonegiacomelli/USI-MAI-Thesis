@@ -34,7 +34,7 @@ The model internally represents the code snippet as a fixed-length vector. The p
 We present a large-scale empirical study to (i) assess the accuracy of our classifier and (ii) research the correlation between the model prediction confidence and the accuracy of the prediction itself. Besides quantitatively evaluating the results, we present a qualitative analysis of concrete high confidence predictions.
 
 % quant results 
-We tested the accuracy of the model on two two different datasets with unequal sizes. The results using the smaller dataset, shows 71\% for precision, 62\% recall and 66\% for F1-score. The second best precision (67\%) and the second highest F1-score (61\%) comes with the largest dataset.
+We tested the accuracy of the model on two different datasets with unequal sizes. The results using the smaller dataset, shows 71\% for precision, 62\% recall and 66\% for F1-score. The second best precision (67\%) and the second highest F1-score (61\%) comes with the largest dataset.
 
 %quant results with confidence
 The results on the confidence level analysis show interesting results: when filtering for a confidence level greater than 0.9 we measured a gain on precision, from 71\% to 78\%; the excluded samples shows their effect also on the recall that goes from 62\% down to 52\%. When using a dataset with bigger code snippets and confidence greater than 0.9 we discard 98\% of the test predictions; however the precision is high as 99\% and the recall drops to 10\%, both due to the (correct and incorrect) discarded predictions.
